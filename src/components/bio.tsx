@@ -1,8 +1,8 @@
 import React from 'react'
-import { useStaticQuery, graphql } from 'gatsby'
+import { useStaticQuery, graphql, PageProps } from 'gatsby'
 import Image from 'gatsby-image'
 
-const Bio = () => {
+const Bio: React.FC<PageProps<any, any, any>> = () => {
   const data = useStaticQuery(graphql`
     query BioQuery {
       avatar: file(absolutePath: { regex: "/profile-pic.jpg/" }) {

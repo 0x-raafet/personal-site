@@ -1,11 +1,29 @@
 import React from 'react'
-import { Link, graphql } from 'gatsby'
+import { Link, graphql, PageProps } from 'gatsby'
 
 import Bio from '../components/bio'
 import Layout from '../components/layout'
 import SEO from '../components/seo'
 
-const BlogPostTemplate = ({ data, pageContext, location }) => {
+interface BlogPostData {
+  markdownRemark: {
+    id: string
+    excerpt: string
+    html: string
+    frontmatter: {
+      title: string
+      date(formatString: 'MMMM DD, YYYY'): Date
+      description: string
+    }
+  }
+  site: {
+    siteMetadata: {
+      title: string
+    }
+  }
+}
+
+const BlogPostTemplate: React.FC<PageProps<BlogPostData, any, any>> = ({ data, pageContext, location }) => {
   const post = data.markdownRemark
   const siteTitle = data.site.siteMetadata.title
   const { previous, next } = pageContext
