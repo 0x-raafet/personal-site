@@ -1,8 +1,11 @@
+/** @jsx jsx */
 import React from 'react'
 import { Link, graphql, PageProps } from 'gatsby'
 
 import Layout from '../components/layout'
 import SEO from '../components/seo'
+import { rhythm } from '../utils/typography'
+import { css, jsx } from '@emotion/core'
 
 interface BlogIndexData {
   site: {
@@ -40,7 +43,13 @@ const BlogIndex: React.FC<PageProps<BlogIndexData, any, any>> = ({ data, locatio
         return (
           <article key={singlePost.fields.slug}>
             <header>
-              <h3 style={{}}>
+              <h3
+                css={css`
+                  font-family: 'Montserrat', sans-serif;
+                  font-size: ${rhythm(1)};
+                  margin-bottom: ${rhythm(0.5)};
+                `}
+              >
                 <Link style={{ boxShadow: `none` }} to={singlePost.fields.slug}>
                   {title}
                 </Link>

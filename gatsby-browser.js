@@ -1,3 +1,5 @@
 import 'typeface-merriweather'
 import 'typeface-montserrat'
+import 'typeface-fira-code'
 import 'prismjs/themes/prism.css'
+import './prism-nord.css'
