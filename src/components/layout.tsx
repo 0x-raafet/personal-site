@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { Link } from 'gatsby'
-import React, { PropsWithChildren, useState } from 'react'
+import React, { PropsWithChildren, useState, useEffect } from 'react'
 import { rhythm } from '../utils/typography'
 import Container from './Container'
 import Navbar from './navbar'
@@ -13,7 +13,7 @@ interface LayoutProps {
   subtitle: string
 }
 
-const theme = {
+const themes = {
   light: {
     bgColor: '#fff',
     primary: '#5E81AC',
@@ -32,8 +32,12 @@ const theme = {
   },
 }
 
-const Layout: React.FC<PropsWithChildren<LayoutProps>> = ({ title, subtitle, children }) => {
-  const [isLightTheme, setIsLightTheme] = useState(true)
+const Layout: React.FC<PropsWithChildren<LayoutProps>> = ({ title, children }) => {
+  const [theme, setTheme] = useState(() => window.localStorage.getItem('theme') ?? 'light')
+
+  useEffect(() => {
+    window.localStorage.setItem('theme', theme)
+  }, [theme])
 
   return (
     <Container>
@@ -58,8 +62,8 @@ const Layout: React.FC<PropsWithChildren<LayoutProps>> = ({ title, subtitle, chi
           <Switch
             checkedIcon={<SwitchIcon emoji="🌚" />}
             uncheckedIcon={<SwitchIcon emoji="🌤️" />}
-            onChange={() => setIsLightTheme(!isLightTheme)}
-            checked={isLightTheme}
+            onChange={() => setTheme((prev) => (prev === 'light' ? 'dark' : 'light'))}
+            checked={theme === 'light'}
             offColor="#4C566A"
             onColor="#4C566A"
             activeBoxShadow="0 0 2px 5px #ECEFF4"
@@ -73,7 +77,7 @@ const Layout: React.FC<PropsWithChildren<LayoutProps>> = ({ title, subtitle, chi
         {` `}
         <a href="https://www.gatsbyjs.org">Gatsby</a>
       </footer>
-      <GlobalStyle theme={theme[isLightTheme ? 'light' : 'dark']} />
+      <GlobalStyle theme={themes[theme]} />
     </Container>
   )
 }
