@@ -1,63 +1,28 @@
-import React from 'react'
+import React, { PropsWithChildren } from 'react'
 import { Link, PageProps } from 'gatsby'
+import Container from './Container'
 
-const Layout: React.FC<PageProps<any, any, any>> = ({ location, title, children }) => {
-  const rootPath = `${__PATH_PREFIX__}/`
-  let header
+interface LayoutProps {
+  title: string
+}
 
-  if (location.pathname === rootPath) {
-    header = (
-      <h1
-        style={{
-          marginTop: 0,
-        }}
-      >
-        <Link
-          style={{
-            boxShadow: `none`,
-            color: `inherit`,
-          }}
-          to={`/`}
-        >
-          {title}
-        </Link>
-      </h1>
-    )
-  } else {
-    header = (
-      <h3
-        style={{
-          fontFamily: `Montserrat, sans-serif`,
-          marginTop: 0,
-        }}
-      >
-        <Link
-          style={{
-            boxShadow: `none`,
-            color: `inherit`,
-          }}
-          to={`/`}
-        >
-          {title}
-        </Link>
-      </h3>
-    )
-  }
+const Layout: React.FC<PropsWithChildren<LayoutProps>> = ({ title, children }) => {
   return (
-    <div
-      style={{
-        marginLeft: `auto`,
-        marginRight: `auto`,
-      }}
-    >
-      <header>{header}</header>
+    <Container>
+      <header>
+        <h1 style={{ marginTop: 0 }}>
+          <Link style={{ boxShadow: `none`, color: `inherit` }} to={`/`}>
+            {title}
+          </Link>
+        </h1>
+      </header>
       <main>{children}</main>
       <footer>
         © {new Date().getFullYear()}, Built with
         {` `}
         <a href="https://www.gatsbyjs.org">Gatsby</a>
       </footer>
-    </div>
+    </Container>
   )
 }
 

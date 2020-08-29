@@ -1,34 +1,55 @@
 import React from 'react'
 import { Link, graphql, PageProps } from 'gatsby'
 
-import Bio from '../components/bio'
 import Layout from '../components/layout'
 import SEO from '../components/seo'
 
-const BlogIndex: React.FC<PageProps<any, any, any>> = ({ data, location }) => {
+interface BlogIndexData {
+  site: {
+    siteMetadata: {
+      title: string
+    }
+  }
+  allMarkdownRemark: {
+    edges: {
+      node: {
+        excerpt: string
+        fields: {
+          slug: string
+        }
+        frontmatter: {
+          date: Date
+          title: string
+          description: string
+        }
+      }
+    }[]
+  }
+}
+
+const BlogIndex: React.FC<PageProps<BlogIndexData, any, any>> = ({ data, location }) => {
   const siteTitle = data.site.siteMetadata.title
   const posts = data.allMarkdownRemark.edges
 
   return (
-    <Layout location={location} title={siteTitle}>
+    <Layout title={siteTitle}>
       <SEO title="All posts" />
-      <Bio />
-      {posts.map(({ node }) => {
-        const title = node.frontmatter.title || node.fields.slug
+      {posts.map(({ node: singlePost }) => {
+        const title = singlePost.frontmatter.title || singlePost.fields.slug
         return (
-          <article key={node.fields.slug}>
+          <article key={singlePost.fields.slug}>
             <header>
               <h3 style={{}}>
-                <Link style={{ boxShadow: `none` }} to={node.fields.slug}>
+                <Link style={{ boxShadow: `none` }} to={singlePost.fields.slug}>
                   {title}
                 </Link>
               </h3>
-              <small>{node.frontmatter.date}</small>
+              <small>{singlePost.frontmatter.date}</small>
             </header>
             <section>
               <p
                 dangerouslySetInnerHTML={{
-                  __html: node.frontmatter.description || node.excerpt,
+                  __html: singlePost.frontmatter.description || singlePost.excerpt,
                 }}
               />
             </section>
