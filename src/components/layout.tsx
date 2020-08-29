@@ -1,20 +1,27 @@
+import styled from '@emotion/styled'
+import { Link } from 'gatsby'
 import React, { PropsWithChildren } from 'react'
-import { Link, PageProps } from 'gatsby'
+import { rhythm } from '../utils/typography'
 import Container from './Container'
+import Navbar from './navbar'
 
 interface LayoutProps {
   title: string
+  subtitle: string
 }
 
-const Layout: React.FC<PropsWithChildren<LayoutProps>> = ({ title, children }) => {
+const Title = styled.h1`
+  margin-bottom: ${rhythm(0.5)};
+`
+
+const Layout: React.FC<PropsWithChildren<LayoutProps>> = ({ title, subtitle, children }) => {
   return (
     <Container>
       <header>
-        <h1 style={{ marginTop: 0 }}>
-          <Link style={{ boxShadow: `none`, color: `inherit` }} to={`/`}>
-            {title}
-          </Link>
-        </h1>
+        <Link style={{ boxShadow: `none`, color: `inherit` }} to={`/`}>
+          <Title>{title}</Title>
+        </Link>
+        <Navbar />
       </header>
       <main>{children}</main>
       <footer>

@@ -8,6 +8,7 @@ interface BlogIndexData {
   site: {
     siteMetadata: {
       title: string
+      subtitle: string
     }
   }
   allMarkdownRemark: {
@@ -28,11 +29,11 @@ interface BlogIndexData {
 }
 
 const BlogIndex: React.FC<PageProps<BlogIndexData, any, any>> = ({ data, location }) => {
-  const siteTitle = data.site.siteMetadata.title
+  const { title, subtitle } = data.site.siteMetadata
   const posts = data.allMarkdownRemark.edges
 
   return (
-    <Layout title={siteTitle}>
+    <Layout title={title} subtitle={subtitle}>
       <SEO title="All posts" />
       {posts.map(({ node: singlePost }) => {
         const title = singlePost.frontmatter.title || singlePost.fields.slug
@@ -67,6 +68,7 @@ export const pageQuery = graphql`
     site {
       siteMetadata {
         title
+        subtitle
       }
     }
     allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
