@@ -1,7 +1,6 @@
 module.exports = {
   siteMetadata: {
     title: `Bart Stefanski`,
-    subtitle: 'Fullstack Software Engineer',
     author: {
       name: `Bart Stefanski`,
       summary: `who builds things for the web.`,

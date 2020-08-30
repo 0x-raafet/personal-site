@@ -16,36 +16,33 @@ interface BlogPostData {
     }
   }
   site: {
-    siteMetadata: {
-      title: string
-    }
+    siteMetadata: { title: string }
   }
 }
 
-const BlogPostTemplate: React.FC<PageProps<BlogPostData, any, any>> = ({ data, pageContext, location }) => {
+interface BlogPostPageContext {
+  previous: {
+    fields: { slug: string }
+    frontmatter: { title: string }
+  }
+  next: {
+    fields: { slug: string }
+    frontmatter: { title: string }
+  }
+}
+
+const BlogPostTemplate: React.FC<PageProps<BlogPostData, BlogPostPageContext, any>> = ({ data, pageContext }) => {
   const post = data.markdownRemark
   const siteTitle = data.site.siteMetadata.title
   const { previous, next } = pageContext
 
   return (
-    <Layout location={location} title={siteTitle}>
+    <Layout title={siteTitle}>
       <SEO title={post.frontmatter.title} description={post.frontmatter.description || post.excerpt} />
       <article>
         <header>
-          <h1
-            style={{
-              marginBottom: 0,
-            }}
-          >
-            {post.frontmatter.title}
-          </h1>
-          <p
-            style={{
-              display: `block`,
-            }}
-          >
-            {post.frontmatter.date}
-          </p>
+          <h1 style={{ marginBottom: 0 }}>{post.frontmatter.title}</h1>
+          <p style={{ display: `block` }}>{post.frontmatter.date}</p>
         </header>
         <section dangerouslySetInnerHTML={{ __html: post.html }} />
         <hr style={{}} />

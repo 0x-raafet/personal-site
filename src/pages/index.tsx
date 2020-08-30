@@ -5,14 +5,12 @@ import { graphql, Link, PageProps } from 'gatsby'
 import Bio from '../components/bio'
 import Layout from '../components/layout'
 import SEO from '../components/seo'
-import { rhythm } from '../utils/typography'
 import ArticlesList from '../components/articles-list'
 
 interface BlogIndexData {
   site: {
     siteMetadata: {
       title: string
-      subtitle: string
     }
   }
   allMarkdownRemark: {
@@ -33,9 +31,9 @@ interface BlogIndexData {
 }
 
 const BlogIndex: React.FC<PageProps<BlogIndexData, any, any>> = ({ data, location }) => {
-  const { title, subtitle } = data.site.siteMetadata
+  const { title } = data.site.siteMetadata
   return (
-    <Layout title={title} subtitle={subtitle}>
+    <Layout title={title}>
       <SEO title="All posts" />
       <Bio />
       <ArticlesList articles={data.allMarkdownRemark.edges} />
@@ -50,7 +48,6 @@ export const pageQuery = graphql`
     site {
       siteMetadata {
         title
-        subtitle
       }
     }
     allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }, limit: 3) {

@@ -10,7 +10,6 @@ import Switch from 'react-switch'
 
 interface LayoutProps {
   title: string
-  subtitle: string
 }
 
 const themes = {
