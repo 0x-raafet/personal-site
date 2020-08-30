@@ -12,6 +12,10 @@ const NavigationList = styled.ul`
   & > *:not(:last-child) {
     margin-right: ${rhythm(0.5)};
   }
+
+  @media (max-width: 32.5625em) {
+    margin: 0;
+  }
 `
 
 const Navbar: React.FC = () => {

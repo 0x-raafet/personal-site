@@ -1,11 +1,11 @@
 /** @jsx jsx */
 import React from 'react'
-import { Link, graphql, PageProps } from 'gatsby'
-
+import { css, jsx } from '@emotion/core'
+import { graphql, Link, PageProps } from 'gatsby'
+import Bio from '../components/bio'
 import Layout from '../components/layout'
 import SEO from '../components/seo'
 import { rhythm } from '../utils/typography'
-import { css, jsx } from '@emotion/core'
 
 interface BlogIndexData {
   site: {
@@ -38,6 +38,7 @@ const BlogIndex: React.FC<PageProps<BlogIndexData, any, any>> = ({ data, locatio
   return (
     <Layout title={title} subtitle={subtitle}>
       <SEO title="All posts" />
+      <Bio />
       {posts.map(({ node: singlePost }) => {
         const title = singlePost.frontmatter.title || singlePost.fields.slug
         return (
