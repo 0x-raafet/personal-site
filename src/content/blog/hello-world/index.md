@@ -7,16 +7,35 @@ description: 'Hello World'
 This is my first post on my new fake blog! How exciting!
 
 ```javascript
-// In your gatsby-config.js
 plugins: [
   {
-    resolve: `gatsby-transformer-remark`,
+    resolve: `gatsby-transformer-remark`, // highlight-line
     options: {
       plugins: [`gatsby-remark-prismjs`],
     },
   },
 ]
 ```
+
+```typescript
+import { ShellFacade } from 'nestjs-shell'
+
+// `ShellModule` is Global, so please put it only in your main module and it will work flawlessly in others.
+@Module({ imports: [ShellModule] })
+export class YourAppMainModule implements OnApplicationBootstrap {
+  constructor(private readonly shellFacade: ShellFacade) {}
+
+  public async onApplicationBootstrap(): Promise<void> {
+    // You can use it without passing any arguments and use default configuration or configure it in your own way.
+    await this.shellFacade.bootstrap()
+
+    // It does not have to be here, you can register components anywhere you want and as many times as you need.
+    this.shellFacade.registerComponents(new SayCommandComponent(), new AnotherSecondTestCommandComponent(new SomeDependency()))
+  }
+}
+```
+
+I can highlight `css›.some-class { background-color: red }` with CSS syntax.
 
 I'm sure I'll write a lot more interesting things in the future.
 
