@@ -6,6 +6,7 @@ import Bio from '../components/bio'
 import Layout from '../components/layout'
 import SEO from '../components/seo'
 import { rhythm } from '../utils/typography'
+import ArticlesList from '../components/articles-list'
 
 interface BlogIndexData {
   site: {
@@ -22,7 +23,7 @@ interface BlogIndexData {
           slug: string
         }
         frontmatter: {
-          date: Date
+          date: string
           title: string
           description: string
         }
@@ -33,40 +34,11 @@ interface BlogIndexData {
 
 const BlogIndex: React.FC<PageProps<BlogIndexData, any, any>> = ({ data, location }) => {
   const { title, subtitle } = data.site.siteMetadata
-  const posts = data.allMarkdownRemark.edges
-
   return (
     <Layout title={title} subtitle={subtitle}>
       <SEO title="All posts" />
       <Bio />
-      {posts.map(({ node: singlePost }) => {
-        const title = singlePost.frontmatter.title || singlePost.fields.slug
-        return (
-          <article key={singlePost.fields.slug}>
-            <header>
-              <h3
-                css={css`
-                  font-family: 'Montserrat', sans-serif;
-                  font-size: ${rhythm(1)};
-                  margin-bottom: ${rhythm(0.5)};
-                `}
-              >
-                <Link style={{ boxShadow: `none` }} to={singlePost.fields.slug}>
-                  {title}
-                </Link>
-              </h3>
-              <small>{singlePost.frontmatter.date}</small>
-            </header>
-            <section>
-              <p
-                dangerouslySetInnerHTML={{
-                  __html: singlePost.frontmatter.description || singlePost.excerpt,
-                }}
-              />
-            </section>
-          </article>
-        )
-      })}
+      <ArticlesList articles={data.allMarkdownRemark.edges} />
     </Layout>
   )
 }
@@ -74,14 +46,14 @@ const BlogIndex: React.FC<PageProps<BlogIndexData, any, any>> = ({ data, locatio
 export default BlogIndex
 
 export const pageQuery = graphql`
-  query {
+  query HomeQuery {
     site {
       siteMetadata {
         title
         subtitle
       }
     }
-    allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
+    allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }, limit: 3) {
       edges {
         node {
           excerpt
