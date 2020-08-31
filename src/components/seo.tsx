@@ -41,9 +41,7 @@ const Seo: React.FC<SeoProps> = ({ description = '', lang = 'en', meta = [], tit
   const metaDescription = description || site.siteMetadata.description
   return (
     <Helmet
-      htmlAttributes={{
-        lang,
-      }}
+      htmlAttributes={{ lang }}
       title={title}
       titleTemplate={`%s | ${site.siteMetadata.title}`}
       meta={[

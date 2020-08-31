@@ -56,15 +56,13 @@ const Bio: React.FC = () => {
     query BioQuery {
       avatar: file(relativePath: { eq: "profile-pic.jpg" }) {
         childImageSharp {
-          fixed(width: 56, height: 56, quality: 100) {
+          fixed(width: 56, height: 56) {
             ...GatsbyImageSharpFixed
           }
         }
       }
     }
   `)
-  console.log(fixedAvatar)
-
   return (
     <BioContainer>
       <ImageContainer>

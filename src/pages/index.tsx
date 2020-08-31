@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import React from 'react'
-import { css, jsx } from '@emotion/core'
-import { graphql, Link, PageProps } from 'gatsby'
+import { jsx } from '@emotion/core'
+import { graphql, PageProps } from 'gatsby'
 import Bio from '../components/bio'
 import Layout from '../components/layout'
 import SEO from '../components/seo'
@@ -30,11 +30,11 @@ interface BlogIndexData {
   }
 }
 
-const BlogIndex: React.FC<PageProps<BlogIndexData, any, any>> = ({ data, location }) => {
+const BlogIndex: React.FC<PageProps<BlogIndexData, any, any>> = ({ data }) => {
   const { title } = data.site.siteMetadata
   return (
     <Layout title={title}>
-      <SEO title="All posts" />
+      <SEO title="Home" />
       <Bio />
       <ArticlesList articles={data.allMarkdownRemark.edges} />
     </Layout>
