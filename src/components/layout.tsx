@@ -21,6 +21,7 @@ const themes = {
     headingsColor: 'hsla(0,0%,0%,0.9)',
     blockquoteText: '#2E3440',
     hrColor: 'hsla(0,0%,0%,0.2)',
+    bookCard: '	rgb(248,248,255, 0.45)',
   },
   dark: {
     bgColor: '#2E3440',

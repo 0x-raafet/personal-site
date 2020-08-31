@@ -54,3 +54,35 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
     })
   }
 }
+
+exports.sourceNodes = ({ actions, createNodeId, createContentDigest }) => {
+  const { books } = require('./src/content/books/books.json')
+
+  books.forEach((singleBook) => {
+    const { title, image } = singleBook
+
+    const { name: imageName, ext } = path.parse(image)
+    const absolutePath = path.resolve(__dirname, './src/content/books/', image)
+    const imageData = { name: imageName, ext, absolutePath, extension: ext.substring(1) }
+    const imageNode = {
+      ...imageData,
+      id: createNodeId(`book-cover-${imageName}`),
+      children: [],
+      internal: {
+        type: 'BookImage',
+        contentDigest: createContentDigest(imageData),
+      },
+    }
+    actions.createNode(imageNode)
+    const node = {
+      ...singleBook,
+      id: createNodeId(title),
+      image: imageNode,
+      internal: {
+        type: 'Book',
+        contentDigest: createContentDigest(singleBook),
+      },
+    }
+    actions.createNode(node)
+  })
+}
