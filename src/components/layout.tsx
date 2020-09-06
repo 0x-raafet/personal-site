@@ -2,7 +2,7 @@
 import { Link } from 'gatsby'
 import React, { PropsWithChildren, useState, useEffect } from 'react'
 import { rhythm } from '../utils/typography'
-import Container from './Container'
+import Container from './container'
 import Navbar from './navbar'
 import { GlobalStyle } from './global-style'
 import { css, jsx } from '@emotion/core'

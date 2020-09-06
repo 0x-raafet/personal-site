@@ -30,7 +30,10 @@ export class YourAppMainModule implements OnApplicationBootstrap {
     await this.shellFacade.bootstrap()
 
     // It does not have to be here, you can register components anywhere you want and as many times as you need.
-    this.shellFacade.registerComponents(new SayCommandComponent(), new AnotherSecondTestCommandComponent(new SomeDependency()))
+    this.shellFacade.registerComponents(
+      new SayCommandComponent(),
+      new AnotherSecondTestCommandComponent(new SomeDependency()),
+    )
   }
 }
 ```

@@ -69,8 +69,8 @@ const Bio: React.FC = () => {
         <Img fixed={fixedAvatar} />
       </ImageContainer>
       <BioBrief>
-        Passionate self-taught full-stack software engineer with a thing for clean code & architecture. Enjoys TypeScript, NestJS and React
-        stack.
+        Passionate self-taught full-stack software engineer with a thing for clean code & architecture. Enjoys
+        TypeScript, NestJS and React stack.
       </BioBrief>
     </BioContainer>
   )

@@ -5,7 +5,7 @@ import Seo from '../components/seo'
 import Layout from '../components/Layout'
 import { graphql } from 'gatsby'
 import Img, { FixedObject } from 'gatsby-image'
-import { scale, rhythm } from '../utils/typography'
+import { rhythm } from '../utils/typography'
 
 interface LibraryProps {
   data: {
@@ -37,21 +37,29 @@ const LibraryPage: React.FC<LibraryProps> = ({ data }) => {
     <Layout title="Library">
       <Seo title="Library" />
       <LibraryPageContainer>
-        {data.allBook.group.reverse().map((group) => (
-          <div key={group.year} style={{ display: 'flex', width: '100%', flexDirection: 'column', flex: '1' }}>
-            <YearSeparator data-total-count={group.totalCount}>{group.year}</YearSeparator>
-            <Masonry breakpointCols={{ default: 2, 765: 1 }} className="my-masonry-grid" columnClassName="my-masonry-grid_column">
-              {group.edges.reverse().map(({ node: singleBook }) => (
-                <BookItem key={singleBook.id}>
-                  <Img fixed={singleBook.image.childImageSharp.fixed} alt={`Cover of ${singleBook.title}`} />
-                  <p className="book-title">{singleBook.title}</p>
-                  <p>Pages: {singleBook.pages}</p>
-                  <p>Author: {singleBook.author}</p>
-                </BookItem>
-              ))}
-            </Masonry>
-          </div>
-        ))}
+        {data.allBook.group
+          .sort((a, b) => +b.year - +a.year)
+          .map((group) => (
+            <div key={group.year} style={{ display: 'flex', width: '100%', flexDirection: 'column', flex: '1' }}>
+              <YearSeparator data-total-count={group.totalCount}>{group.year}</YearSeparator>
+              <Masonry
+                breakpointCols={{ default: 2, 765: 1 }}
+                className="my-masonry-grid"
+                columnClassName="my-masonry-grid_column"
+              >
+                {Array.from(group.edges)
+                  .reverse()
+                  .map(({ node: singleBook }) => (
+                    <BookItem key={singleBook.id}>
+                      <Img fixed={singleBook.image.childImageSharp.fixed} alt={`Cover of ${singleBook.title}`} />
+                      <p className="book-title">{singleBook.title}</p>
+                      <p>Pages: {singleBook.pages}</p>
+                      <p>Author: {singleBook.author}</p>
+                    </BookItem>
+                  ))}
+              </Masonry>
+            </div>
+          ))}
       </LibraryPageContainer>
     </Layout>
   )
