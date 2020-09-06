@@ -80,10 +80,14 @@ const Layout: React.FC<PropsWithChildren<LayoutProps>> = ({ title, children }) =
           <Navbar />
         </header>
         <main>{children}</main>
-        <footer>
+        <footer
+          css={css`
+            margin-top: 3rem;
+          `}
+        >
           © {new Date().getFullYear()} Built with
           {` `}
-          <a href="https://www.gatsbyjs.org">Gatsby ❤️</a>
+          <a href="https://www.gatsbyjs.org">Gatsby</a> ❤️
         </footer>
         <GlobalStyle theme={themes[theme]} />
       </Container>
