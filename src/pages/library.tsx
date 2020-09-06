@@ -37,8 +37,8 @@ const LibraryPage: React.FC<LibraryProps> = ({ data }) => {
     <Layout title="Library">
       <Seo title="Library" />
       <LibraryPageContainer>
-        {data.allBook.group
-          .sort((a, b) => +b.year - +a.year)
+        {Array.from(data.allBook.group)
+          .reverse()
           .map((group) => (
             <div key={group.year} style={{ display: 'flex', width: '100%', flexDirection: 'column', flex: '1' }}>
               <YearSeparator data-total-count={group.totalCount}>{group.year}</YearSeparator>
