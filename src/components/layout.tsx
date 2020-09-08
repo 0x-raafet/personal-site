@@ -22,6 +22,7 @@ const themes = {
     blockquoteText: '#2E3440',
     hrColor: 'hsla(0,0%,0%,0.2)',
     bookCard: '	rgb(248,248,255, 0.45)',
+    portfolioItemShadow: 'rgba(0, 0, 0, 0.05) 0px 0.5rem 1rem',
   },
   dark: {
     bgColor: '#2E3440',
@@ -31,6 +32,7 @@ const themes = {
     blockquoteText: '#E5E9F0',
     hrColor: 'hsla(0,0%,100%,0.3)',
     bookCard: '#222831',
+    portfolioItemShadow: 'rgba(15, 17, 21, 0.2) 0px 0.5rem 1rem',
   },
 }
 
