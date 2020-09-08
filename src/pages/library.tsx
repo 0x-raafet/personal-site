@@ -36,7 +36,7 @@ const LibraryPage: React.FC<LibraryProps> = ({ data }) => {
   return (
     <Layout title="Library">
       <Seo title="Library" />
-      <LibraryPageContainer>
+      <LibraryItemsContainer>
         {Array.from(data.allBook.group)
           .reverse()
           .map((group) => (
@@ -60,12 +60,12 @@ const LibraryPage: React.FC<LibraryProps> = ({ data }) => {
               </Masonry>
             </div>
           ))}
-      </LibraryPageContainer>
+      </LibraryItemsContainer>
     </Layout>
   )
 }
 
-const LibraryPageContainer = styled.div`
+const LibraryItemsContainer = styled.div`
   .my-masonry-grid {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -88,6 +88,15 @@ const LibraryPageContainer = styled.div`
     }
     .my-masonry-grid_column > div {
       margin-bottom: 15px;
+    }
+  }
+
+  @media (max-width: 579px) {
+    .my-masonry-grid_column {
+      padding-left: 0px;
+    }
+    .my-masonry-grid_column > div {
+      margin-bottom: 0px;
     }
   }
 `
