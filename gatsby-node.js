@@ -56,6 +56,11 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
 }
 
 exports.sourceNodes = ({ actions, createNodeId, createContentDigest }) => {
+  createBooksNodes(actions, createNodeId, createContentDigest)
+  createPortfolioItemsNodes(actions, createNodeId, createContentDigest)
+}
+
+function createBooksNodes(actions, createNodeId, createContentDigest) {
   const { books } = require('./src/content/books/books.json')
 
   books.forEach((singleBook) => {
@@ -81,6 +86,36 @@ exports.sourceNodes = ({ actions, createNodeId, createContentDigest }) => {
       internal: {
         type: 'Book',
         contentDigest: createContentDigest(singleBook),
+      },
+    }
+    actions.createNode(node)
+  })
+}
+
+function createPortfolioItemsNodes(actions, createNodeId, createContentDigest) {
+  const { items: portfolioItems } = require('./src/content/portfolio/items.json')
+
+  portfolioItems.forEach((item) => {
+    const { name: imageName, ext } = path.parse(item.image)
+    const absolutePath = path.resolve(__dirname, './src/content/portfolio/', item.image)
+    const imageData = { name: imageName, ext, absolutePath, extension: ext.substring(1) }
+    const imageNode = {
+      ...imageData,
+      id: createNodeId(`portfolio-item-preview-${imageName}`),
+      children: [],
+      internal: {
+        type: 'PortfolioItemImage',
+        contentDigest: createContentDigest(imageData),
+      },
+    }
+    actions.createNode(imageNode)
+    const node = {
+      ...item,
+      id: createNodeId(item.name),
+      image: imageNode,
+      internal: {
+        type: 'PortfolioItem',
+        contentDigest: createContentDigest(item),
       },
     }
     actions.createNode(node)
