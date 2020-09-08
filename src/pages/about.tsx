@@ -11,13 +11,13 @@ const AboutPage: React.FC = () => {
       <Seo title="About" />
       <Bio />
       <p style={{ marginTop: rhythm(0.5) }}>
-        I particularly enjoy working with:
-        <br />- on the frontend side: <Technology>React</Technology>, <Technology>JavaScript</Technology>,{' '}
-        <Technology>TypeScript</Technology>, <Technology>Next.js</Technology>, <Technology>Redux</Technology>,{' '}
-        <Technology>Hooks</Technology>
-        <br />- on the backend side: <Technology bold>Strictly OO Architecture</Technology>,{' '}
-        <Technology>TypeScript</Technology>, <Technology>Nest.js with Express.js ecosystem</Technology>,{' '}
-        <Technology>Mongo</Technology>, <Technology>Redis</Technology>, <Technology>Postgres</Technology>
+        On the frontend side, I particularly enjoy working with <Technology>TypeScript</Technology>,{' '}
+        <Technology>JavaScript</Technology> using <Technology>React</Technology>, <Technology>Next.js</Technology>,{' '}
+        <Technology>Gatsby</Technology>, <Technology>Hooks</Technology>, <Technology>Redux</Technology>, and the whole
+        ecosystem. On the backend side, I get a charge out of <Technology>TypeScript</Technology> with{' '}
+        <Technology bold>Strictly OO Architecture</Technology>. I usually use <Technology>Nest.js</Technology> with
+        Express.js ecosystem and NoSQL databases such as <Technology>Mongo</Technology> or/and{' '}
+        <Technology>Redis</Technology> and when I feel like using SQL - <Technology>Postgres</Technology>.
       </p>
       <p>
         I can comfortably write unit and integration tests in <Technology>Jest</Technology>, end-to-end with{' '}
