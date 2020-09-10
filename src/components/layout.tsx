@@ -9,6 +9,8 @@ import { css, jsx } from '@emotion/core'
 import Switch from 'react-switch'
 import { ThemeProvider } from 'emotion-theming'
 
+type ThemeType = keyof typeof themes
+
 interface LayoutProps {
   title: string
 }
@@ -37,12 +39,16 @@ const themes = {
 }
 
 const Layout: React.FC<PropsWithChildren<LayoutProps>> = ({ title, children }) => {
-  const [theme, setTheme] = useState(() => {
+  const [theme, setTheme] = useState<ThemeType>(() => {
     if (typeof window !== 'undefined') {
-      return window.localStorage.getItem('theme') ?? 'light'
+      return window.localStorage.getItem('theme') as ThemeType | undefined
     }
     return 'light'
   })
+
+  useEffect(() => {
+    setTheme((window.localStorage.getItem('theme') ?? 'light') as ThemeType)
+  }, [])
 
   useEffect(() => {
     window.localStorage.setItem('theme', theme)
