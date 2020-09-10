@@ -23,7 +23,7 @@ const themes = {
     headingsColor: 'hsla(0,0%,0%,0.9)',
     blockquoteText: '#2E3440',
     hrColor: 'hsla(0,0%,0%,0.2)',
-    bookCard: '	rgb(248,248,255, 0.45)',
+    bookCard: 'rgb(248,248,255, 0.45)',
     portfolioItemShadow: 'rgba(0, 0, 0, 0.05) 0px 0.5rem 1rem',
   },
   dark: {
@@ -41,13 +41,13 @@ const themes = {
 const Layout: React.FC<PropsWithChildren<LayoutProps>> = ({ title, children }) => {
   const [theme, setTheme] = useState<ThemeType>(() => {
     if (typeof window !== 'undefined') {
-      return window.localStorage.getItem('theme') as ThemeType | undefined
+      return (window.localStorage.getItem('theme') || 'light') as ThemeType | undefined
     }
     return 'light'
   })
 
   useEffect(() => {
-    setTheme((window.localStorage.getItem('theme') ?? 'light') as ThemeType)
+    setTheme((window.localStorage.getItem('theme') || 'light') as ThemeType)
   }, [])
 
   useEffect(() => {
