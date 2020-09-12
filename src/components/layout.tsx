@@ -38,21 +38,14 @@ const themes = {
   },
 }
 
+const getTheme = () => {
+  if (typeof window !== 'undefined') {
+    return window.localStorage.getItem('theme') as ThemeType | undefined
+  }
+}
+
 const Layout: React.FC<PropsWithChildren<LayoutProps>> = ({ title, children }) => {
-  const [theme, setTheme] = useState<ThemeType>(() => {
-    if (typeof window !== 'undefined') {
-      return (window.localStorage.getItem('theme') || 'light') as ThemeType | undefined
-    }
-    return 'light'
-  })
-
-  useEffect(() => {
-    setTheme((window.localStorage.getItem('theme') || 'light') as ThemeType)
-  }, [])
-
-  useEffect(() => {
-    window.localStorage.setItem('theme', theme)
-  }, [theme])
+  const [theme, setTheme] = useState<ThemeType>(getTheme())
 
   return (
     <ThemeProvider theme={themes[theme]}>
