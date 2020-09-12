@@ -38,10 +38,11 @@ const themes = {
   },
 }
 
-const getTheme = () => {
+const getTheme: () => ThemeType = () => {
   if (typeof window !== 'undefined') {
-    return window.localStorage.getItem('theme') as ThemeType | undefined
+    return (window.localStorage.getItem('theme') || 'light') as ThemeType
   }
+  return 'light'
 }
 
 const Layout: React.FC<PropsWithChildren<LayoutProps>> = ({ title, children }) => {
