@@ -1,9 +1,11 @@
+/** @jsx jsx */
+import { jsx } from '@emotion/core'
 import React from 'react'
-import Layout from '../components/layout'
+import Layout, { EmotionProps, SingleTheme } from '../components/layout'
 import Seo from '../components/seo'
 import Bio from '../components/bio'
-import styled from '@emotion/styled'
 import { rhythm } from '../utils/typography'
+import { useTheme } from 'emotion-theming'
 
 const AboutPage: React.FC = () => {
   return (
@@ -33,9 +35,18 @@ const AboutPage: React.FC = () => {
   )
 }
 
-const Technology = styled.span`
-  color: ${(props: any) => props.theme.primary};
-  font-weight: ${(props: any) => (props.bold ? '900' : '500')};
-`
+const Technology = (props) => {
+  const theme: SingleTheme = useTheme()
+  return (
+    <div
+      css={{
+        display: 'inline-block',
+        color: theme.primary,
+        fontWeight: props.bold ? '900' : '500',
+      }}
+      {...props}
+    />
+  )
+}
 
 export default AboutPage

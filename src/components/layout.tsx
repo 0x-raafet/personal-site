@@ -9,11 +9,13 @@ import { css, jsx } from '@emotion/core'
 import Switch from 'react-switch'
 import { ThemeProvider } from 'emotion-theming'
 
-type ThemeType = keyof typeof themes
-
 interface LayoutProps {
   title: string
 }
+
+type ThemeType = keyof typeof themes
+
+export type SingleTheme = typeof themes['light']
 
 const themes = {
   light: {
@@ -47,6 +49,10 @@ const getTheme: () => ThemeType = () => {
 
 const Layout: React.FC<PropsWithChildren<LayoutProps>> = ({ title, children }) => {
   const [theme, setTheme] = useState<ThemeType>(getTheme())
+
+  useEffect(() => {
+    window.localStorage.setItem('theme', theme)
+  }, [theme])
 
   return (
     <ThemeProvider theme={themes[theme]}>
@@ -91,7 +97,7 @@ const Layout: React.FC<PropsWithChildren<LayoutProps>> = ({ title, children }) =
           {` `}
           <a href="https://www.gatsbyjs.org">Gatsby</a> ❤️
         </footer>
-        <GlobalStyle theme={themes[theme]} />
+        <GlobalStyle />
       </Container>
     </ThemeProvider>
   )

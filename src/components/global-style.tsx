@@ -1,16 +1,15 @@
 import React from 'react'
 import { Global, css } from '@emotion/core'
 
-export const GlobalStyle = (props) => (
+export const GlobalStyle = () => (
   <Global
-    {...props}
-    styles={css`
+    styles={(theme) => css`
       body {
-        background-color: ${props.theme.bgColor};
-        color: ${props.theme.text};
+        background-color: ${theme.bgColor};
+        color: ${theme.text};
 
         a {
-          color: ${props.theme.primary};
+          color: ${theme.primary};
         }
 
         h1,
@@ -19,16 +18,16 @@ export const GlobalStyle = (props) => (
         h4,
         h5,
         h6 {
-          color: ${props.theme.headingsColor};
+          color: ${theme.headingsColor};
         }
 
         blockquote {
-          border-left: 0.32813rem solid ${props.theme.primary};
-          color: ${props.theme.blockquoteText};
+          border-left: 0.32813rem solid ${theme.primary};
+          color: ${theme.blockquoteText};
         }
 
         hr {
-          background: ${props.theme.hrColor};
+          background: ${theme.hrColor};
         }
       }
     `}
