@@ -41,7 +41,9 @@ const themes = {
 }
 
 const Layout: React.FC<PropsWithChildren<LayoutProps>> = ({ title, children }) => {
-  const [theme, setTheme] = useState<ThemeType>(null)
+  const [theme, setTheme] = useState<ThemeType | null>(
+    typeof window === 'undefined' ? null : ((window.localStorage.getItem('theme') || 'light') as ThemeType),
+  )
 
   useEffect(() => {
     const preservedTheme: ThemeType | undefined = window.localStorage.getItem('theme') as ThemeType
@@ -51,6 +53,8 @@ const Layout: React.FC<PropsWithChildren<LayoutProps>> = ({ title, children }) =
   useEffect(() => {
     window.localStorage.setItem('theme', theme)
   }, [theme])
+
+  console.log(theme)
 
   return (
     <ThemeProvider theme={(themes[theme] || themes['light']) as SingleTheme}>
@@ -73,15 +77,17 @@ const Layout: React.FC<PropsWithChildren<LayoutProps>> = ({ title, children }) =
                 {title}
               </h1>
             </Link>
-            <Switch
-              checkedIcon={<SwitchIcon emoji="🌚" />}
-              uncheckedIcon={<SwitchIcon emoji="🌤️" />}
-              onChange={() => setTheme((prev) => (prev === 'light' ? 'dark' : 'light'))}
-              checked={theme === 'dark'}
-              offColor="#4C566A"
-              onColor="#4C566A"
-              activeBoxShadow="0 0 2px 5px #ECEFF4"
-            />
+            {theme !== null && (
+              <Switch
+                checkedIcon={<SwitchIcon emoji="🌚" />}
+                uncheckedIcon={<SwitchIcon emoji="🌤️" />}
+                onChange={() => setTheme((prev) => (prev === 'light' ? 'dark' : 'light'))}
+                checked={theme === 'dark'}
+                offColor="#4C566A"
+                onColor="#4C566A"
+                activeBoxShadow="0 0 2px 5px #ECEFF4"
+              />
+            )}
           </div>
           <Navbar />
         </header>
