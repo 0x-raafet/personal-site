@@ -1,11 +1,10 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core'
 import React from 'react'
-import Layout, { SingleTheme } from '../components/layout'
+import Layout from '../components/layout'
 import Seo from '../components/seo'
 import Bio from '../components/bio'
 import { rhythm } from '../utils/typography'
-import { useTheme } from 'emotion-theming'
 
 const AboutPage: React.FC = () => {
   return (
@@ -36,7 +35,6 @@ const AboutPage: React.FC = () => {
 }
 
 const Technology = (props) => {
-  const theme: SingleTheme = useTheme()
   return (
     <div
       css={{

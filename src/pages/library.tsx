@@ -4,11 +4,10 @@ import React from 'react'
 import styled from '@emotion/styled'
 import Masonry from 'react-masonry-css'
 import Seo from '../components/seo'
-import Layout, { SingleTheme } from '../components/layout'
+import Layout from '../components/layout'
 import { graphql } from 'gatsby'
 import Img, { FixedObject } from 'gatsby-image'
 import { rhythm } from '../utils/typography'
-import { useTheme } from 'emotion-theming'
 
 interface LibraryProps {
   data: {
@@ -98,14 +97,10 @@ const LibraryItemsContainer = styled.div`
     .my-masonry-grid_column {
       padding-left: 0px;
     }
-    .my-masonry-grid_column > div {
-      margin-bottom: 0px;
-    }
   }
 `
 
 const YearSeparator = (props) => {
-  const theme: SingleTheme = useTheme()
   return (
     <div
       css={css`
@@ -148,7 +143,6 @@ const YearSeparator = (props) => {
 }
 
 const BookItem = (props) => {
-  const theme: SingleTheme = useTheme()
   return (
     <div
       css={css`

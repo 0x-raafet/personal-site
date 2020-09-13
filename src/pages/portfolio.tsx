@@ -1,13 +1,12 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/core'
 import React from 'react'
-import Layout, { SingleTheme } from '../components/layout'
+import Layout from '../components/layout'
 import Seo from '../components/seo'
 import styled from '@emotion/styled'
 import { graphql } from 'gatsby'
 import Img, { FixedObject } from 'gatsby-image'
 import Masonry from 'react-masonry-css'
-import { useTheme } from 'emotion-theming'
 
 interface PortfolioPageProps {
   data: {
@@ -86,14 +85,10 @@ const PortfolioItemsContainer = styled.div`
     .my-masonry-grid_column {
       padding-left: 0px;
     }
-    .my-masonry-grid_column > div {
-      margin-bottom: 0px;
-    }
   }
 `
 
 const PortfolioItem = (props) => {
-  const theme: SingleTheme = useTheme()
   return (
     <div
       css={css`
