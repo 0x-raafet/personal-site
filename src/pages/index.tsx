@@ -16,8 +16,8 @@ const AboutPage: React.FC = () => {
         <Technology>JavaScript</Technology> using <Technology>React</Technology>, <Technology>Next.js</Technology>,{' '}
         <Technology>Gatsby</Technology>, <Technology>Hooks</Technology>, <Technology>Redux</Technology>, and the whole
         ecosystem. On the backend side, I get a charge out of <Technology>TypeScript</Technology> with{' '}
-        <Technology bold>Strictly OO Architecture</Technology>. I usually use <Technology>Nest.js</Technology> with
-        Express.js ecosystem and NoSQL databases such as <Technology>Mongo</Technology> or/and{' '}
+        <Technology bold={1}>Strictly OO Architecture</Technology>. I usually use <Technology>Nest.js</Technology>{' '}
+        with Express.js ecosystem and NoSQL databases such as <Technology>Mongo</Technology> or/and{' '}
         <Technology>Redis</Technology> and when I feel like using SQL - <Technology>Postgres</Technology>.
       </p>
       <p>
@@ -34,13 +34,13 @@ const AboutPage: React.FC = () => {
   )
 }
 
-const Technology = (props) => {
+const Technology: React.FC<{ bold?: number }> = (props) => {
   return (
-    <div
+    <span
       css={{
         display: 'inline-block',
         color: 'var(--primary)',
-        fontWeight: props.bold ? '900' : '500',
+        fontWeight: props.bold === 1 ? 900 : 500,
       }}
       {...props}
     />
