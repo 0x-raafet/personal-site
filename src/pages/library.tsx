@@ -1,11 +1,14 @@
+/** @jsx jsx */
+import { css, jsx } from '@emotion/core'
 import React from 'react'
 import styled from '@emotion/styled'
 import Masonry from 'react-masonry-css'
 import Seo from '../components/seo'
-import Layout from '../components/layout'
+import Layout, { SingleTheme } from '../components/layout'
 import { graphql } from 'gatsby'
 import Img, { FixedObject } from 'gatsby-image'
 import { rhythm } from '../utils/typography'
+import { useTheme } from 'emotion-theming'
 
 interface LibraryProps {
   data: {
@@ -101,70 +104,86 @@ const LibraryItemsContainer = styled.div`
   }
 `
 
-const YearSeparator = styled.p`
-  display: inline-flex;
-  position: relative;
-  font-size: ${rhythm(1.5)};
-  color: ${(props: any) => props.theme.primary};
-  font-weight: bold;
-  overflow: hidden;
-  margin: ${rhythm(0.5)} 0;
+const YearSeparator = (props) => {
+  const theme: SingleTheme = useTheme()
+  return (
+    <div
+      css={css`
+        display: inline-flex;
+        position: relative;
+        font-size: ${rhythm(1.5)};
+        color: ${theme.primary};
+        font-weight: bold;
+        overflow: hidden;
+        margin: ${rhythm(0.5)} 0;
 
-  &::before {
-    position: absolute;
-    content: 'Total count: ' attr(data-total-count);
-    font-size: 25px;
-    line-height: 2;
-    right: 0;
-    bottom: 30px;
-    font-weight: 900;
-    font-family: 'Montserrat', sans-serif;
-    @media (max-width: 32.5625em) {
-      font-size: 15px;
-      bottom: 32.5px;
-    }
-  }
+        &::before {
+          position: absolute;
+          content: 'Total count: ' attr(data-total-count);
+          font-size: 25px;
+          line-height: 2;
+          right: 0;
+          bottom: 30px;
+          font-weight: 900;
+          font-family: 'Montserrat', sans-serif;
+          @media (max-width: 32.5625em) {
+            font-size: 15px;
+            bottom: 32.5px;
+          }
+        }
 
-  &::after {
-    position: relative;
-    content: '';
-    background: ${(props: any) => props.theme.primary};
-    height: 1px;
-    width: 100%;
-    left: 25px;
-    margin: auto 0;
-  }
-`
+        &::after {
+          position: relative;
+          content: '';
+          background: ${theme.primary};
+          height: 1px;
+          width: 100%;
+          left: 25px;
+          margin: auto 0;
+        }
+      `}
+      {...props}
+    />
+  )
+}
 
-const BookItem = styled.article`
-  display: flex;
-  padding: 30px;
-  width: 325px;
-  flex-direction: column;
-  background-color: ${(props: any) => props.theme.bookCard};
-  border-radius: 4.8px;
-  margin-bottom: ${rhythm(1)};
+const BookItem = (props) => {
+  const theme: SingleTheme = useTheme()
+  return (
+    <div
+      css={css`
+        display: flex;
+        padding: 30px;
+        width: 325px;
+        flex-direction: column;
+        background-color: ${theme.bookCard};
+        border-radius: 4.8px;
+        margin-bottom: ${rhythm(1)};
 
-  @media (max-width: 32.5625em) {
-    width: 100%;
-  }
+        @media (max-width: 32.5625em) {
+          width: 100%;
+        }
 
-  .gatsby-image-wrapper {
-    align-self: center;
-    margin: 20px 0;
-    border: 1px solid ${(props: any) => props.theme.primary};
-  }
+        .gatsby-image-wrapper {
+          align-self: center;
+          margin: 20px 0;
+          border: 1px solid ${theme.primary};
+        }
 
-  .book-title,
-  p {
-    font-size: 14px;
-    margin-bottom: 15px;
-  }
+        .book-title,
+        p {
+          font-size: 14px;
+          margin-bottom: 15px;
+        }
 
-  p {
-    margin: 2.5px 0;
-  }
-`
+        p {
+          margin: 2.5px 0;
+        }
+      `}
+      {...props}
+    />
+  )
+}
 
 export const pageQuery = graphql`
   query BooksPageQuery {

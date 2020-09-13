@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core'
 import React from 'react'
-import Layout, { EmotionProps, SingleTheme } from '../components/layout'
+import Layout, { SingleTheme } from '../components/layout'
 import Seo from '../components/seo'
 import Bio from '../components/bio'
 import { rhythm } from '../utils/typography'

@@ -1,10 +1,13 @@
+/** @jsx jsx */
+import { css, jsx } from '@emotion/core'
 import React from 'react'
-import Layout from '../components/layout'
+import Layout, { SingleTheme } from '../components/layout'
 import Seo from '../components/seo'
 import styled from '@emotion/styled'
 import { graphql } from 'gatsby'
 import Img, { FixedObject } from 'gatsby-image'
 import Masonry from 'react-masonry-css'
+import { useTheme } from 'emotion-theming'
 
 interface PortfolioPageProps {
   data: {
@@ -89,22 +92,29 @@ const PortfolioItemsContainer = styled.div`
   }
 `
 
-const PortfolioItem = styled.article`
-  width: 278px;
-  margin-bottom: 30px;
-  box-shadow: ${(props: any) => props.theme.portfolioItemShadow};
-  a,
-  a:hover {
-    text-decoration: none;
-    color: transparent;
-    box-shadow: none;
-  }
+const PortfolioItem = (props) => {
+  const theme: SingleTheme = useTheme()
+  return (
+    <div
+      css={css`
+        width: 278px;
+        margin-bottom: 30px;
+        box-shadow: ${theme.portfolioItemShadow};
+        a,
+        a:hover {
+          text-decoration: none;
+          color: transparent;
+          box-shadow: none;
+        }
 
-  @media (max-width: 800px) {
-    margin: auto;
-  }
-`
-
+        @media (max-width: 800px) {
+          margin: auto;
+        }
+      `}
+      {...props}
+    />
+  )
+}
 export const pageQuery = graphql`
   query PortfolioQuery {
     allPortfolioItem {
