@@ -41,7 +41,7 @@ const Technology = (props) => {
     <div
       css={{
         display: 'inline-block',
-        color: theme.primary,
+        color: 'var(--primary)',
         fontWeight: props.bold ? '900' : '500',
       }}
       {...props}

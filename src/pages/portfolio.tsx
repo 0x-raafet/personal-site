@@ -99,7 +99,7 @@ const PortfolioItem = (props) => {
       css={css`
         width: 278px;
         margin-bottom: 30px;
-        box-shadow: ${theme.portfolioItemShadow};
+        box-shadow: var(--portfolioItemShadow);
         a,
         a:hover {
           text-decoration: none;

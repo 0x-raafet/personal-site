@@ -54,8 +54,6 @@ const Layout: React.FC<PropsWithChildren<LayoutProps>> = ({ title, children }) =
     window.localStorage.setItem('theme', theme)
   }, [theme])
 
-  console.log(theme)
-
   return (
     <ThemeProvider theme={(themes[theme] || themes['light']) as SingleTheme}>
       <Container>

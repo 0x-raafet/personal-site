@@ -112,7 +112,7 @@ const YearSeparator = (props) => {
         display: inline-flex;
         position: relative;
         font-size: ${rhythm(1.5)};
-        color: ${theme.primary};
+        color: var(--primary);
         font-weight: bold;
         overflow: hidden;
         margin: ${rhythm(0.5)} 0;
@@ -135,7 +135,7 @@ const YearSeparator = (props) => {
         &::after {
           position: relative;
           content: '';
-          background: ${theme.primary};
+          background: var(--primary);
           height: 1px;
           width: 100%;
           left: 25px;
@@ -156,7 +156,7 @@ const BookItem = (props) => {
         padding: 30px;
         width: 325px;
         flex-direction: column;
-        background-color: ${theme.bookCard};
+        background-color: var(--bookCard);
         border-radius: 4.8px;
         margin-bottom: ${rhythm(1)};
 
@@ -167,7 +167,7 @@ const BookItem = (props) => {
         .gatsby-image-wrapper {
           align-self: center;
           margin: 20px 0;
-          border: 1px solid ${theme.primary};
+          border: 1px solid var(--primary);
         }
 
         .book-title,
