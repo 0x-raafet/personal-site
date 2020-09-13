@@ -1,5 +1,4 @@
-// custom typefaces
-import "typeface-montserrat"
-import "typeface-merriweather"
-
-import "prismjs/themes/prism.css"
+import 'typeface-merriweather'
+import 'typeface-montserrat'
+import 'typeface-fira-code'
+import './prism-nord.css'
