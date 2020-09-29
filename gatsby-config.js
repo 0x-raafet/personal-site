@@ -5,7 +5,7 @@ module.exports = {
       name: `Bart Stefanski`,
       summary: `who builds things for the web.`,
     },
-    description: `A self-taught web software engineer portfolio and blog about node.js, react stack, clean code & architecture.`,
+    description: `A self-taught web fullstack software engineer's personal site. Passionate about node.js, react stack, clean code & architecture.`,
     siteUrl: `https://bstefanski.com/`,
     social: {
       twitter: `bmstefanski`,
