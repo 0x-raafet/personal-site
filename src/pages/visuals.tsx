@@ -33,8 +33,8 @@ const PortfolioPage: React.FC<PortfolioPageProps> = ({
   },
 }) => {
   return (
-    <Layout title="Portfolio">
-      <Seo title="Portfolio" />
+    <Layout title="Visuals">
+      <Seo title="Visuals" />
       <PortfolioItemsContainer>
         <Masonry
           breakpointCols={{ default: 2, 765: 1 }}
