@@ -86,6 +86,12 @@ const theme = {
     text: '#2b2b2b',
   },
   spacings: {
+    '2xs': 6,
+    xs: 12,
+    sm: 24,
+    md: 48,
+    lg: 96,
+    xl: 192,
     smallContainer: 700,
     mediumContainer: 900,
     largeContainer: 1100,
