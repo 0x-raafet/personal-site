@@ -1,5 +1,6 @@
 import { createGlobalStyle, ThemeProvider } from 'styled-components'
 import Head from 'next/head'
+import { lighten } from 'polished'
 
 const GlobalStyle = createGlobalStyle`
 /* Box sizing rules */
@@ -40,6 +41,7 @@ body {
   text-rendering: optimizeSpeed;
   line-height: 1.5;
   font-family: 'Barlow', sans-serif;
+  color: ${(p) => p.theme.colors.text};
 }
 
 /* A elements that don't have a class get default styles */
@@ -84,6 +86,7 @@ const theme = {
     primary: '#fff',
     secondary: '#2b2b2b',
     text: '#2b2b2b',
+    textLighter: lighten(0.25, '#2b2b2b'),
   },
   spacings: {
     '2xs': 6,
@@ -96,6 +99,18 @@ const theme = {
     mediumContainer: 900,
     largeContainer: 1100,
   },
+  fontSizes: {
+    xs: 12,
+    sm: 14,
+    md: 16,
+    lg: 18,
+    xl: 20,
+    '2xl': 24,
+    '3xl': 30,
+    '4xl': 36,
+    '5xl': 48,
+    '6xl': 60,
+  },
 }
 
 function MyApp({ Component, pageProps }) {
@@ -104,10 +119,10 @@ function MyApp({ Component, pageProps }) {
       <Head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin />
-        <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@100;400;700&display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@100;400;600&display=swap" rel="stylesheet" />
       </Head>
-      <GlobalStyle />
       <ThemeProvider theme={theme}>
+        <GlobalStyle />
         <Component {...pageProps} />
       </ThemeProvider>
     </>
