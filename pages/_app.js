@@ -1,6 +1,7 @@
 import { createGlobalStyle, ThemeProvider } from 'styled-components'
 import Head from 'next/head'
 import { lighten } from 'polished'
+import Navbar from 'components/Navbar'
 
 const GlobalStyle = createGlobalStyle`
 /* Box sizing rules */
@@ -83,10 +84,10 @@ select {
 `
 const theme = {
   colors: {
-    primary: '#fff',
-    secondary: '#2b2b2b',
-    text: '#2b2b2b',
-    textLighter: lighten(0.25, '#2b2b2b'),
+    primary: '#ffffff',
+    secondary: '#282A3E',
+    text: '#282A3E',
+    textLighter: lighten(0.25, '#282A3E'),
   },
   spacings: {
     '2xs': 6,
@@ -111,6 +112,17 @@ const theme = {
     '5xl': 48,
     '6xl': 60,
   },
+  breakpoints: {
+    base: '0em',
+    sm: '30em',
+    md: '48em',
+    lg: '62em',
+    xl: '80em',
+    '2xl': '96em',
+  },
+  zIndexes: {
+    navbar: '1000',
+  },
 }
 
 function MyApp({ Component, pageProps }) {
@@ -122,8 +134,11 @@ function MyApp({ Component, pageProps }) {
         <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@100;400;600&display=swap" rel="stylesheet" />
       </Head>
       <ThemeProvider theme={theme}>
-        <GlobalStyle />
-        <Component {...pageProps} />
+        <div style={{ height: '300vh' }}>
+          <Navbar />
+          <GlobalStyle />
+          <Component {...pageProps} />
+        </div>
       </ThemeProvider>
     </>
   )
