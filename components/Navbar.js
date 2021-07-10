@@ -1,7 +1,10 @@
 import { useScrollPosition } from 'hooks/useScrollPosition'
 import { useRouter } from 'next/dist/client/router'
 import React, { useRef, useState } from 'react'
+import NextLink from 'next/link'
 import styled from 'styled-components'
+import { lighten } from 'polished'
+import ColorSwitcher from './ColorSwitcher'
 
 export default function Navbar(props) {
   const router = useRouter()
@@ -48,12 +51,17 @@ export default function Navbar(props) {
 
   return (
     <Container isNavbarHidden={isNavbarHidden}>
-      <Content>Bart Stefanski</Content>
+      <Content>
+        <NextLink href="/" passHref>
+          <Logotype>Bart Stefanski</Logotype>
+        </NextLink>
+        <ColorSwitcher />
+      </Content>
     </Container>
   )
 }
 
-const Container = styled.div`
+const Container = styled.header`
   display: flex;
   align-items: center;
   position: sticky;
@@ -66,7 +74,10 @@ const Container = styled.div`
   border-radius: 20px;
 
   visibility: ${(p) => (p.isNavbarHidden ? 'hidden' : 'visible')};
-  transform: ${(p) => (p.isNavbarHidden ? `translateY(-75px) translateZ(0) scale(1)` : 'translateY(0) translateZ(0) scale(1)')};
+  transform: ${(p) =>
+    p.isNavbarHidden
+      ? `translateY(-75px) translateY(-${p.theme.spacings.xs}px) translateZ(0) scale(1)`
+      : 'translateY(0) translateZ(0) scale(1)'};
   backface-visibility: hidden;
   transition-property: transform, visibility, height;
   transition-duration: 0.15s;
@@ -94,5 +105,28 @@ const Container = styled.div`
 `
 
 const Content = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
   padding: 0 ${(p) => p.theme.spacings.md}px;
+`
+
+const Logotype = styled.a`
+  font-size: ${(p) => p.theme.fontSizes['3xl']}px;
+  text-decoration: none;
+
+  &:visited,
+  &:link {
+    color: ${(p) => p.theme.colors.secondary};
+  }
+
+  &:active,
+  &:focus {
+    color: ${(p) => lighten(0.2, p.theme.colors.secondary)};
+  }
+
+  &:hover {
+    color: ${(p) => lighten(0.1, p.theme.colors.secondary)};
+  }
 `
