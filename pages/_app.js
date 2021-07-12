@@ -1,7 +1,8 @@
 import { createGlobalStyle, ThemeProvider } from 'styled-components'
 import Head from 'next/head'
-import { lighten } from 'polished'
+import { invert, lighten } from 'polished'
 import Navbar from 'components/Navbar'
+import { lightTheme } from 'theme'
 
 const GlobalStyle = createGlobalStyle`
 /* Box sizing rules */
@@ -79,51 +80,43 @@ select {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+}`
+
+function convertObjectToThemeValues(obj) {
+  let paths = []
+  flattenObjectToPath(obj)
+  function flattenObjectToPath(value, path = '') {
+    if (typeof value === 'object') {
+      const keys = Object.keys(value)
+      keys.forEach((singleKey) => flattenObjectToPath(value[singleKey], (!!path ? path + '-' : path) + singleKey))
+    } else {
+      paths = [...paths, [path, value]]
+    }
+  }
+  return paths
 }
- 
+
+const colorModeScript = `
+  const selectedColorMode = localStorage.getItem("colorMode");
+
+  if (!selectedColorMode) {
+    setupPreferredColorMode();
+    window.colorMode = window.prefersDarkMode ? "dark" : "light";
+  } else {
+    window.colorMode = selectedColorMode;
+  }
+
+  appendThemeClassName(window.colorMode)
+
+  function setupPreferredColorMode() {
+    const darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    window.prefersDarkMode = darkModeMediaQuery.matches
+  }
+
+  function appendThemeClassName(colorMode) {
+    window.document.querySelector('body').classList.add(colorMode + "-theme")
+  }
 `
-const theme = {
-  colors: {
-    primary: '#ffffff',
-    secondary: '#282A3E',
-    text: '#282A3E',
-    textLighter: lighten(0.25, '#282A3E'),
-  },
-  spacings: {
-    '2xs': 6,
-    xs: 12,
-    sm: 24,
-    md: 48,
-    lg: 96,
-    xl: 192,
-    smallContainer: 700,
-    mediumContainer: 900,
-    largeContainer: 1100,
-  },
-  fontSizes: {
-    xs: 12,
-    sm: 14,
-    md: 16,
-    lg: 18,
-    xl: 20,
-    '2xl': 24,
-    '3xl': 30,
-    '4xl': 36,
-    '5xl': 48,
-    '6xl': 60,
-  },
-  breakpoints: {
-    base: '0em',
-    sm: '30em',
-    md: '48em',
-    lg: '62em',
-    xl: '80em',
-    '2xl': '96em',
-  },
-  zIndexes: {
-    navbar: '1000',
-  },
-}
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -133,7 +126,29 @@ function MyApp({ Component, pageProps }) {
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin />
         <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@100;400;600&display=swap" rel="stylesheet" />
       </Head>
-      <ThemeProvider theme={theme}>
+      <style
+        dangerouslySetInnerHTML={{
+          __html: `
+.light-theme {
+--primary: #ffffff;
+--secondary: #282A3E;
+--text: #282A3E;
+--textLighter: ${lighten(0.25, '#282A3E')};
+}
+
+.dark-theme {
+--primary: ${invert('#ffffff')};
+--secondary: ${invert('#282A3E')};
+--text: ${invert('#282A3E')};
+--textLighter: ${lighten(0.25, '#282A3E')};
+}
+           `,
+        }}
+      />
+
+      {/* <script dangerouslySetInnerHTML={{ __html: cssVariablesScript(lightTheme.colors, darkTheme.colors) }} /> */}
+      <script dangerouslySetInnerHTML={{ __html: colorModeScript }} />
+      <ThemeProvider theme={lightTheme}>
         <div style={{ height: '300vh' }}>
           <Navbar />
           <GlobalStyle />

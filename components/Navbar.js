@@ -4,7 +4,9 @@ import React, { useRef, useState } from 'react'
 import NextLink from 'next/link'
 import styled from 'styled-components'
 import { lighten } from 'polished'
-import ColorSwitcher from './ColorSwitcher'
+import dynamic from 'next/dynamic'
+
+const ColorSwitcher = dynamic(() => import('./ColorSwitcher'), { ssr: false })
 
 export default function Navbar(props) {
   const router = useRouter()
@@ -123,10 +125,11 @@ const Logotype = styled.a`
 
   &:active,
   &:focus {
-    color: ${(p) => lighten(0.2, p.theme.colors.secondary)};
+    // TODO:
+    ${'' /* color: ${(p) => lighten(0.2, p.theme.colors.secondary)}; */}
   }
 
   &:hover {
-    color: ${(p) => lighten(0.1, p.theme.colors.secondary)};
+    ${'' /* color: ${(p) => lighten(0.1, p.theme.colors.secondary)}; */}
   }
 `

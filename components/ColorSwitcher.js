@@ -1,17 +1,51 @@
 import styled, { css } from 'styled-components'
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import MoonIcon from './icons/MoonIcon'
 import SunIcon from './icons/SunIcon'
 import { useBoolean } from 'hooks/useBoolean'
 import { darken } from 'polished'
 
+export function useFirstMountState() {
+  const isFirst = useRef(true)
+  if (isFirst.current) {
+    isFirst.current = false
+    return true
+  }
+  return isFirst.current
+}
+
 export default function ColorSwitcher(props) {
-  const [isLightMode, { toggle }] = useBoolean(true)
+  const [isLightMode, { toggle }] = useBoolean(() => {
+    const colorMode = localStorage.getItem('colorMode')
+    if (!colorMode) {
+      return window.prefersDarkMode ? false : true
+    }
+    return colorMode === 'light'
+  })
+
+  function changeTheme(colorMode) {
+    localStorage.setItem('colorMode', colorMode)
+    window.document.querySelector('body').classList.remove('light-theme')
+    window.document.querySelector('body').classList.remove('dark-theme')
+    window.document.querySelector('body').classList.add(colorMode + '-theme')
+  }
 
   return (
     <ColorSwitcherContainer isLightMode={isLightMode}>
-      <MoonIcon className="moon-icon" onClick={toggle} />
-      <SunIcon className="sun-icon" onClick={toggle} />
+      <MoonIcon
+        className="moon-icon"
+        onClick={() => {
+          toggle()
+          changeTheme('dark')
+        }}
+      />
+      <SunIcon
+        className="sun-icon"
+        onClick={() => {
+          toggle()
+          changeTheme('light')
+        }}
+      />
     </ColorSwitcherContainer>
   )
 }
@@ -24,7 +58,8 @@ const ColorSwitcherContainer = styled.div`
   transition: background-color 0.15s;
 
   &:hover {
-    background-color: ${(p) => darken(0.05, p.theme.colors.primary)};
+    // TODO:
+    ${'' /* background-color: ${(p) => darken(0.05, p.theme.colors.primary)}; */}
   }
 
   & > * {
