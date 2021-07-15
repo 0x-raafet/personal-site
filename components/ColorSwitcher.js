@@ -58,8 +58,7 @@ const ColorSwitcherContainer = styled.div`
   transition: background-color 0.15s;
 
   &:hover {
-    // TODO:
-    ${'' /* background-color: ${(p) => darken(0.05, p.theme.colors.primary)}; */}
+    background-color: var(--primary-tint);
   }
 
   & > * {

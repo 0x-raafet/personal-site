@@ -90,7 +90,7 @@ const Title = styled.h1`
 
 const DetailsContainer = styled.div`
   font-size: ${(p) => p.theme.fontSizes['md']}px;
-  color: ${(p) => p.theme.colors.textLighter};
+  color: var(--text-lighter);
 `
 
 const MidDot = styled.span`

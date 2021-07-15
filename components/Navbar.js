@@ -95,7 +95,7 @@ const Container = styled.header`
     bottom: 0;
     content: '';
     backdrop-filter: blur(5px);
-    background-color: ${(p) => p.theme.colors.primary};
+    background-color: var(--navbar);
     opacity: 0.95;
     border-radius: 20px;
     z-index: -1;
@@ -120,16 +120,15 @@ const Logotype = styled.a`
 
   &:visited,
   &:link {
-    color: ${(p) => p.theme.colors.secondary};
+    color: var(--heading);
   }
 
   &:active,
   &:focus {
-    // TODO:
-    ${'' /* color: ${(p) => lighten(0.2, p.theme.colors.secondary)}; */}
+    color: var(--heading);
   }
 
   &:hover {
-    ${'' /* color: ${(p) => lighten(0.1, p.theme.colors.secondary)}; */}
+    color: var(--heading);
   }
 `

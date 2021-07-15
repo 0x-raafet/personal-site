@@ -1,12 +1,6 @@
 import { invert, lighten } from 'polished'
 
-export const lightTheme = {
-  colors: {
-    primary: 'var(--primary)',
-    secondary: 'var(--secondary)',
-    text: 'var(--text)',
-    textLighter: 'var(--textLighter)',
-  },
+export const theme = {
   spacings: {
     '2xs': 6,
     xs: 12,
