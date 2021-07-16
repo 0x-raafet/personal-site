@@ -88,6 +88,8 @@ const colorModeScript = `
   }
 
   function appendThemeClassName(colorMode) {
+    window.document.querySelector('body').classList.remove("light-theme");
+    window.document.querySelector('body').classList.remove("dark-theme");
     window.document.querySelector('body').classList.add(colorMode + "-theme")
   }
 `
