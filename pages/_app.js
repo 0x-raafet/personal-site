@@ -103,7 +103,7 @@ function MyApp({ Component, pageProps }) {
       <style dangerouslySetInnerHTML={{ __html: themes }} />
       <script dangerouslySetInnerHTML={{ __html: colorModeScript }} />
       <ThemeProvider theme={theme}>
-        <div style={{ height: '300vh' }} data-transition-style="out:wipe:up">
+        <div>
           <Navbar />
           <GlobalStyle />
           <Component {...pageProps} />

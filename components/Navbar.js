@@ -94,7 +94,6 @@ const Container = styled.header`
     right: 0;
     bottom: 0;
     content: '';
-    backdrop-filter: blur(5px);
     background-color: var(--navbar);
     opacity: 0.95;
     border-radius: 20px;

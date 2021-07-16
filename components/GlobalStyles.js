@@ -37,6 +37,13 @@ html:focus-within {
   scroll-behavior: smooth;
 } 
 
+html {
+  -webkit-font-smoothing: antialiased;
+  touch-action: manipulation;
+  text-rendering: optimizelegibility;
+  text-size-adjust: 100%;
+}
+
 /* Set core body defaults */
 body {
   min-height: 100vh;
@@ -45,19 +52,7 @@ body {
   font-family: 'Barlow', sans-serif;
   color: var(--text);
   background: var(--background);
-}
-
-[data-transition-style="out:wipe:up"] {
-  animation: 2.5s cubic-bezier(.25, 1, .30, 1) wipe-out-up both;
-}
-
-@keyframes wipe-out-up {
-  from {
-    clip-path: inset(0 0 0 0);
-  }
-  to {
-    clip-path: inset(0 0 100% 0);
-  }
+  font-feature-settings: "kern";
 }
 
 svg {
