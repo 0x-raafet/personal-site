@@ -5,6 +5,7 @@ import * as path from 'path'
 import * as fs from 'fs'
 
 import matter from 'gray-matter'
+import Head from 'next/head'
 
 const DOCS_DIRECTORY = path.join(process.cwd(), 'posts')
 
@@ -19,15 +20,20 @@ export default function SingleArticlePage(props) {
   const readTime = `9 min read`
 
   return (
-    <Container>
-      <HeaderContainer>
-        <Title>{title}</Title>
-        <DetailsContainer>
-          {formattedDate} <MidDot /> {readTime}
-        </DetailsContainer>
-      </HeaderContainer>
-      <RichText {...content} />
-    </Container>
+    <>
+      <Head>
+        <link href="/nord-prism-theme.css" rel="stylesheet" />
+      </Head>
+      <Container>
+        <HeaderContainer>
+          <Title>{title}</Title>
+          <DetailsContainer>
+            {formattedDate} <MidDot /> {readTime}
+          </DetailsContainer>
+        </HeaderContainer>
+        <RichText {...content} />
+      </Container>
+    </>
   )
 }
 
@@ -60,7 +66,40 @@ export async function getSinglePost(slug) {
 
 async function serializeContent(content, meta) {
   const { serialize } = require('next-mdx-remote/serialize')
-  return serialize(content, { scope: meta })
+  const remarkPrism = require('remark-prism')
+
+  return serialize(content, {
+    scope: meta,
+    mdxOptions: {
+      remarkPlugins: [
+        require('@fec/remark-a11y-emoji'),
+        require('remark-breaks'),
+        require('remark-gfm'),
+        require('remark-footnotes'),
+        require('remark-external-links'),
+        require('remark-toc'),
+        require('remark-slug'),
+        [
+          remarkPrism,
+          {
+            plugins: [
+              'autolinker',
+              'command-line',
+              'data-uri-highlight',
+              'diff-highlight',
+              'inline-color',
+              'keep-markup',
+              'line-numbers',
+              'show-invisibles',
+              'treeview',
+            ],
+          },
+        ],
+        require('remark-sectionize'),
+      ],
+      rehypePlugins: [],
+    },
+  })
 }
 
 function normalizePostName(postName) {

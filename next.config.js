@@ -1,6 +1,4 @@
-const withMDX = require('@next/mdx')({ extension: /\.mdx?$/ })
-
-module.exports = withMDX({
+module.exports = {
   reactStrictMode: true,
   pageExtensions: ['js', 'jsx', 'mdx'],
   webpack: (config, { isServer }) => {
@@ -8,7 +6,9 @@ module.exports = withMDX({
       config.resolve.fallback.fs = false
       config.resolve.fallback.child_process = false
       config.resolve.fallback.worker_threads = false
+      config.resolve.fallback.net = false
+      config.resolve.fallback.tls = false
     }
     return config
   },
-})
+}
