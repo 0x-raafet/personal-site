@@ -94,6 +94,30 @@ const colorModeScript = `
   }
 `
 
+const messagesForDankHackers = `
+(function(url, text) {
+  const image = new Image();
+  image.onload = function() {
+    const style = [
+      'font-size: 1px;',
+      'line-height: ' + this.height % 2 + 'px;',
+      'padding: ' + this.height * .5 + 'px ' + this.width * .5 + 'px;',
+      'background-size: ' + this.width + 'px ' + this.height + 'px;',
+      'background: url('+ url +');'
+     ].join(' ');
+     console.log('%c ', style);
+  };
+  image.src = url;
+
+  const textStyles = [
+    'font-size: 5vw;',
+    'color: red;',
+    'font-weight: bold;'
+  ].join(' ');
+  console.log('%c' + text, textStyles);  
+})('https://i.imgur.com/gjv5CaH.gif', "Ah yes, obamium.");
+`
+
 function MyApp({ Component, pageProps }) {
   return (
     <>
@@ -104,6 +128,7 @@ function MyApp({ Component, pageProps }) {
       </Head>
       <style dangerouslySetInnerHTML={{ __html: themes }} />
       <script dangerouslySetInnerHTML={{ __html: colorModeScript }} />
+      <script async dangerouslySetInnerHTML={{ __html: messagesForDankHackers }} />
       <ThemeProvider theme={theme}>
         <div>
           <Navbar />
