@@ -82,17 +82,7 @@ async function serializeContent(content, meta) {
         [
           remarkPrism,
           {
-            plugins: [
-              'autolinker',
-              'command-line',
-              'data-uri-highlight',
-              'diff-highlight',
-              'inline-color',
-              'keep-markup',
-              'line-numbers',
-              'show-invisibles',
-              'treeview',
-            ],
+            plugins: ['line-numbers', 'diff-highlight'],
           },
         ],
         require('remark-sectionize'),
@@ -106,7 +96,7 @@ function normalizePostName(postName) {
   return postName.replace('.mdx', '')
 }
 
-const Container = styled.div`
+const Container = styled.main`
   display: flex;
   flex-direction: column;
   align-items: center;
