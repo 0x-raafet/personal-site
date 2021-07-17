@@ -43,6 +43,10 @@ export async function getStaticPaths() {
     paths: posts.map((slug) => ({ params: { slug } })),
     fallback: false,
   }
+
+  function getAllPosts() {
+    return fs.readdirSync(DOCS_DIRECTORY).map(normalizePostName)
+  }
 }
 
 export async function getStaticProps({ params }) {
@@ -50,46 +54,42 @@ export async function getStaticProps({ params }) {
   return {
     props: singlePost,
   }
-}
 
-export function getAllPosts() {
-  return fs.readdirSync(DOCS_DIRECTORY).map(normalizePostName)
-}
+  async function getSinglePost(slug) {
+    const filePath = path.join(DOCS_DIRECTORY, slug + '.mdx')
+    const contents = fs.readFileSync(filePath, 'utf8')
+    const { data: meta, content } = matter(contents)
+    const serializedContent = await serializeContent(content, meta)
+    return { slug, content: serializedContent, meta }
+  }
 
-export async function getSinglePost(slug) {
-  const filePath = path.join(DOCS_DIRECTORY, slug + '.mdx')
-  const contents = fs.readFileSync(filePath, 'utf8')
-  const { data: meta, content } = matter(contents)
-  const serializedContent = await serializeContent(content, meta)
-  return { slug, content: serializedContent, meta }
-}
+  async function serializeContent(content, meta) {
+    const { serialize } = require('next-mdx-remote/serialize')
+    const remarkPrism = require('remark-prism')
 
-async function serializeContent(content, meta) {
-  const { serialize } = require('next-mdx-remote/serialize')
-  const remarkPrism = require('remark-prism')
-
-  return serialize(content, {
-    scope: meta,
-    mdxOptions: {
-      remarkPlugins: [
-        require('@fec/remark-a11y-emoji'),
-        require('remark-breaks'),
-        require('remark-gfm'),
-        require('remark-footnotes'),
-        require('remark-external-links'),
-        require('remark-toc'),
-        require('remark-slug'),
-        [
-          remarkPrism,
-          {
-            plugins: ['line-numbers', 'diff-highlight'],
-          },
+    return serialize(content, {
+      scope: meta,
+      mdxOptions: {
+        remarkPlugins: [
+          require('@fec/remark-a11y-emoji'),
+          require('remark-breaks'),
+          require('remark-gfm'),
+          require('remark-footnotes'),
+          require('remark-external-links'),
+          require('remark-toc'),
+          require('remark-slug'),
+          [
+            remarkPrism,
+            {
+              plugins: ['line-numbers', 'diff-highlight'],
+            },
+          ],
+          require('remark-sectionize'),
         ],
-        require('remark-sectionize'),
-      ],
-      rehypePlugins: [],
-    },
-  })
+        rehypePlugins: [],
+      },
+    })
+  }
 }
 
 function normalizePostName(postName) {
