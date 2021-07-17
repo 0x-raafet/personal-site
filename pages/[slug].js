@@ -110,6 +110,7 @@ const HeaderContainer = styled.div`
   flex-direction: column;
   max-width: ${(p) => p.theme.spacings.smallContainer}px;
   grid-gap: ${(p) => p.theme.spacings.sm}px;
+  margin-bottom: ${(p) => p.theme.spacings.md}px;
 `
 
 const Title = styled.h1`
