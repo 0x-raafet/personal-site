@@ -15,6 +15,8 @@ const themes = `
   --heading: var(--gray-900);
   --tint-primary: var(--tint-blue);
   --navbar: var(--gray-50);
+  --overlay: var(--gray-400);
+  --overlay-lighter: var(--gray-300);
 }
 
 .dark-theme {
@@ -24,6 +26,8 @@ const themes = `
   --heading: var(--gray-50);
   --tint-primary: var(--tint-blue);
   --navbar: hsl(218, 23%, 23%);
+  --overlay: var(--gray-800);
+  --overlay-lighter: var(--gray-700);
 }
 
 :root {
