@@ -6,8 +6,8 @@ import styled from 'styled-components'
 import { lighten } from 'polished'
 import dynamic from 'next/dynamic'
 import Logotype from './Logotype'
-
-const ColorSwitcher = dynamic(() => import('./ColorSwitcher'), { ssr: false })
+import ColorSwitcher from './ColorSwitcher'
+import ClientOnly from './ClientOnly'
 
 export default function Navbar(props) {
   const router = useRouter()
@@ -58,7 +58,9 @@ export default function Navbar(props) {
         <NextLink href="/">
           <Logotype />
         </NextLink>
-        <ColorSwitcher />
+        <ClientOnly>
+          <ColorSwitcher />
+        </ClientOnly>
       </Content>
     </Container>
   )

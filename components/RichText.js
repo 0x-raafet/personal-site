@@ -1,5 +1,7 @@
 import styled from 'styled-components'
 import { MDXRemote } from 'next-mdx-remote'
+import Highlight, { defaultProps } from 'prism-react-renderer'
+import Code from 'components/Code'
 
 export default function RichText(props) {
   return (
@@ -51,6 +53,6 @@ const components = {
   h2: SecondHeading,
   h3: ThirdHeading,
   p: Paragraph,
-  // code: Pre,
+  Code,
   // inlineCode: Code,
 }

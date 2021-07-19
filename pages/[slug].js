@@ -22,7 +22,7 @@ export default function SingleArticlePage(props) {
   return (
     <>
       <Head>
-        <link href="/nord-prism-theme.css" rel="stylesheet" />
+        <link href="/prism-theme.css" rel="stylesheet" />
       </Head>
       <Container>
         <HeaderContainer>
@@ -65,7 +65,7 @@ export async function getStaticProps({ params }) {
 
   async function serializeContent(content, meta) {
     const { serialize } = require('next-mdx-remote/serialize')
-    const remarkPrism = require('remark-prism')
+    // const remarkPrism = require('remark-prism')
 
     return serialize(content, {
       scope: meta,
@@ -78,12 +78,12 @@ export async function getStaticProps({ params }) {
           require('remark-external-links'),
           require('remark-toc'),
           require('remark-slug'),
-          [
-            remarkPrism,
-            {
-              plugins: ['line-numbers', 'diff-highlight'],
-            },
-          ],
+          // [
+          //   remarkPrism,
+          //   {
+          //     plugins: ['line-numbers', 'diff-highlight', 'toolbar', 'copy'],
+          //   },
+          // ],
           require('remark-sectionize'),
         ],
         rehypePlugins: [],

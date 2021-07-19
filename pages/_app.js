@@ -4,6 +4,8 @@ import { invert, lighten } from 'polished'
 import Navbar from 'components/Navbar'
 import { theme } from 'theme'
 import { GlobalStyle } from 'components/GlobalStyles'
+import { initColorModeScript } from 'utils/initColorMode'
+import { initSecretMessageScript } from 'utils/initSecretMessage'
 
 const themes = `
 .light-theme {
@@ -70,58 +72,6 @@ const themes = `
 }
 `
 
-const colorModeScript = `
-  const selectedColorMode = localStorage.getItem("colorMode");
-
-  if (!selectedColorMode) {
-    setupPreferredColorMode();
-    window.colorMode = window.prefersDarkMode ? "dark" : "light";
-  } else {
-    window.colorMode = selectedColorMode;
-  }
-
-  appendThemeClassName(window.colorMode)
-
-  function setupPreferredColorMode() {
-    const darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-    window.prefersDarkMode = darkModeMediaQuery.matches
-  }
-
-  function appendThemeClassName(colorMode) {
-    window.document.querySelector('body').classList.remove("light-theme");
-    window.document.querySelector('body').classList.remove("dark-theme");
-    window.document.querySelector('body').classList.add(colorMode + "-theme")
-  }
-`
-
-const messagesForDankHackers = `
-const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-
-if (!isMobile) {
-  (function(url, text) {
-    const image = new Image();
-    image.onload = function() {
-      const style = [
-        'font-size: 1px;',
-        'line-height: ' + this.height % 2 + 'px;',
-        'padding: ' + this.height * .5 + 'px ' + this.width * .5 + 'px;',
-        'background-size: ' + this.width + 'px ' + this.height + 'px;',
-        'background: url('+ url +');'
-      ].join(' ');
-      console.log('%c ', style);
-    };
-    image.src = url;
-    
-    const textStyles = [
-      'font-size: 5vw;',
-      'color: red;',
-      'font-weight: bold;'
-    ].join(' ');
-    console.log('%c' + text, textStyles);  
-  })('https://i.imgur.com/1Y5SFel.gif', "Ah yes, obamium.");
-}
-`
-
 function MyApp({ Component, pageProps }) {
   return (
     <>
@@ -131,8 +81,8 @@ function MyApp({ Component, pageProps }) {
         <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@100;400;600&display=swap" rel="stylesheet" />
       </Head>
       <style dangerouslySetInnerHTML={{ __html: themes }} />
-      <script dangerouslySetInnerHTML={{ __html: colorModeScript }} />
-      <script async dangerouslySetInnerHTML={{ __html: messagesForDankHackers }} />
+      <script dangerouslySetInnerHTML={{ __html: initColorModeScript }} />
+      <script async dangerouslySetInnerHTML={{ __html: initSecretMessageScript }} />
       <ThemeProvider theme={theme}>
         <div>
           <Navbar />
