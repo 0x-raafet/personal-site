@@ -28,7 +28,7 @@ const Container = styled.div`
 
   & > section,
   .footnotes {
-    content-visibility: auto;
+    ${'' /* content-visibility: auto; */}
   }
 `
 

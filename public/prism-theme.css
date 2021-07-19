@@ -31,7 +31,8 @@ pre[class*='language-'] {
 }
 
 .dark-theme :not(pre) > code[class*='language-'],
-.dark-theme pre[class*='language-'] {
+.dark-theme pre[class*='language-'],
+.dark-theme .code-wrapper {
   background: #2e3440;
 }
 
@@ -161,7 +162,8 @@ pre[class*='language-'].line-numbers > code {
 }
 
 .light-theme code[class*='language-'],
-.light-theme pre[class*='language-'] {
+.light-theme pre[class*='language-'],
+.light-theme .code-wrapper {
   background: #f5f7ff;
   color: #5e6687;
 }
