@@ -75,7 +75,7 @@ export async function getStaticProps({ params }) {
           require('remark-gfm'),
           require('remark-footnotes'),
           require('remark-external-links'),
-          require('remark-toc'),
+          [require('remark-toc'), { ordered: true, tight: true, maxDepth: 3 }],
           require('remark-slug'),
           require('remark-sectionize'),
         ],

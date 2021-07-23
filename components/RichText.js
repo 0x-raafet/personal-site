@@ -32,6 +32,18 @@ const Container = styled.div`
   .footnotes {
     ${'' /* content-visibility: auto; */}
   }
+
+  ol,
+  ul {
+    font-size: ${(p) => p.theme.fontSizes['xl']}px;
+    line-height: 30px;
+    padding-left: 24px;
+    li {
+      & > * {
+        vertical-align: top;
+      }
+    }
+  }
 `
 
 const Paragraph = styled.p`

@@ -11,10 +11,6 @@ export default function Link(props) {
   )
 }
 
-function isLinkInternal(link) {
-  return !link ? false : link.startsWith('/') && !link.startsWith('//')
-}
-
 const Anchor = styled.a`
   display: inline;
   width: fit-content;
