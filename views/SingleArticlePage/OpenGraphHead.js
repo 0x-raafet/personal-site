@@ -5,10 +5,8 @@ export default function OpenGraphHead(props) {
   const { slug, title, description, date, tags } = props
 
   const currentUrl = `https://bstefanski.com/${slug}`
-  const ogImageUrl =
-    process.env.NODE_ENV !== 'production'
-      ? `https://dev.bstefanski.com/og-images/${slug}.png`
-      : `https://bstefanski.com/og-images/${slug}.png`
+  // TODO:
+  const ogImageUrl = `https://dev.bstefanski.com/og-images/${slug}.png`
 
   return (
     <Head>

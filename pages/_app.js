@@ -1,6 +1,5 @@
 import { createGlobalStyle, ThemeProvider } from 'styled-components'
 import Head from 'next/head'
-import { invert, lighten } from 'polished'
 import Navbar from 'components/Navbar'
 import { theme } from 'theme'
 import { GlobalStyle } from 'components/GlobalStyles'
