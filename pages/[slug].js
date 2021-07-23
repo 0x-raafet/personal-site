@@ -7,7 +7,7 @@ import * as fs from 'fs'
 import matter from 'gray-matter'
 import Head from 'next/head'
 
-const DOCS_DIRECTORY = path.join(process.cwd(), 'posts')
+const POSTS_DIRECTORY = path.join(process.cwd(), 'posts')
 
 export default function SingleArticlePage(props) {
   const {
@@ -45,7 +45,7 @@ export async function getStaticPaths() {
   }
 
   function getAllPosts() {
-    return fs.readdirSync(DOCS_DIRECTORY).map(normalizePostName)
+    return fs.readdirSync(POSTS_DIRECTORY).map(normalizePostName)
   }
 }
 
@@ -56,7 +56,7 @@ export async function getStaticProps({ params }) {
   }
 
   async function getSinglePost(slug) {
-    const filePath = path.join(DOCS_DIRECTORY, slug + '.mdx')
+    const filePath = path.join(POSTS_DIRECTORY, slug + '.mdx')
     const contents = fs.readFileSync(filePath, 'utf8')
     const { data: meta, content } = matter(contents)
     const serializedContent = await serializeContent(content, meta)
