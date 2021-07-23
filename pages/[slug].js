@@ -6,15 +6,13 @@ import * as fs from 'fs'
 
 import matter from 'gray-matter'
 import Head from 'next/head'
+import OpenGraphHead from 'views/SingleArticlePage/OpenGraphHead'
 
 const POSTS_DIRECTORY = path.join(process.cwd(), 'posts')
 
 export default function SingleArticlePage(props) {
-  const {
-    slug,
-    content,
-    meta: { title, date },
-  } = props
+  const { slug, content, meta } = props
+  const { title, description, date } = meta
 
   const formattedDate = formatDate(new Date(date))
   const readTime = `9 min read`
@@ -24,6 +22,7 @@ export default function SingleArticlePage(props) {
       <Head>
         <link href="/prism-theme.css" rel="stylesheet" />
       </Head>
+      <OpenGraphHead slug={slug} {...meta} />
       <Container>
         <HeaderContainer>
           <Title>{title}</Title>
