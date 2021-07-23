@@ -88,8 +88,12 @@ const CopyButton = styled(CopyIcon)`
 const CodeWrapper = styled.div`
   position: relative;
   border-radius: 0.3em;
-  margin: ${(p) => p.theme.spacings.md}px 0px;
+  margin-top: 45px;
   transition: visibility 0.1s;
+
+  &:not(:last-child) {
+    margin-bottom: 30px;
+  }
 
   &::after {
     position: absolute;

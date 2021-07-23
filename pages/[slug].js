@@ -65,7 +65,6 @@ export async function getStaticProps({ params }) {
 
   async function serializeContent(content, meta) {
     const { serialize } = require('next-mdx-remote/serialize')
-    // const remarkPrism = require('remark-prism')
 
     return serialize(content, {
       scope: meta,
@@ -78,12 +77,6 @@ export async function getStaticProps({ params }) {
           require('remark-external-links'),
           require('remark-toc'),
           require('remark-slug'),
-          // [
-          //   remarkPrism,
-          //   {
-          //     plugins: ['line-numbers', 'diff-highlight', 'toolbar', 'copy'],
-          //   },
-          // ],
           require('remark-sectionize'),
         ],
         rehypePlugins: [],
@@ -109,13 +102,18 @@ const HeaderContainer = styled.div`
   display: flex;
   flex-direction: column;
   max-width: ${(p) => p.theme.spacings.smallContainer}px;
-  grid-gap: ${(p) => p.theme.spacings.sm}px;
-  margin-bottom: ${(p) => p.theme.spacings.md}px;
+  margin-bottom: 112px;
 `
 
 const Title = styled.h1`
-  font-size: ${(p) => p.theme.fontSizes['4xl']}px;
   font-weight: 600;
+  font-size: ${(p) => p.theme.fontSizes['5xl']}px;
+  line-height: 56px;
+  margin-bottom: 28px;
+
+  @media (max-width: ${(p) => p.theme.breakpoints.sm}) {
+    font-size: ${(p) => p.theme.fontSizes['4xl']}px;
+  }
 `
 
 const DetailsContainer = styled.div`

@@ -17,6 +17,7 @@ const themes = `
   --navbar: var(--gray-50);
   --overlay: var(--gray-400);
   --overlay-lighter: var(--gray-300);
+  --primary: #c08b30;
 }
 
 .dark-theme {
@@ -28,6 +29,7 @@ const themes = `
   --navbar: hsl(218, 23%, 23%);
   --overlay: var(--gray-800);
   --overlay-lighter: var(--gray-700);
+  --primary: #81a1c1;
 }
 
 :root {
