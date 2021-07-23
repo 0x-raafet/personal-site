@@ -3,6 +3,7 @@ import { MDXRemote } from 'next-mdx-remote'
 import Highlight, { defaultProps } from 'prism-react-renderer'
 import Code from 'components/Code'
 import Quote from './Quote'
+import Link from './Link'
 
 export default function RichText(props) {
   return (
@@ -63,12 +64,11 @@ const Break = styled.br`
 `
 
 const components = {
-  // h1: Heading.H1,
   h2: SecondHeading,
   h3: ThirdHeading,
   p: Paragraph,
   br: Break,
+  a: Link,
   Code,
   Quote,
-  // inlineCode: Code,
 }

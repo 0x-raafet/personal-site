@@ -1,0 +1,41 @@
+import React from 'react'
+import styled from 'styled-components'
+import NextLink from 'next/link'
+
+export default function Link(props) {
+  const { className, children, href } = props
+  return (
+    <NextLink href={href} passHref>
+      <Anchor className={className}>{children}</Anchor>
+    </NextLink>
+  )
+}
+
+function isLinkInternal(link) {
+  return !link ? false : link.startsWith('/') && !link.startsWith('//')
+}
+
+const Anchor = styled.a`
+  display: inline;
+  width: fit-content;
+  text-decoration: none;
+
+  background: linear-gradient(var(--primary), var(--primary));
+  background-position: 0% 100%;
+  background-repeat: no-repeat;
+  background-size: 100% 1px;
+  transition: 100ms;
+  transition-property: background-size, text-decoration, color;
+  color: var(--text);
+
+  &:hover {
+    background-size: 100% 100%;
+    text-decoration: none;
+    color: var(--tint-primary);
+  }
+
+  &:active {
+    color: var(--tint-primary);
+    background-size: 100% 100%;
+  }
+`
