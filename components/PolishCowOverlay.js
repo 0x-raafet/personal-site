@@ -7,10 +7,14 @@ import { randomRange } from 'utils/randomRange'
 export default function PolishCowOverlay({ onClose }) {
   const [numberOfCows, setNumberOfCows] = useState(8)
   useEscClose(onClose)
-  const [playSong, { stop: stopSong }] = useSound('/polish-cow-song.mp4', {
+  const [playSong, { stop: stopSong, sound }] = useSound('/polish-cow-song.mp4', {
     volume: 0.4,
     interrupt: true,
-    loop: true,
+    autoplay: true,
+    sprite: {
+      firstVerse: [0, 15900],
+      lastVerse: [15900, 32500, true],
+    },
   })
 
   function handleScreenClick() {
@@ -18,8 +22,13 @@ export default function PolishCowOverlay({ onClose }) {
   }
 
   useEffect(() => {
-    playSong()
+    if (sound) {
+      const firstId = sound.play('firstVerse')
+      sound.on('end', () => sound.play('lastVerse'), firstId)
+    }
+  }, [sound])
 
+  useEffect(() => {
     const interval = setInterval(() => {
       setNumberOfCows(randomRange(6, 12))
     }, 1000 * 2)
@@ -34,8 +43,9 @@ export default function PolishCowOverlay({ onClose }) {
       window.removeEventListener('mousemove', handleMouseMove)
       clearInterval(interval)
       stopSong()
+      sound?.unload()
     }
-  }, [playSong, stopSong])
+  }, [playSong, sound, stopSong])
 
   const cowsMarkup = Array.from({ length: numberOfCows }, (_, idx) => {
     const padding = 256
