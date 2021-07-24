@@ -7,7 +7,7 @@ import { randomRange } from 'utils/randomRange'
 export default function PolishCowOverlay({ onClose }) {
   const [numberOfCows, setNumberOfCows] = useState(8)
   useEscClose(onClose)
-  const [playSong] = useSound('/polish-cow-song.webm', {
+  const [playSong] = useSound('/polish-cow-song.mp4', {
     volume: 0.4,
     interrupt: true,
     loop: true,
