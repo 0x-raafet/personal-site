@@ -37,7 +37,7 @@ export default function PolishCowOverlay({ onClose }) {
   }, [playSong])
 
   const cowsMarkup = Array.from({ length: numberOfCows }, (_, idx) => {
-    const padding = 140
+    const padding = 256
     const left = randomRange(0, window.innerWidth - padding)
     const top = randomRange(0, window.innerHeight - padding)
     const style = { position: 'absolute', width: 256, pointerEvents: 'none', userSelect: 'none', left, top }
