@@ -7,7 +7,7 @@ import { randomRange } from 'utils/randomRange'
 export default function PolishCowOverlay({ onClose }) {
   const [numberOfCows, setNumberOfCows] = useState(8)
   useEscClose(onClose)
-  const [playSong] = useSound('/polish-cow-song.mp4', {
+  const [playSong, { stop: stopSong }] = useSound('/polish-cow-song.mp4', {
     volume: 0.4,
     interrupt: true,
     loop: true,
@@ -33,8 +33,9 @@ export default function PolishCowOverlay({ onClose }) {
     return () => {
       window.removeEventListener('mousemove', handleMouseMove)
       clearInterval(interval)
+      stopSong()
     }
-  }, [playSong])
+  }, [playSong, stopSong])
 
   const cowsMarkup = Array.from({ length: numberOfCows }, (_, idx) => {
     const padding = 256
@@ -46,27 +47,29 @@ export default function PolishCowOverlay({ onClose }) {
   })
 
   return (
-    <Container onClick={handleScreenClick}>
-      {cowsMarkup}
-      <Pointer className="pointer">
-        <img src="polish-cow.gif" alt="" />
-      </Pointer>
-      <Captions>
-        Tylko jedno w głowie mam
-        <br />
-        Koksu pięć gram odlecieć sam
-        <br />
-        W krainę za zapomnienia
-        <br />
-        W głowie myśli mam
-        <br />
-        Kiedy skończy się ten stan
-        <br />
-        Gdy już nie będę sam
-        <br />
-        Bo wjedzie biały węgorz
-      </Captions>
-    </Container>
+    <div style={{ width: '100%', height: '100%', overflow: 'hidden' }}>
+      <Container onClick={handleScreenClick}>
+        {cowsMarkup}
+        <Pointer className="pointer">
+          <img src="polish-cow.gif" alt="" />
+        </Pointer>
+        <Captions>
+          Tylko jedno w głowie mam
+          <br />
+          Koksu pięć gram odlecieć sam
+          <br />
+          W krainę za zapomnienia
+          <br />
+          W głowie myśli mam
+          <br />
+          Kiedy skończy się ten stan
+          <br />
+          Gdy już nie będę sam
+          <br />
+          Bo wjedzie biały węgorz
+        </Captions>
+      </Container>
+    </div>
   )
 }
 
@@ -74,7 +77,6 @@ const Container = styled.div`
   width: 100vw;
   height: 100vh;
   cursor: none;
-  overflow: hidden;
   perspective: -500px;
 
   background: linear-gradient(124deg, #ff2400, #e81d1d, #e8b71d, #e3e81d, #1de840, #1ddde8, #2b1de8, #dd00f3, #dd00f3);
