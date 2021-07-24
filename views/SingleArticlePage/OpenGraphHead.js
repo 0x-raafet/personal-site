@@ -6,7 +6,7 @@ export default function OpenGraphHead(props) {
   const { slug, title, description, date, tags } = props
 
   const currentUrl = EnvVars.URL + slug
-  const ogImageUrl = EnvVars.URL + `${slug}.png`
+  const ogImageUrl = EnvVars.OG_IMAGES_URL + `${slug}.png`
 
   return (
     <Head>
