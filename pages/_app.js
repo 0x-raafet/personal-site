@@ -5,6 +5,11 @@ import { theme } from 'theme'
 import { GlobalStyle } from 'components/GlobalStyles'
 import { initColorModeScript } from 'utils/initColorMode'
 import { initSecretMessageScript } from 'utils/initSecretMessage'
+import PolishCowWidget from 'components/PolishCowWidget'
+import { useBoolean } from 'hooks/useBoolean'
+import dynamic from 'next/dynamic'
+
+const PolishCowOverlay = dynamic(() => import('components/PolishCowOverlay'))
 
 const themes = `
 .light-theme {
@@ -78,6 +83,18 @@ const themes = `
 `
 
 function MyApp({ Component, pageProps }) {
+  const [isPolishCowOverlayVisible, { on, off }] = useBoolean()
+
+  const contentMarkup = isPolishCowOverlayVisible ? (
+    <PolishCowOverlay onClose={off} />
+  ) : (
+    <>
+      <Navbar />
+      <Component {...pageProps} />
+      <PolishCowWidget onClick={on} />
+    </>
+  )
+
   return (
     <>
       <Head>
@@ -89,11 +106,8 @@ function MyApp({ Component, pageProps }) {
       <script dangerouslySetInnerHTML={{ __html: initColorModeScript }} />
       <script async dangerouslySetInnerHTML={{ __html: initSecretMessageScript }} />
       <ThemeProvider theme={theme}>
-        <div>
-          <Navbar />
-          <GlobalStyle />
-          <Component {...pageProps} />
-        </div>
+        <GlobalStyle />
+        {contentMarkup}
       </ThemeProvider>
     </>
   )

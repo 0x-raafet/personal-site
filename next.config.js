@@ -5,7 +5,8 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 module.exports = withBundleAnalyzer({
   reactStrictMode: true,
   pageExtensions: ['js', 'jsx', 'mdx'],
-  webpack: (config, { isServer }) => {
+
+  webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
     if (!isServer) {
       config.resolve.fallback.fs = false
       config.resolve.fallback.child_process = false
@@ -13,6 +14,7 @@ module.exports = withBundleAnalyzer({
       config.resolve.fallback.net = false
       config.resolve.fallback.tls = false
     }
+
     return config
   },
 })
