@@ -4,6 +4,7 @@ import Highlight, { defaultProps } from 'prism-react-renderer'
 import Code from 'components/Code'
 import Quote from './Quote'
 import Link from './Link'
+import ArticleImage from './ArticleImage'
 
 export default function RichText(props) {
   return (
@@ -80,6 +81,7 @@ const components = {
   h3: ThirdHeading,
   p: Paragraph,
   br: Break,
+  Image: ArticleImage,
   a: Link,
   Code,
   Quote,

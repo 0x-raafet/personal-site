@@ -5,7 +5,11 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 module.exports = withBundleAnalyzer({
   reactStrictMode: true,
   pageExtensions: ['js', 'jsx', 'mdx'],
-
+  images: {
+    domains: [],
+    deviceSizes: [320, 640, 1080, 1200],
+    imageSizes: [64, 128],
+  },
   webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
     if (!isServer) {
       config.resolve.fallback.fs = false
