@@ -7,6 +7,9 @@ import * as fs from 'fs'
 import matter from 'gray-matter'
 import Head from 'next/head'
 import OpenGraphHead from 'views/SingleArticlePage/OpenGraphHead'
+import MetadataHead from 'views/SingleArticlePage/MetadataHead'
+import Header from 'views/SingleArticlePage/Header'
+import StructuredDataHead from 'views/SingleArticlePage/StructuredDataHead'
 
 const POSTS_DIRECTORY = path.join(process.cwd(), 'posts')
 
@@ -23,13 +26,10 @@ export default function SingleArticlePage(props) {
         <link href="/prism-theme.css" rel="stylesheet" />
       </Head>
       <OpenGraphHead slug={slug} {...meta} />
-      <Container>
-        <HeaderContainer>
-          <Title>{title}</Title>
-          <DetailsContainer>
-            {formattedDate} <MidDot /> {readTime}
-          </DetailsContainer>
-        </HeaderContainer>
+      <StructuredDataHead slug={slug} {...meta} />
+      <MetadataHead {...meta} />
+      <Container id="content">
+        <Header title={title} formattedDate={formattedDate} readTime={readTime} />
         <RichText {...content} />
       </Container>
     </>
@@ -45,6 +45,10 @@ export async function getStaticPaths() {
 
   function getAllPosts() {
     return fs.readdirSync(POSTS_DIRECTORY).map(normalizePostName)
+  }
+
+  function normalizePostName(postName) {
+    return postName.replace('.mdx', '')
   }
 }
 
@@ -84,10 +88,6 @@ export async function getStaticProps({ params }) {
   }
 }
 
-function normalizePostName(postName) {
-  return postName.replace('.mdx', '')
-}
-
 const Container = styled.main`
   display: flex;
   flex-direction: column;
@@ -95,35 +95,4 @@ const Container = styled.main`
   max-width: ${(p) => p.theme.spacings.mediumContainer}px;
   padding: 0 ${(p) => p.theme.spacings.xs}px;
   margin: 0 auto;
-`
-
-const HeaderContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  max-width: ${(p) => p.theme.spacings.smallContainer}px;
-  margin-bottom: 112px;
-`
-
-const Title = styled.h1`
-  font-weight: 600;
-  font-size: ${(p) => p.theme.fontSizes['5xl']}px;
-  line-height: 56px;
-  margin-bottom: 28px;
-
-  @media (max-width: ${(p) => p.theme.breakpoints.sm}) {
-    font-size: ${(p) => p.theme.fontSizes['4xl']}px;
-  }
-`
-
-const DetailsContainer = styled.div`
-  font-size: ${(p) => p.theme.fontSizes['md']}px;
-  color: var(--text-lighter);
-`
-
-const MidDot = styled.span`
-  &::before {
-    display: inline-block;
-    content: '\x000B7';
-    margin: 0 ${(p) => p.theme.spacings['2xs']}px;
-  }
 `
