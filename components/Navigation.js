@@ -3,6 +3,8 @@ import styled from 'styled-components'
 import NextLink from 'next/link'
 
 export default function Navigation(props) {
+  // TODO: isActive
+  // TODO: Drawer
   return (
     <nav>
       <Container>
