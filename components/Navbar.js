@@ -8,6 +8,7 @@ import dynamic from 'next/dynamic'
 import Logotype from './Logotype'
 import ColorSwitcher from './ColorSwitcher'
 import ClientOnly from './ClientOnly'
+import FadeIn from './FadeIn'
 
 export default function Navbar(props) {
   const router = useRouter()
@@ -55,11 +56,13 @@ export default function Navbar(props) {
   return (
     <Container isNavbarHidden={isNavbarHidden}>
       <Content>
-        <NextLink href="/">
+        <NextLink href="/" passHref>
           <Logotype />
         </NextLink>
         <ClientOnly>
-          <ColorSwitcher />
+          <FadeIn>
+            <ColorSwitcher />
+          </FadeIn>
         </ClientOnly>
       </Content>
     </Container>

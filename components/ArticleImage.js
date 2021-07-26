@@ -16,7 +16,10 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  margin-bottom: 30px;
+
+  &:not(:last-child) {
+    margin-bottom: 30px;
+  }
 
   .optimized-image-wrapper {
     position: relative;
