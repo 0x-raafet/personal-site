@@ -1,6 +1,5 @@
 import styled from 'styled-components'
 import { MDXRemote } from 'next-mdx-remote'
-import Highlight, { defaultProps } from 'prism-react-renderer'
 import Code from 'components/Code'
 import Quote from './Quote'
 import Link from './Link'

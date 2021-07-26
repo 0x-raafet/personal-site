@@ -22,6 +22,9 @@ const themes = `
   --overlay: var(--gray-400);
   --overlay-lighter: var(--gray-300);
   --primary: #c08b30;
+
+  --navbar-item-hover: var(--gray-200);
+  --navbar-item-focus: var(--gray-300);
 }
 
 .dark-theme {
@@ -34,6 +37,9 @@ const themes = `
   --overlay: var(--gray-800);
   --overlay-lighter: var(--gray-700);
   --primary: #81a1c1;
+
+  --navbar-item-hover: #313d4f;
+  --navbar-item-focus: #1b2331;
 }
 
 :root {

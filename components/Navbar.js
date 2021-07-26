@@ -9,6 +9,7 @@ import Logotype from './Logotype'
 import ColorSwitcher from './ColorSwitcher'
 import ClientOnly from './ClientOnly'
 import FadeIn from './FadeIn'
+import Navigation from './Navigation'
 
 export default function Navbar(props) {
   const router = useRouter()
@@ -59,7 +60,8 @@ export default function Navbar(props) {
         <NextLink href="/" passHref>
           <Logotype />
         </NextLink>
-        <ClientOnly>
+        <Navigation />
+        <ClientOnly style={{ width: '40px', height: '40px' }}>
           <FadeIn>
             <ColorSwitcher />
           </FadeIn>
