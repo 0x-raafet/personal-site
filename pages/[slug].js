@@ -2,7 +2,6 @@ import styled from 'styled-components'
 import { formatDate } from 'utils/formatDate'
 import RichText from 'components/RichText'
 
-import matter from 'gray-matter'
 import Head from 'next/head'
 import OpenGraphHead from 'views/SingleArticlePage/OpenGraphHead'
 import MetadataHead from 'views/SingleArticlePage/MetadataHead'
