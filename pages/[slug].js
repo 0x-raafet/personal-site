@@ -8,6 +8,7 @@ import MetadataHead from 'views/SingleArticlePage/MetadataHead'
 import Header from 'views/SingleArticlePage/Header'
 import StructuredDataHead from 'views/SingleArticlePage/StructuredDataHead'
 import { getAllPostsSlugs, getSinglePost } from 'utils/postsFetcher'
+import React, { useEffect } from 'react'
 
 export default function SingleArticlePage(props) {
   const { slug, content, meta } = props
@@ -16,10 +17,27 @@ export default function SingleArticlePage(props) {
   const formattedDate = formatDate(new Date(date))
   const readTime = `9 min read`
 
+  useEffect(() => {
+    const prismThemeLinkEl = document.querySelector('link[data-id="prism-theme"]')
+
+    if (!prismThemeLinkEl) {
+      const headEl = document.querySelector('head')
+      const newEl = document.createElement('link')
+      newEl.setAttribute('data-id', 'prism-theme')
+      newEl.setAttribute('rel', 'stylesheet')
+      newEl.setAttribute('href', '/prism-theme.css')
+      newEl.setAttribute('media', 'print')
+      newEl.setAttribute('onload', "this.media='all'; this.onload=null;")
+      headEl.appendChild(newEl)
+    }
+  }, [])
+
   return (
     <>
       <Head>
-        <link href="/prism-theme.css" rel="stylesheet" />
+        <noscript>
+          <link rel="stylesheet" href="/prism-theme.css" />
+        </noscript>
       </Head>
       <OpenGraphHead slug={slug} {...meta} />
       <StructuredDataHead slug={slug} {...meta} />
