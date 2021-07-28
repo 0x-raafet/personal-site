@@ -1,11 +1,16 @@
 import React from 'react'
 import styled from 'styled-components'
+import NextImage from 'next/image'
 
 export default function PolishCowWidget({ onClick }) {
-  return <Image src="polish-cow.gif" onClick={onClick} />
+  return (
+    <Wrapper onClick={onClick}>
+      <NextImage src="/polish-cow.gif" width={64} height={64} alt="polish cow" />
+    </Wrapper>
+  )
 }
 
-const Image = styled.img`
+const Wrapper = styled.div`
   width: 64px;
   position: fixed;
   bottom: ${(p) => p.theme.spacings.sm}px;

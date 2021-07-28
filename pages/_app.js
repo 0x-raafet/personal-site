@@ -5,11 +5,13 @@ import { theme } from 'theme'
 import { GlobalStyle } from 'components/GlobalStyles'
 import { initColorModeScript } from 'utils/initColorMode'
 import { initSecretMessageScript } from 'utils/initSecretMessage'
-import PolishCowWidget from 'components/PolishCowWidget'
 import { useBoolean } from 'hooks/useBoolean'
 import dynamic from 'next/dynamic'
+import ClientOnly from 'components/ClientOnly'
+import useDeviceType from 'hooks/useDeviceType'
 
-const PolishCowOverlay = dynamic(() => import('components/PolishCowOverlay'))
+const PolishCowWidget = dynamic(() => import('components/PolishCowWidget'), { ssr: false })
+const PolishCowOverlay = dynamic(() => import('components/PolishCowOverlay'), { ssr: false })
 
 const themes = `
 .light-theme {
@@ -90,6 +92,7 @@ const themes = `
 
 function MyApp({ Component, pageProps }) {
   const [isPolishCowOverlayVisible, { on, off }] = useBoolean()
+  const { isMobile } = useDeviceType()
 
   const contentMarkup = isPolishCowOverlayVisible ? (
     <PolishCowOverlay onClose={off} />
@@ -97,7 +100,7 @@ function MyApp({ Component, pageProps }) {
     <>
       <Navbar />
       <Component {...pageProps} />
-      <PolishCowWidget onClick={on} />
+      <ClientOnly>{isMobile && <PolishCowWidget onClick={on} />}</ClientOnly>
     </>
   )
 
