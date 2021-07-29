@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 
-export default function Icon(props) {
-  return <IconWrapper {...props} />
+export default function Icon({ _ref, ...rest }) {
+  return <IconWrapper {...rest} {...(_ref && { ref: _ref })} />
 }
 
 const IconWrapper = styled.button`

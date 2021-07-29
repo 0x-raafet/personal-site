@@ -34,5 +34,6 @@ export const theme = {
   },
   zIndexes: {
     navbar: '1000',
+    drawer: '9999',
   },
 }

@@ -3,20 +3,13 @@ import styled, { css } from 'styled-components'
 import NextLink from 'next/link'
 import { useRouter } from 'next/router'
 
-const navItems = [
-  { title: 'Home', href: '/' },
-  { title: 'Snippets', href: '/snippets' },
-  { title: 'Links', href: '/links' },
-]
-
-export default function Navigation(props) {
-  // TODO: Drawer
+export default function Navigation({ items }) {
   const router = useRouter()
 
   return (
     <nav>
       <Container>
-        {navItems.map((singleItem) => {
+        {items.map((singleItem) => {
           const isActive = router.asPath === singleItem.href
           return (
             <NavItem key={singleItem.href} isActive={isActive}>

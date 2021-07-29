@@ -31,7 +31,7 @@ export default function ColorSwitcher(props) {
   }
 
   return (
-    <ColorSwitcherContainer isLightMode={isLightMode}>
+    <ColorSwitcherContainer isLightMode={isLightMode} {...props}>
       <MoonIcon
         className="moon-icon"
         onClick={() => {

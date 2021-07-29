@@ -9,6 +9,7 @@ import { useBoolean } from 'hooks/useBoolean'
 import dynamic from 'next/dynamic'
 import ClientOnly from 'components/ClientOnly'
 import useDeviceType from 'hooks/useDeviceType'
+import NavigationDrawer from 'components/NavigationDrawer'
 
 const PolishCowWidget = dynamic(() => import('components/PolishCowWidget'), { ssr: false })
 const PolishCowOverlay = dynamic(() => import('components/PolishCowOverlay'), { ssr: false })
@@ -90,6 +91,12 @@ const themes = `
 }
 `
 
+const navItems = [
+  { title: 'Home', href: '/' },
+  { title: 'Snippets', href: '/snippets' },
+  { title: 'Links', href: '/links' },
+]
+
 function MyApp({ Component, pageProps }) {
   const [isPolishCowOverlayVisible, { on, off }] = useBoolean()
   const { isMobile } = useDeviceType()
@@ -98,7 +105,9 @@ function MyApp({ Component, pageProps }) {
     <PolishCowOverlay onClose={off} />
   ) : (
     <>
-      <Navbar />
+      <NavigationDrawer items={navItems}>
+        <Navbar items={navItems} />
+      </NavigationDrawer>
       <Component {...pageProps} />
       <ClientOnly>{isMobile && <PolishCowWidget onClick={on} />}</ClientOnly>
     </>

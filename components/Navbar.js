@@ -10,9 +10,12 @@ import ColorSwitcher from './ColorSwitcher'
 import ClientOnly from './ClientOnly'
 import FadeIn from './FadeIn'
 import Navigation from './Navigation'
+import * as Drawer from '@accessible/drawer'
+import { HamburgerIcon } from './icons/HamburgerIcon'
 
-export default function Navbar(props) {
+export default function Navbar({ items }) {
   const router = useRouter()
+  const { open, close, toggle, isOpen } = Drawer.useDrawer()
   const [scrollingDirection, setScrollingDirection] = useState('none')
 
   let lastScrollY = useRef(0)
@@ -60,12 +63,15 @@ export default function Navbar(props) {
         <NextLink href="/" passHref>
           <Logotype />
         </NextLink>
-        <Navigation />
+        <NavigationWrapper>
+          <Navigation items={items} />
+        </NavigationWrapper>
         <ClientOnly style={{ width: '40px', height: '40px' }}>
-          <FadeIn>
-            <ColorSwitcher />
-          </FadeIn>
+          <ColorSwitcher className="color-switcher-wrapper" />
         </ClientOnly>
+        <HamburgerMenuWrapper>
+          <HamburgerIcon onClick={toggle} />
+        </HamburgerMenuWrapper>
       </Content>
     </Container>
   )
@@ -110,5 +116,25 @@ const Content = styled.div`
 
   @media (max-width: ${(p) => p.theme.breakpoints.md}) {
     padding: 0 ${(p) => p.theme.spacings['2xs']}px;
+    justify-content: flex-start;
+
+    .color-switcher-wrapper {
+      margin-left: auto;
+    }
+  }
+`
+
+const HamburgerMenuWrapper = styled.div`
+  display: none;
+  @media (max-width: ${(p) => p.theme.breakpoints.md}) {
+    display: block;
+    line-height: 1;
+  }
+`
+
+const NavigationWrapper = styled.div`
+  display: block;
+  @media (max-width: ${(p) => p.theme.breakpoints.md}) {
+    display: none;
   }
 `
