@@ -1,22 +1,29 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import NextLink from 'next/link'
+import { useRouter } from 'next/router'
+
+const navItems = [
+  { title: 'Home', href: '/' },
+  { title: 'Snippets', href: '/snippets' },
+  { title: 'Links', href: '/links' },
+]
 
 export default function Navigation(props) {
-  // TODO: isActive
   // TODO: Drawer
+  const router = useRouter()
+
   return (
     <nav>
       <Container>
-        <NavItem>
-          <NextLink href="/">Home</NextLink>
-        </NavItem>
-        <NavItem>
-          <NextLink href="/snippets">Snippets</NextLink>
-        </NavItem>
-        <NavItem>
-          <NextLink href="/links">Links</NextLink>
-        </NavItem>
+        {navItems.map((singleItem) => {
+          const isActive = router.asPath === singleItem.href
+          return (
+            <NavItem key={singleItem.href} isActive={isActive}>
+              <NextLink href={singleItem.href}>{singleItem.title}</NextLink>
+            </NavItem>
+          )
+        })}
       </Container>
     </nav>
   )
@@ -48,5 +55,11 @@ const NavItem = styled.li`
     &:focus {
       background-color: var(--navbar-item-focus);
     }
+
+    ${(p) =>
+      p.isActive &&
+      css`
+        background-color: var(--navbar-item-focus);
+      `}
   }
 `
