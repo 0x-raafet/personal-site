@@ -53,6 +53,7 @@ const List = styled.ol`
   font-size: ${(p) => p.theme.fontSizes.xl}px;
   line-height: 34px;
   width: 100%;
+  margin: 0;
 `
 
 const ListItem = styled.li`

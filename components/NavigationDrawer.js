@@ -106,7 +106,7 @@ const Wrapper = styled.div`
 
 const NavItem = styled.li`
   a {
-    font-size: ${(p) => p.theme.fontSizes['5xl']}px;
+    font-size: ${(p) => p.theme.fontSizes['4xl']}px;
     text-transform: uppercase;
     display: block;
     color: currentColor;
