@@ -66,7 +66,7 @@ export default function Navbar({ items }) {
         <NavigationWrapper>
           <Navigation items={items} />
         </NavigationWrapper>
-        <ClientOnly style={{ width: '40px', height: '40px' }}>
+        <ClientOnly style={{ width: '52px', height: '52px' }}>
           <ColorSwitcher className="color-switcher-wrapper" />
         </ClientOnly>
         <HamburgerMenuWrapper>
