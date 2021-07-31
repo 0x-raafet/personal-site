@@ -6,7 +6,7 @@ import Icon from 'components/icons/Icon'
 import CopyIcon from './icons/CopyIcon'
 import ClientOnly from 'components/ClientOnly'
 
-export default function Code({ code, language, selectedLines = [], withCopyButton = true, withLineNumbers }) {
+export default function Code({ code, language, selectedLines = [], withCopyButton = true, withLineNumbers, caption }) {
   const nullAwareLanguage = language || 'js'
   const { copy, copied } = useClipboard({
     copiedTimeout: 600,
@@ -23,34 +23,45 @@ export default function Code({ code, language, selectedLines = [], withCopyButto
   )
 
   return (
-    <Highlight {...defaultProps} theme={null} code={code} language={nullAwareLanguage}>
-      {({ className, style, tokens, getLineProps, getTokenProps }) => (
-        <CodeWrapper className="code-wrapper" language={nullAwareLanguage}>
-          {withCopyButton && copyButtonMarkup}
-          <Pre className={className} style={style}>
-            {tokens.map((line, i) => {
-              const lineNumber = i + 1
-              const isSelected = selectedLines.includes(lineNumber)
-              const lineProps = getLineProps({ line, key: i })
-              const className = lineProps.className + (isSelected ? ' selected-line' : '')
+    <>
+      <Highlight {...defaultProps} theme={null} code={code} language={nullAwareLanguage}>
+        {({ className, style, tokens, getLineProps, getTokenProps }) => (
+          <>
+            <CodeWrapper className="code-wrapper" language={nullAwareLanguage}>
+              {withCopyButton && copyButtonMarkup}
+              <Pre className={className} style={style}>
+                {tokens.map((line, i) => {
+                  const lineNumber = i + 1
+                  const isSelected = selectedLines.includes(lineNumber)
+                  const lineProps = getLineProps({ line, key: i })
+                  const className = lineProps.className + (isSelected ? ' selected-line' : '')
 
-              return (
-                <Line key={i} {...{ ...lineProps, className }}>
-                  {withLineNumbers && <LineNo>{lineNumber}</LineNo>}
-                  <LineContent>
-                    {line.map((token, key) => (
-                      <span key={key} {...getTokenProps({ token, key })} />
-                    ))}
-                  </LineContent>
-                </Line>
-              )
-            })}
-          </Pre>
-        </CodeWrapper>
-      )}
-    </Highlight>
+                  return (
+                    <Line key={i} {...{ ...lineProps, className }}>
+                      {withLineNumbers && <LineNo>{lineNumber}</LineNo>}
+                      <LineContent>
+                        {line.map((token, key) => (
+                          <span key={key} {...getTokenProps({ token, key })} />
+                        ))}
+                      </LineContent>
+                    </Line>
+                  )
+                })}
+              </Pre>
+            </CodeWrapper>
+            {caption && <Caption>{caption}</Caption>}
+          </>
+        )}
+      </Highlight>
+    </>
   )
 }
+
+const Caption = styled.small`
+  position: relative;
+  top: -22px;
+  word-break: break-word;
+`
 
 const CopyButton = styled(CopyIcon)`
   position: absolute;

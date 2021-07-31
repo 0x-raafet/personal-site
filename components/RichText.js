@@ -19,7 +19,15 @@ const Container = styled.div`
 
   flex-direction: column;
   width: 100%;
-  grid-gap: 38px;
+  margin-bottom: 38px;
+
+  section:not(:last-child) {
+    margin-bottom: 38px;
+  }
+
+  a {
+    word-break: break-word;
+  }
 
   @media (max-width: ${(p) => p.theme.breakpoints.md}) {
     .remark-highlight {
@@ -37,11 +45,16 @@ const Container = styled.div`
   ul {
     font-size: ${(p) => p.theme.fontSizes['xl']}px;
     line-height: 30px;
+    margin: 0;
     padding-left: 24px;
     li {
       & > * {
         vertical-align: top;
       }
+    }
+
+    &:not(:last-child) {
+      margin: 30px 0;
     }
   }
 `

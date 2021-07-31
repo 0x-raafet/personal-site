@@ -9,13 +9,13 @@ import Header from 'views/SingleArticlePage/Header'
 import StructuredDataHead from 'views/SingleArticlePage/StructuredDataHead'
 import { getAllPostsSlugs, getSinglePost } from 'utils/postsFetcher'
 import React, { useEffect } from 'react'
+import { getReadTime } from 'utils/getReadTime'
 
 export default function SingleArticlePage(props) {
-  const { slug, content, meta } = props
+  const { slug, content, meta, readTime } = props
   const { title, description, date } = meta
 
   const formattedDate = formatDate(new Date(date))
-  const readTime = `9 min read`
 
   useEffect(() => {
     const prismThemeLinkEl = document.querySelector('link[data-id="prism-theme"]')
@@ -61,7 +61,7 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }) {
   const { slug, content, meta } = await getSinglePost(params.slug)
   const serializedContent = await serializeContent(content, meta)
-  return { props: { slug, content: serializedContent, meta } }
+  return { props: { slug, content: serializedContent, meta, readTime: getReadTime(content) } }
 
   async function serializeContent(content, meta) {
     const { serialize } = require('next-mdx-remote/serialize')
