@@ -1,5 +1,6 @@
 import { EnvVars } from 'env'
-import { getAllPostsSlugs } from 'utils/postsFetcher'
+import { getAllPosts, getAllPostsSlugs } from 'utils/postsFetcher'
+import xmlescape from 'xml-escape'
 
 export default function Sitemap() {}
 
@@ -14,24 +15,41 @@ export async function getServerSideProps({ res, req, query }) {
   res.setHeader('Content-Disposition', 'inline')
   res.setHeader('Content-Type', 'text/xml')
 
-  res.write(mapToXmlFormat(getAllPostsSlugs(), EnvVars.URL))
+  res.write(mapToXmlFormat(await getAllPosts(), EnvVars.URL))
   res.end()
   return { props: {} }
 }
 
-function mapToXmlFormat(paths, host) {
+function mapToXmlFormat(items, host) {
   return `<?xml version="1.0" encoding="UTF-8"?>
-  <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-      ${paths
-        .map(
-          (singlePath) => `<sitemap>
-          <loc>${host + singlePath}</loc>
-          <lastmod>${new Date().toISOString()}</lastmod>
-        </sitemap>`,
-        )
-        .join('\n')}
-  </sitemapindex>
-  `
+  <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">
+  ${items.map((singleItem) => makeSingleSitemapItem(singleItem, host)).join('\n')}
+  </urlset>
+`
+}
+
+function makeSingleSitemapItem(post, host) {
+  const {
+    meta: { date, title, tags },
+    slug,
+  } = post
+  const pubDate = new Date(date).toUTCString()
+  const newsTitle = xmlescape(title) || ''
+
+  return `<url>
+  <loc>${host + slug}</loc>
+  <news:news>
+    <news:publication>
+      <news:name>${host}</news:name>
+      <news:language>en</news:language>
+    </news:publication>
+    <news:publication_date>${pubDate}</news:publication_date>
+    <news:title>
+      ${newsTitle}
+    </news:title>
+    <news:keywords><![CDATA[ ${xmlescape(tags)} ]]></news:keywords>
+  </news:news>
+</url>`
 }
 
 function redirectToQuerylessUrl(req) {
