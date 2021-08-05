@@ -1,9 +1,9 @@
 {
   "functions": {
-    "sitemap.xml.js": {
+    "pages/sitemap.xml.js": {
       "includeFiles": "posts/**"
     },
-    "rss.js": {
+    "pages/rss.js": {
       "includeFiles": "posts/**"
     }
   }
