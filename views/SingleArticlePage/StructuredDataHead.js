@@ -4,15 +4,16 @@ import { jsonLdScriptProps } from 'react-schemaorg'
 import { Article, BreadcrumbList, ImageObject, Organization } from 'schema-dts'
 
 export default function StructuredDataHead(props) {
-  const { slug, title, date } = props
+  const { slug, title, date, description, tags } = props
   const currentSiteUrl = EnvVars.URL + slug
+  const ogImageUrl = EnvVars.OG_IMAGES_URL + `${slug}.png`
 
   return (
     <Head>
       <script
         {...jsonLdScriptProps({
           '@context': 'https://schema.org',
-          '@type': 'NewsArticle',
+          '@type': 'TechArticle',
           mainEntityOfPage: `${currentSiteUrl}#content`,
           headline: title,
           datePublished: date,
@@ -21,7 +22,17 @@ export default function StructuredDataHead(props) {
             '@type': 'Person',
             name: 'Bart Stefański',
           },
-          description: 'description',
+          description: description,
+          dependencies: tags,
+          proficiencyLevel: 'Beginner',
+          image: {
+            '@type': 'ImageObject',
+            url: ogImageUrl,
+          },
+          publisher: {
+            '@type': 'Person',
+            name: 'Bart Stefański',
+          },
         })}
       />
 
