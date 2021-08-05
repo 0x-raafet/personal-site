@@ -29,10 +29,6 @@ export default function StructuredDataHead(props) {
             '@type': 'ImageObject',
             url: ogImageUrl,
           },
-          publisher: {
-            '@type': 'Person',
-            name: 'Bart Stefański',
-          },
         })}
       />
 
