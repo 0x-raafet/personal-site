@@ -7,6 +7,7 @@ export default function StructuredDataHead(props) {
   const { slug, title, date, description, tags } = props
   const currentSiteUrl = EnvVars.URL + slug
   const ogImageUrl = EnvVars.OG_IMAGES_URL + `${slug}.png`
+  const faviconUrl = EnvVars.URL + 'favicon.png'
 
   return (
     <Head>
@@ -25,6 +26,14 @@ export default function StructuredDataHead(props) {
           description: description,
           dependencies: tags,
           proficiencyLevel: 'Beginner',
+          publisher: {
+            '@type': 'Organization',
+            name: 'bstefanski.com',
+            logo: {
+              '@type': 'ImageObject',
+              url: 'https://i.giphy.com/media/7f8tVWxSu4BTnEOd7o/giphy-facebook_s.jpg',
+            },
+          },
           image: {
             '@type': 'ImageObject',
             url: ogImageUrl,
