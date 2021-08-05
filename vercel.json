@@ -1,0 +1,10 @@
+{
+  "functions": {
+    "sitemap.xml.js": {
+      "includeFiles": "posts/**"
+    },
+    "rss.js": {
+      "includeFiles": "posts/**"
+    }
+  }
+}
