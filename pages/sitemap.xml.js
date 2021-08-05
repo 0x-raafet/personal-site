@@ -1,7 +1,7 @@
 import { EnvVars } from 'env'
 import { getAllPostsSlugs } from 'utils/postsFetcher'
 
-export default function NewsIndexSitemap() {}
+export default function Sitemap() {}
 
 export async function getServerSideProps({ res, req, query }) {
   const hasForbiddenQueryParams = Object.keys(query).length > 1
@@ -9,7 +9,8 @@ export async function getServerSideProps({ res, req, query }) {
     return redirectToQuerylessUrl(req)
   }
 
-  res.setHeader('Cache-Control', 's-maxage=900, stale-while-revalidate')
+  const secondsBeforeRevalidation = 60 * 30
+  res.setHeader('Cache-Control', `s-maxage=${secondsBeforeRevalidation}, stale-while-revalidate`)
   res.setHeader('Content-Disposition', 'inline')
   res.setHeader('Content-Type', 'text/xml')
 
