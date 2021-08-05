@@ -28,6 +28,7 @@ export default function OpenGraphHead(props) {
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={ogImageUrl} />
       <meta name="twitter:image:alt" content={description} />
+      <meta name="robots" content="max-image-preview:large"></meta>
     </Head>
   )
 }
