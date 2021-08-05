@@ -8,12 +8,14 @@ import OpenGraphHead from 'views/HomePage/OpenGraphHead'
 import MidDot from 'components/MidDot'
 import { formatDate } from 'utils/formatDate'
 import { getReadTime } from 'utils/getReadTime'
+import StructuredDataHead from 'views/HomePage/StructuredDataHead'
 
 export default function Home({ posts }) {
   return (
     <>
       <OpenGraphHead />
       <MetadataHead />
+      <StructuredDataHead />
       <HomeContainer>
         <Title>Posts</Title>
         <List>
