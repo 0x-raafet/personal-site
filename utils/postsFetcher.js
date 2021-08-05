@@ -2,14 +2,12 @@ import * as path from 'path'
 import * as fs from 'fs'
 import matter from 'gray-matter'
 
-const POSTS_DIRECTORY = path.join(process.cwd(), 'posts')
-
 export async function getAllPosts() {
   return Promise.all(getAllPostsSlugs().map(getSinglePost))
 }
 
 export function getAllPostsSlugs() {
-  return fs.readdirSync(POSTS_DIRECTORY).map(normalizePostName)
+  return fs.readdirSync(getPostsDirectory()).map(normalizePostName)
 }
 
 function normalizePostName(postName) {
@@ -17,9 +15,13 @@ function normalizePostName(postName) {
 }
 
 export async function getSinglePost(slug) {
-  const filePath = path.join(POSTS_DIRECTORY, slug + '.mdx')
+  const filePath = path.join(getPostsDirectory(), slug + '.mdx')
   const contents = fs.readFileSync(filePath, 'utf8')
   const { data: meta, content } = matter(contents)
 
   return { slug, content, meta }
+}
+
+export function getPostsDirectory() {
+  return path.join(process.cwd(), 'posts')
 }
