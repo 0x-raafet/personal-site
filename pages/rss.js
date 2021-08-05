@@ -1,23 +1,15 @@
 import { EnvVars } from 'env'
 import { getAllPosts, getAllPostsSlugs } from 'utils/postsFetcher'
+import withCacheEffectivePage from 'utils/withCacheEffectivePage'
 import xmlescape from 'xml-escape'
 
 export default function Rss() {}
 
-export async function getServerSideProps({ res, req, query }) {
-  const hasForbiddenQueryParams = Object.keys(query).length > 1
-  if (hasForbiddenQueryParams) {
-    return redirectToQuerylessUrl(req)
-  }
-
-  const secondsBeforeRevalidation = 60 * 30
-  res.setHeader('Cache-Control', `s-maxage=${secondsBeforeRevalidation}, stale-while-revalidate`)
-  res.setHeader('Content-Disposition', 'inline')
-  res.setHeader('Content-Type', 'text/xml')
-
-  res.write(mapToXmlFormat(await getAllPosts()))
-  res.end()
-  return { props: {} }
+export async function getServerSideProps(ctxt) {
+  return withCacheEffectivePage(async ({ res }) => {
+    res.write(mapToXmlFormat(await getAllPosts()))
+    res.end()
+  })(ctxt)
 }
 
 function mapToXmlFormat(items) {
@@ -41,7 +33,6 @@ function makeSingleRssItem(post) {
     meta: { title, description, date, tags },
     slug,
   } = post
-  console.log(post)
   const ogImageUrl = EnvVars.OG_IMAGES_URL + `${slug}.png`
   const pubDate = new Date(date).toUTCString()
 
@@ -61,14 +52,4 @@ function makeSingleRssItem(post) {
           <media:title type="html"> ${xmlescape(title)} </media:title>
         </media:content>
       </item>`
-}
-
-function redirectToQuerylessUrl(req) {
-  const currentUrlWithoutParams = req.url?.substr(0, req.url.indexOf('?'))
-  return {
-    redirect: {
-      destination: currentUrlWithoutParams,
-      permanent: true,
-    },
-  }
 }
