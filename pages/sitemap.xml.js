@@ -33,7 +33,6 @@ function makeSingleSitemapItem(post, host) {
     meta: { date, title, tags },
     slug,
   } = post
-  const pubDate = new Date(date).toUTCString()
   const newsTitle = xmlescape(title) || ''
 
   return `<url>
@@ -43,7 +42,7 @@ function makeSingleSitemapItem(post, host) {
       <news:name>${host}</news:name>
       <news:language>en</news:language>
     </news:publication>
-    <news:publication_date>${pubDate}</news:publication_date>
+    <news:publication_date>${date}</news:publication_date>
     <news:title>
       ${newsTitle}
     </news:title>
