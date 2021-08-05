@@ -10,6 +10,7 @@ import dynamic from 'next/dynamic'
 import ClientOnly from 'components/ClientOnly'
 import useDeviceType from 'hooks/useDeviceType'
 import NavigationDrawer from 'components/NavigationDrawer'
+import { EnvVars } from 'env'
 
 const PolishCowWidget = dynamic(() => import('components/PolishCowWidget'), { ssr: false })
 const PolishCowOverlay = dynamic(() => import('components/PolishCowOverlay'), { ssr: false })
@@ -120,6 +121,7 @@ function MyApp({ Component, pageProps }) {
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin />
         <link rel="icon" type="image/png" href="/favicon.png" />
         <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@100;400;600&display=swap" rel="stylesheet" />
+        <link rel="alternate" type="application/rss+xml" href={EnvVars.URL + 'rss'} title="RSS 2.0" />
         <script
           dangerouslySetInnerHTML={{
             __html: `window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
