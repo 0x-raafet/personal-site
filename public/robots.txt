@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://bstefanski.com/sitemap.xml
