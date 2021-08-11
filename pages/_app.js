@@ -11,6 +11,7 @@ import ClientOnly from 'components/ClientOnly'
 import useDeviceType from 'hooks/useDeviceType'
 import NavigationDrawer from 'components/NavigationDrawer'
 import { EnvVars } from 'env'
+import { useRouter } from 'next/router'
 
 const PolishCowWidget = dynamic(() => import('components/PolishCowWidget'), { ssr: false })
 const PolishCowOverlay = dynamic(() => import('components/PolishCowOverlay'), { ssr: false })
@@ -98,9 +99,15 @@ const navItems = [
   { title: 'Links', href: '/links' },
 ]
 
+const standalonePaths = ['/memes']
+
 function MyApp({ Component, pageProps }) {
   const [isPolishCowOverlayVisible, { on, off }] = useBoolean()
+  const router = useRouter()
   const { isMobile } = useDeviceType()
+
+  const isStandalone = standalonePaths.includes(router.pathname)
+  const standaloneMarkup = <Component {...pageProps} />
 
   const contentMarkup = isPolishCowOverlayVisible ? (
     <PolishCowOverlay onClose={off} />
@@ -109,7 +116,7 @@ function MyApp({ Component, pageProps }) {
       <NavigationDrawer items={navItems}>
         <Navbar items={navItems} />
       </NavigationDrawer>
-      <Component {...pageProps} />
+      {standaloneMarkup}
       <ClientOnly>{isMobile && <PolishCowWidget onClick={on} />}</ClientOnly>
     </>
   )
@@ -136,7 +143,7 @@ function MyApp({ Component, pageProps }) {
       <script async dangerouslySetInnerHTML={{ __html: initSecretMessageScript }} />
       <ThemeProvider theme={theme}>
         <GlobalStyle />
-        {contentMarkup}
+        {isStandalone ? standaloneMarkup : contentMarkup}
       </ThemeProvider>
     </>
   )
