@@ -10,7 +10,7 @@ export default function Navigation({ items }) {
     <nav>
       <Container>
         {items.map((singleItem) => {
-          const isActive = router.asPath === singleItem.href
+          const isActive = router.route === singleItem.href && router.asPath !== '/404'
           return (
             <NavItem key={singleItem.href} isActive={isActive}>
               <NextLink href={singleItem.href}>{singleItem.title}</NextLink>
