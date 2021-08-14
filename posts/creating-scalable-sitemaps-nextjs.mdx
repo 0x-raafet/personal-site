@@ -24,7 +24,7 @@ Seems doable, but how would we access the sitemap? We could create an [API Route
 
 ## Final solution
 
-The previous approach is great, it fulfills all three requirements, but it's relatively complex and could be simplified by a lot. We can create a server-side rendered page `sitemap.xml.js` that returns cached sitemap with TTL set to 15 minutes. If you don't want to waste time on caching and preventing bandwidth attacks, you can use my library next-cache-effective-pages for that.
+The previous approach is great, it fulfills all three requirements, but it's relatively complex and could be simplified by a lot. We can create a server-side rendered page `sitemap.xml.js` that returns cached sitemap with TTL set to 15 minutes. If you don't want to waste time on caching and preventing bandwidth attacks, you can use my library [next-cache-effective-pages](https://github.com/bmstefanski/next-cache-effective-pages) for that.
 Here's an example of how that could be done, you can copy & paste it to your project, and the only thing left to do is [adding your sitemap to Google Search Console](https://developers.google.com/search/docs/advanced/sitemaps/build-sitemap#addsitemap) 🤠
 ** Please note that caching might not work as described in some environments. It all depends on whether your app is proxied by the CDN or not and how it handles caching. If you are using [Vercel](https://vercel.com/docs/edge-network/caching) or [Netlify](https://www.netlify.com/products/edge/), you don't need to worry. But for self-hosted apps caching might be happening only in the browser. So would still be prone to bandwidth attacks. **
 
