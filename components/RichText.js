@@ -88,11 +88,22 @@ const Break = styled.br`
   height: 30px;
 `
 
+const TextHighlight = styled.code`
+  display: inline-block;
+  padding: 0 ${(p) => p.theme.spacings['2xs']}px;
+  color: var(--primary);
+  border-radius: 4px;
+  background-color: var(--text-highlight);
+  font-size: 20px;
+  font-family: inherit;
+`
+
 const components = {
   h2: SecondHeading,
   h3: ThirdHeading,
   p: Paragraph,
   br: Break,
+  inlineCode: TextHighlight,
   Image: ArticleImage,
   a: Link,
   Code,

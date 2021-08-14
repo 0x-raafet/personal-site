@@ -30,6 +30,7 @@ const themes = `
 
   --navbar-item-hover: var(--gray-200);
   --navbar-item-focus: var(--gray-300);
+  --text-highlight: var(--gray-200);
 }
 
 .dark-theme {
@@ -45,6 +46,7 @@ const themes = `
 
   --navbar-item-hover: #313d4f;
   --navbar-item-focus: #1b2331;
+  --text-highlight: #313d4f;
 }
 
 :root {

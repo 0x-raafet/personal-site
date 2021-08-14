@@ -40,3 +40,6 @@ test-timings.json
 
 # Envs 
 .env
+
+# Vscode
+.vscode/
