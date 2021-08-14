@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import Container from 'components/Container'
 import Link from 'components/Link'
 import Head from 'next/head'
 import { getAllPosts } from 'utils/postsFetcher'
@@ -49,8 +48,12 @@ const Title = styled.h1`
   }
 `
 
-const HomeContainer = styled(Container)`
+const HomeContainer = styled.div`
   align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  padding: 0 ${(p) => p.theme.spacings.xs}px;
+  margin: 0 auto;
   max-width: ${(p) => p.theme.spacings.largeContainer}px;
 `
 
