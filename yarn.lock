@@ -3154,6 +3154,11 @@ natural-compare@^1.4.0:
   resolved "https://registry.yarnpkg.com/natural-compare/-/natural-compare-1.4.0.tgz#4abebfeed7541f2c27acfb29bdbbd15c8d5ba4f7"
   integrity sha1-Sr6/7tdUHywnrPspvbvRXI1bpPc=
 
+next-cache-effective-pages@^1.8.0:
+  version "1.8.0"
+  resolved "https://registry.yarnpkg.com/next-cache-effective-pages/-/next-cache-effective-pages-1.8.0.tgz#1b560082c911f529b0fdc6b172855b073cad6b3e"
+  integrity sha512-p2YnIphznnDlEnTTeykuN1zcGeidBJZCc5OCVi4XOwaKlih811yNeLo8xFQTgtcK5BBtpqgVjmO2CqDwryZrJg==
+
 next-mdx-remote@^3.0.2:
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/next-mdx-remote/-/next-mdx-remote-3.0.2.tgz#7e1159b4eb8a6bdd4000c0b6e6631f94d8683f04"
@@ -4910,6 +4915,11 @@ xml-escape@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/xml-escape/-/xml-escape-1.1.0.tgz#3904c143fa8eb3a0030ec646d2902a2f1b706c44"
   integrity sha1-OQTBQ/qOs6ADDsZG0pAqLxtwbEQ=
+
+xml@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/xml/-/xml-1.0.1.tgz#78ba72020029c5bc87b8a81a3cfcd74b4a2fc1e5"
+  integrity sha1-eLpyAgApxbyHuKgaPPzXS0ovweU=
 
 xtend@^4.0.0, xtend@^4.0.1, xtend@^4.0.2:
   version "4.0.2"
