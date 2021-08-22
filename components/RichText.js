@@ -19,7 +19,6 @@ const Container = styled.div`
 
   flex-direction: column;
   width: 100%;
-  margin-bottom: 38px;
 
   section:not(:last-child) {
     margin-bottom: 38px;

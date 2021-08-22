@@ -10,6 +10,8 @@ import StructuredDataHead from 'views/SingleArticlePage/StructuredDataHead'
 import { getAllPostsSlugs, getSinglePost } from 'utils/postsFetcher'
 import React, { useEffect } from 'react'
 import { getReadTime } from 'utils/getReadTime'
+import Spacer from 'components/Spacer'
+import AuthorInfo from 'components/AuthorInfo'
 
 export default function SingleArticlePage(props) {
   const { slug, content, meta, readTime } = props
@@ -45,6 +47,8 @@ export default function SingleArticlePage(props) {
       <Container id="content">
         <Header title={title} formattedDate={formattedDate} readTime={readTime} />
         <RichText {...content} />
+        <Spacer />
+        <AuthorInfo />
       </Container>
     </>
   )
@@ -91,4 +95,5 @@ const Container = styled.main`
   max-width: ${(p) => p.theme.spacings.mediumContainer}px;
   padding: 0 ${(p) => p.theme.spacings.xs}px;
   margin: 0 auto;
+  margin-bottom: 38px;
 `
