@@ -53,7 +53,7 @@ const Container = styled.div`
     }
 
     &:not(:last-child) {
-      margin: 30px 0;
+      margin-bottom: 30px;
     }
   }
 `
@@ -65,6 +65,11 @@ const Paragraph = styled.p`
 
   &:not(:last-child) {
     margin-bottom: 30px;
+  }
+
+  & + ul,
+  & + li {
+    margin-top: -15px !important;
   }
 `
 

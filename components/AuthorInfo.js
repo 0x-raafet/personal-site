@@ -27,7 +27,7 @@ export default function AuthorInfo(props) {
 const Container = styled.div`
   display: flex;
   justify-content: space-between;
-  margin: 10px 0;
+  margin: 30px 0;
   grid-gap: ${(p) => p.theme.spacings.sm}px;
   flex-wrap: wrap;
 

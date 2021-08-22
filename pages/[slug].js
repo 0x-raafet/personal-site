@@ -47,7 +47,6 @@ export default function SingleArticlePage(props) {
       <Container id="content">
         <Header title={title} formattedDate={formattedDate} readTime={readTime} />
         <RichText {...content} />
-        <Spacer />
         <AuthorInfo />
       </Container>
     </>
