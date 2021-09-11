@@ -29,7 +29,7 @@ For static applications, it is quite similar, but instead of storing and reading
 So the flow would look like this:
 - Page starts loading 🔄 
 - Our blocking script executes and:
-  - Checks if there's already stored color mode in the storage. And if there's one, then it goes straight to the 2.3 step
+  - Checks if there's already stored color mode in the storage. And if there's one, then it goes straight to the last step
   - If there's no entry in the storage, it picks the same color mode as your OS is currently using
   - Sets the appropriate class on the body element, for example `.light-theme`
 - Based on the applied class, your app sets the right values for variables and renders the page without a flick ⛔📸 
