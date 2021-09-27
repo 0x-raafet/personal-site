@@ -101,7 +101,7 @@ const navItems = [
   { title: 'Links', href: '/links' },
 ]
 
-const standalonePaths = ['/memes']
+const standalonePaths = ['/memes', '/about-me']
 
 function MyApp({ Component, pageProps }) {
   const [isPolishCowOverlayVisible, { on, off }] = useBoolean()
