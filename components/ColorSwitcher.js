@@ -4,17 +4,10 @@ import MoonIcon from './icons/MoonIcon'
 import SunIcon from './icons/SunIcon'
 import { useBoolean } from 'hooks/useBoolean'
 import { darken } from 'polished'
-
-export function useFirstMountState() {
-  const isFirst = useRef(true)
-  if (isFirst.current) {
-    isFirst.current = false
-    return true
-  }
-  return isFirst.current
-}
+import { useThemeContext } from 'contexts/theme.context'
 
 export default function ColorSwitcher(props) {
+  const { setTheme } = useThemeContext()
   const [isLightMode, { toggle }] = useBoolean(() => {
     const colorMode = localStorage.getItem('colorMode')
     if (!colorMode) {
@@ -22,6 +15,10 @@ export default function ColorSwitcher(props) {
     }
     return colorMode === 'light'
   })
+
+  useEffect(() => {
+    setTheme(isLightMode ? 'light' : 'dark')
+  }, [isLightMode, setTheme])
 
   function changeTheme(colorMode) {
     localStorage.setItem('colorMode', colorMode)

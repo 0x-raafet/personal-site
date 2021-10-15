@@ -5,7 +5,6 @@ export default function MemesPage(props) {
   useEffect(() => {
     const youtubePlayerEl = document.getElementById('youtube-player')
     youtubePlayerEl.onload = () => {
-      console.log('player loaded')
       document.getElementById('canvas').remove()
       youtubePlayerEl.style.position = 'relative'
       youtubePlayerEl.style.marginLeft = 'unset'

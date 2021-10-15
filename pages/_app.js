@@ -12,6 +12,7 @@ import useDeviceType from 'hooks/useDeviceType'
 import NavigationDrawer from 'components/NavigationDrawer'
 import { EnvVars } from 'env'
 import { useRouter } from 'next/router'
+import { ThemeContextProvider } from 'contexts/theme.context'
 
 const PolishCowWidget = dynamic(() => import('components/PolishCowWidget'), { ssr: false })
 const PolishCowOverlay = dynamic(() => import('components/PolishCowOverlay'), { ssr: false })
@@ -143,10 +144,12 @@ function MyApp({ Component, pageProps }) {
       <style dangerouslySetInnerHTML={{ __html: themes }} />
       <script dangerouslySetInnerHTML={{ __html: initColorModeScript }} />
       <script async dangerouslySetInnerHTML={{ __html: initSecretMessageScript }} />
-      <ThemeProvider theme={theme}>
-        <GlobalStyle />
-        {isStandalone ? standaloneMarkup : contentMarkup}
-      </ThemeProvider>
+      <ThemeContextProvider>
+        <ThemeProvider theme={theme}>
+          <GlobalStyle />
+          {isStandalone ? standaloneMarkup : contentMarkup}
+        </ThemeProvider>
+      </ThemeContextProvider>
     </>
   )
 }

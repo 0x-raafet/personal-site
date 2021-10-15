@@ -12,6 +12,9 @@ import React, { useEffect } from 'react'
 import { getReadTime } from 'utils/getReadTime'
 import Spacer from 'components/Spacer'
 import AuthorInfo from 'components/AuthorInfo'
+import dynamic from 'next/dynamic'
+
+const Comments = dynamic(() => import('views/SingleArticlePage/Comments'), { ssr: false })
 
 export default function SingleArticlePage(props) {
   const { slug, content, meta, readTime } = props
@@ -48,6 +51,7 @@ export default function SingleArticlePage(props) {
         <Header title={title} formattedDate={formattedDate} readTime={readTime} />
         <RichText {...content} />
         <AuthorInfo />
+        <Comments />
       </Container>
     </>
   )
