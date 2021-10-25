@@ -1,6 +1,6 @@
-import MidDot from 'components/MidDot'
 import React from 'react'
 import styled from 'styled-components'
+import MidDot from 'components/MidDot'
 
 export default function Header({ title, formattedDate, readTime }) {
   return (

@@ -1,10 +1,11 @@
 require('isomorphic-fetch')
 
-const path = require('path')
-const fs = require('fs')
 const matter = require('gray-matter')
 
-;(async function () {
+;
+const fs = require('fs')
+const path = require('path')
+(async function () {
   const postsDirectory = path.join(process.cwd(), 'posts')
   const allPosts = fs.readdirSync(postsDirectory).map(normalizePostName)
 

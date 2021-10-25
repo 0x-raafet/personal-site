@@ -1,7 +1,7 @@
-import useEscClose from 'hooks/useEscClose'
-import { useSound } from 'hooks/useSound'
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
+import useEscClose from 'hooks/useEscClose'
+import { useSound } from 'hooks/useSound'
 import { randomRange } from 'utils/randomRange'
 
 export default function PolishCowOverlay({ onClose }) {

@@ -1,12 +1,12 @@
+import Head from 'next/head'
 import styled from 'styled-components'
 import Link from 'components/Link'
-import Head from 'next/head'
-import { getAllPosts } from 'utils/postsFetcher'
-import MetadataHead from 'views/HomePage/MetadataHead'
-import OpenGraphHead from 'views/HomePage/OpenGraphHead'
 import MidDot from 'components/MidDot'
 import { formatDate } from 'utils/formatDate'
 import { getReadTime } from 'utils/getReadTime'
+import { getAllPosts } from 'utils/postsFetcher'
+import MetadataHead from 'views/HomePage/MetadataHead'
+import OpenGraphHead from 'views/HomePage/OpenGraphHead'
 import StructuredDataHead from 'views/HomePage/StructuredDataHead'
 
 export default function Home({ posts }) {

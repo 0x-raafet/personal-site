@@ -1,10 +1,10 @@
-import { useClipboard } from 'hooks/useClipboard'
 import Highlight, { defaultProps } from 'prism-react-renderer'
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import Icon from 'components/icons/Icon'
-import CopyIcon from './icons/CopyIcon'
 import ClientOnly from 'components/ClientOnly'
+import Icon from 'components/icons/Icon'
+import { useClipboard } from 'hooks/useClipboard'
+import CopyIcon from './icons/CopyIcon'
 
 export default function Code({ code, language, selectedLines = [], withCopyButton = true, withLineNumbers, caption }) {
   const nullAwareLanguage = language || 'js'

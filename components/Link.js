@@ -1,6 +1,6 @@
+import NextLink from 'next/link'
 import React from 'react'
 import styled from 'styled-components'
-import NextLink from 'next/link'
 
 export default function Link(props) {
   const { className, children, href } = props

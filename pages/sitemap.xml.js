@@ -1,8 +1,8 @@
+import { withCacheEffectivePage } from 'next-cache-effective-pages'
+import * as xml from 'xml'
+import xmlescape from 'xml-escape'
 import { EnvVars } from 'env'
 import { getAllPosts, getAllPostsSlugs } from 'utils/postsFetcher'
-import { withCacheEffectivePage } from 'next-cache-effective-pages'
-import xmlescape from 'xml-escape'
-import * as xml from 'xml'
 
 export default function Sitemap() {}
 

@@ -1,6 +1,6 @@
-import Container from 'components/Container'
-import React from 'react'
 import Head from 'next/head'
+import React from 'react'
+import Container from 'components/Container'
 
 export default function Custom404() {
   return (

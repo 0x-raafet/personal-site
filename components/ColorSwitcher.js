@@ -1,10 +1,10 @@
-import styled, { css } from 'styled-components'
+import { darken } from 'polished'
 import React, { useEffect, useRef, useState } from 'react'
+import styled, { css } from 'styled-components'
+import { useThemeContext } from 'contexts/theme.context'
+import { useBoolean } from 'hooks/useBoolean'
 import MoonIcon from './icons/MoonIcon'
 import SunIcon from './icons/SunIcon'
-import { useBoolean } from 'hooks/useBoolean'
-import { darken } from 'polished'
-import { useThemeContext } from 'contexts/theme.context'
 
 export default function ColorSwitcher(props) {
   const { setTheme } = useThemeContext()

@@ -1,5 +1,5 @@
-import styled from 'styled-components'
 import NextImage from 'next/image'
+import styled from 'styled-components'
 import Link from './Link'
 
 export default function AuthorInfo(props) {

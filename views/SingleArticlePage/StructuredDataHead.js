@@ -1,7 +1,7 @@
-import { EnvVars } from 'env'
 import Head from 'next/head'
 import { jsonLdScriptProps } from 'react-schemaorg'
 import { Article, BreadcrumbList, ImageObject, Organization } from 'schema-dts'
+import { EnvVars } from 'env'
 
 export default function StructuredDataHead(props) {
   const { slug, title, date, description, tags } = props

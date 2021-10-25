@@ -1,18 +1,18 @@
-import styled from 'styled-components'
-import { formatDate } from 'utils/formatDate'
-import RichText from 'components/RichText'
-
-import Head from 'next/head'
-import OpenGraphHead from 'views/SingleArticlePage/OpenGraphHead'
-import MetadataHead from 'views/SingleArticlePage/MetadataHead'
-import Header from 'views/SingleArticlePage/Header'
-import StructuredDataHead from 'views/SingleArticlePage/StructuredDataHead'
-import { getAllPostsSlugs, getSinglePost } from 'utils/postsFetcher'
-import React, { useEffect } from 'react'
-import { getReadTime } from 'utils/getReadTime'
-import Spacer from 'components/Spacer'
-import AuthorInfo from 'components/AuthorInfo'
 import dynamic from 'next/dynamic'
+import Head from 'next/head'
+import React, { useEffect } from 'react'
+import styled from 'styled-components'
+import AuthorInfo from 'components/AuthorInfo'
+import RichText from 'components/RichText'
+import Spacer from 'components/Spacer'
+import { formatDate } from 'utils/formatDate'
+
+import { getReadTime } from 'utils/getReadTime'
+import { getAllPostsSlugs, getSinglePost } from 'utils/postsFetcher'
+import Header from 'views/SingleArticlePage/Header'
+import MetadataHead from 'views/SingleArticlePage/MetadataHead'
+import OpenGraphHead from 'views/SingleArticlePage/OpenGraphHead'
+import StructuredDataHead from 'views/SingleArticlePage/StructuredDataHead'
 
 const Comments = dynamic(() => import('views/SingleArticlePage/Comments'), { ssr: false })
 

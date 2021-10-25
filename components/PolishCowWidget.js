@@ -1,6 +1,6 @@
+import NextImage from 'next/image'
 import React from 'react'
 import styled from 'styled-components'
-import NextImage from 'next/image'
 
 export default function PolishCowWidget({ onClick }) {
   return (

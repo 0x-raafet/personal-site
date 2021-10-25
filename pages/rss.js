@@ -1,7 +1,7 @@
+import xmlescape from 'xml-escape'
 import { EnvVars } from 'env'
 import { getAllPosts, getAllPostsSlugs } from 'utils/postsFetcher'
 import withCacheEffectivePage from 'utils/withCacheEffectivePage'
-import xmlescape from 'xml-escape'
 
 export default function Rss() {}
 

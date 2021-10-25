@@ -1,8 +1,8 @@
 // solution by https://github.com/jmau111
 // source https://github.com/utterance/utterances/issues/161#issue-443109697
 
-import { useThemeContext } from 'contexts/theme.context'
 import { useEffect } from 'react'
+import { useThemeContext } from 'contexts/theme.context'
 
 export default function Comments() {
   const { theme } = useThemeContext()

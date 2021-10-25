@@ -1,7 +1,7 @@
-import React from 'react'
-import styled, { css } from 'styled-components'
 import NextLink from 'next/link'
 import { useRouter } from 'next/router'
+import React from 'react'
+import styled, { css } from 'styled-components'
 
 export default function Navigation({ items }) {
   const router = useRouter()

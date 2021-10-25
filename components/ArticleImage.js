@@ -1,5 +1,5 @@
-import React from 'react'
 import NextImage from 'next/image'
+import React from 'react'
 import styled from 'styled-components'
 import OptimizedImage from './OptimizedImage'
 

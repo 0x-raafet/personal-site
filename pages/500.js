@@ -1,7 +1,7 @@
-import Container from 'components/Container'
+import Head from 'next/head'
 import React from 'react'
 import styled from 'styled-components'
-import Head from 'next/head'
+import Container from 'components/Container'
 
 export default function Custom500() {
   return (

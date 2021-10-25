@@ -1,10 +1,10 @@
-import styled from 'styled-components'
 import * as OriginalDrawer from '@accessible/drawer'
-import CloseIcon from './icons/CloseIcon'
 import NextLink from 'next/link'
-import { useEffect, useRef } from 'react'
-import ClientOnly from './ClientOnly'
 import { useRouter } from 'next/router'
+import { useEffect, useRef } from 'react'
+import styled from 'styled-components'
+import ClientOnly from './ClientOnly'
+import CloseIcon from './icons/CloseIcon'
 
 export default function NavigationDrawer({ children, items }) {
   return (

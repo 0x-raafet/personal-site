@@ -1,6 +1,6 @@
-import * as path from 'path'
-import * as fs from 'fs'
 import matter from 'gray-matter'
+import * as fs from 'fs'
+import * as path from 'path'
 
 export async function getAllPosts() {
   return Promise.all(getAllPostsSlugs().map(getSinglePost))

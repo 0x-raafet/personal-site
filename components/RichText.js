@@ -1,9 +1,9 @@
-import styled from 'styled-components'
 import { MDXRemote } from 'next-mdx-remote'
+import styled from 'styled-components'
 import Code from 'components/Code'
-import Quote from './Quote'
-import Link from './Link'
 import ArticleImage from './ArticleImage'
+import Link from './Link'
+import Quote from './Quote'
 
 export default function RichText(props) {
   return (
