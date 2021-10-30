@@ -4,7 +4,7 @@ export const GlobalStyle = createGlobalStyle`
 .light-theme {
   --background: hsl(228, 100%, 99%);
   --text: var(--gray-800);
-  --text-lighter: var(--gray-600);
+  --text-lighter: var(--gray-700);
   --heading: var(--gray-900);
   --tint-primary: var(--tint-blue);
   --navbar: var(--gray-50);
@@ -107,6 +107,10 @@ h1, h2, h3, h4, h5, h6 {
 ul[role='list'],
 ol[role='list'] {
   list-style: none;
+}
+
+ul, ol {
+  padding-left: 20px;
 }
 
 /* Set core root defaults */

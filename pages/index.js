@@ -2,6 +2,7 @@ import Head from 'next/head'
 import styled from 'styled-components'
 import Link from 'components/Link'
 import MidDot from 'components/MidDot'
+import Page from 'components/Page'
 import { formatDate } from 'utils/formatDate'
 import { getReadTime } from 'utils/getReadTime'
 import { getAllPosts } from 'utils/postsFetcher'
@@ -15,8 +16,7 @@ export default function Home({ posts }) {
       <OpenGraphHead />
       <MetadataHead />
       <StructuredDataHead />
-      <HomeContainer>
-        <Title>Posts</Title>
+      <Page title="Blog posts" description="My latest blog posts">
         <List>
           {posts.map((singlePost) => {
             const formattedDate = formatDate(new Date(singlePost.date))
@@ -30,32 +30,23 @@ export default function Home({ posts }) {
             )
           })}
         </List>
-      </HomeContainer>
+      </Page>
     </>
   )
 }
 
-const Title = styled.h1`
-  font-weight: 600;
-  font-size: ${(p) => p.theme.fontSizes['4xl']}px;
-  line-height: 40px;
-  margin-bottom: 20px;
-  margin-right: 20px;
-  overflow-wrap: normal;
+export async function getStaticProps() {
+  const fetchedPosts = await getAllPosts()
+  const posts = fetchedPosts.map((singlePost) => ({ ...singlePost.meta, slug: singlePost.slug, readTime: getReadTime(singlePost.content) }))
 
-  @media (max-width: ${(p) => p.theme.breakpoints.md}) {
-    font-size: ${(p) => p.theme.fontSizes['3xl']}px;
+  return {
+    props: { posts: sortDescByDate(posts) },
   }
-`
 
-const HomeContainer = styled.div`
-  align-items: flex-start;
-  display: flex;
-  flex-direction: column;
-  padding: 0 ${(p) => p.theme.spacings.xs}px;
-  margin: 0 auto;
-  max-width: ${(p) => p.theme.spacings.largeContainer}px;
-`
+  function sortDescByDate(array) {
+    return array.sort((a, b) => new Date(b.date) - new Date(a.date))
+  }
+}
 
 const List = styled.ol`
   font-size: ${(p) => p.theme.fontSizes.xl}px;
@@ -76,16 +67,3 @@ const ListItemDetails = styled.div`
     float: none;
   }
 `
-
-export async function getStaticProps() {
-  const fetchedPosts = await getAllPosts()
-  const posts = fetchedPosts.map((singlePost) => ({ ...singlePost.meta, slug: singlePost.slug, readTime: getReadTime(singlePost.content) }))
-
-  return {
-    props: { posts: sortDescByDate(posts) },
-  }
-
-  function sortDescByDate(array) {
-    return array.sort((a, b) => new Date(b.date) - new Date(a.date))
-  }
-}

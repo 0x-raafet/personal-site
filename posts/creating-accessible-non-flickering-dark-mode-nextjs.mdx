@@ -81,7 +81,7 @@ function MyApp({ Component, pageProps }) {
       <Component {...pageProps} />  
     </>  
   )  
-}`} />
+}`} language="jsx" />
 
 **If you're using styled-components or emotion, you can put the contents of `criticalThemeCss` to GlobalStyles. Just make sure it's critical css, and at the top of your global styles.**
 
@@ -100,7 +100,7 @@ export default function ColorSwitcher(props) {
       Change theme to {colorMode === 'light' ? 'dark' : 'light'}  
     </button>  
   )  
-}`} />
+}`}  language="jsx" />
 
 **Note that every component that explicitly uses this hook should be rendered only on the client-side. To do so, you can use `next/dynamic` module or [check out how it's done in the example](https://github.com/Blazity/nextjs-color-mode/blob/master/example/pages/index.js#L5)**
 
@@ -120,7 +120,7 @@ export default function SomeComponent() {
       <div style={{ width: '24rem', height: '12rem', backgroundColor: boxBgColor, border: "10px solid", borderColor: boxBorderColor }} />  
     </>  
   )  
-}`} />
+}`}  language="jsx" />
 
 **Do not use the same name twice, it may cause variable overriding and is hard to debug. Also using things like unique id, UUID or any randomly generated set of characters is a bad idea - it will display mismatch content warning and make it even harder to debug!**
 
