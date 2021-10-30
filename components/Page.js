@@ -8,7 +8,7 @@ export default function Page({ title, description, children }) {
         <Title>{title}</Title>
         <Description>{description}</Description>
       </PageHeaderWrapper>
-      <main>{children}</main>
+      <Content>{children}</Content>
     </Wrapper>
   )
 }
@@ -16,6 +16,7 @@ export default function Page({ title, description, children }) {
 const Wrapper = styled.div`
   padding: 0 ${(p) => p.theme.spacings.xs}px;
   margin: 0 auto;
+  margin-bottom: ${(p) => p.theme.spacings.lg}px;
   max-width: ${(p) => p.theme.spacings.largeContainer}px;
   display: flex;
   flex-direction: column;
@@ -55,4 +56,8 @@ const PageHeaderWrapper = styled.div`
     text-align: center;
     width: 100%;
   }
+`
+
+const Content = styled.main`
+  width: 100%;
 `
