@@ -33,6 +33,7 @@ export const theme = {
     '2xl': '96em',
   },
   zIndexes: {
+    reactionsWidget: '999',
     navbar: '1000',
     drawer: '9999',
   },

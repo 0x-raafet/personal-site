@@ -3,4 +3,5 @@ export const EnvVars = {
   URL: 'https://bstefanski.com/',
   FACEBOOK_PROFILE: 'https://www.facebook.com/bmstefanski',
   TWITTER_PROFILE: '"@bmstefanski"',
+  REDIS_HOST: process.env.REDIS_HOST,
 }

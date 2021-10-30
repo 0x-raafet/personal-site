@@ -6,7 +6,6 @@ import AuthorInfo from 'components/AuthorInfo'
 import RichText from 'components/RichText'
 import Spacer from 'components/Spacer'
 import { formatDate } from 'utils/formatDate'
-
 import { getReadTime } from 'utils/getReadTime'
 import { getAllPostsSlugs, getSinglePost } from 'utils/postsFetcher'
 import Header from 'views/SingleArticlePage/Header'
@@ -15,6 +14,7 @@ import OpenGraphHead from 'views/SingleArticlePage/OpenGraphHead'
 import StructuredDataHead from 'views/SingleArticlePage/StructuredDataHead'
 
 const Comments = dynamic(() => import('views/SingleArticlePage/Comments'), { ssr: false })
+const ReactionsWidget = dynamic(() => import('components/ReactionsWidget'), { ssr: false })
 
 export default function SingleArticlePage(props) {
   const { slug, content, meta, readTime } = props
@@ -48,6 +48,7 @@ export default function SingleArticlePage(props) {
       <StructuredDataHead slug={slug} {...meta} />
       <MetadataHead {...meta} />
       <Container id="content">
+        <ReactionsWidget />
         <Header title={title} formattedDate={formattedDate} readTime={readTime} />
         <RichText {...content} />
         <AuthorInfo />
@@ -93,6 +94,7 @@ export async function getStaticProps({ params }) {
 
 const Container = styled.main`
   display: flex;
+  position: relative;
   flex-direction: column;
   align-items: center;
   max-width: ${(p) => p.theme.spacings.mediumContainer}px;
