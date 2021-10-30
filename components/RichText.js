@@ -108,8 +108,8 @@ const components = {
   p: Paragraph,
   br: Break,
   inlineCode: TextHighlight,
-  Image: ArticleImage,
   a: Link,
+  ArticleImage,
   Code,
   Quote,
 }
