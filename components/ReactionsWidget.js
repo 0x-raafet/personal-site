@@ -48,9 +48,11 @@ const Wrapper = styled.div`
   position: sticky;
   z-index: ${(p) => p.theme.zIndexes.reactionsWidget};
   width: ${(p) => p.theme.spacings.lg}px;
+  height: 110px;
   cursor: pointer;
   user-select: none;
 
+  margin-top: -110px;
   margin-left: -${(p) => p.theme.spacings.xl}px;
   margin-right: auto;
   top: 550px;
