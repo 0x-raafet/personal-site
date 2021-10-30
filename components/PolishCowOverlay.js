@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import useEscClose from 'hooks/useEscClose'
