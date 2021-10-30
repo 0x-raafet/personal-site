@@ -3,6 +3,7 @@ import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { useDebouncedCallback } from 'use-debounce'
+import FadeIn from './FadeIn'
 
 const MAX_REACTIONS_PER_USER = 5
 
@@ -38,8 +39,10 @@ export default function ReactionsWidget() {
 
   return (
     <Wrapper>
-      <NextImage onClick={handleOnClick} unoptimized src="/heart.png" width={96} height={64} alt="Heart" objectFit="contain" />
-      <ReactionsCount>{heartReactions + reactions}</ReactionsCount>
+      <FadeIn delay={1000}>
+        <NextImage onClick={handleOnClick} unoptimized src="/heart.png" width={96} height={64} alt="Heart" objectFit="contain" />
+        <ReactionsCount>{heartReactions + reactions}</ReactionsCount>
+      </FadeIn>
     </Wrapper>
   )
 }
