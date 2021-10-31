@@ -68,7 +68,7 @@ function MyApp({ Component, pageProps }) {
         <ThemeProvider theme={theme}>
           <GlobalStyle />
           {isStandalone ? standaloneMarkup : contentMarkup}
-          <Footer />
+          {!isStandalone && <Footer />}
         </ThemeProvider>
       </ThemeContextProvider>
     </>
