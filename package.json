@@ -53,6 +53,7 @@
     "@fec/remark-a11y-emoji": "^3.1.0",
     "@next/bundle-analyzer": "^11.0.1",
     "babel-eslint": "^10.1.0",
+    "chrome-aws-lambda": "^10.1.0",
     "copy-webpack-plugin": "^9.0.1",
     "eslint": "7.30.0",
     "eslint-config-next": "^11.0.1",
@@ -64,6 +65,7 @@
     "eslint-plugin-react": "^7.22.0",
     "eslint-plugin-react-hooks": "^4.2.0",
     "file-loader": "^6.2.0",
+    "puppeteer-core": "^10.4.0",
     "remark-breaks": "^2.0.2",
     "url-loader": "^4.1.1"
   }
