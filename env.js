@@ -4,4 +4,5 @@ export const EnvVars = {
   FACEBOOK_PROFILE: 'https://www.facebook.com/bmstefanski',
   TWITTER_PROFILE: '"@bmstefanski"',
   REDIS_HOST: process.env.REDIS_HOST,
+  GITHUB_TOKEN: process.env.GITHUB_TOKEN,
 }

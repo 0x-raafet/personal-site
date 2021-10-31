@@ -1,4 +1,5 @@
 import { subMonths } from 'date-fns'
+import { EnvVars } from 'env'
 
 export default async function GithubReactions(req, res) {
   new Date().setUTCMonth()
@@ -12,7 +13,7 @@ export default async function GithubReactions(req, res) {
         },
       },
     },
-  } = await getContributions('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', 'bmstefanski', from, to)
+  } = await getContributions(EnvVars.GITHUB_TOKEN, 'bmstefanski', from, to)
   res.setHeader('Cache-Control', `s-maxage=3600, stale-while-revalidate`)
 
   return res.send({ monthlyContributions: totalContributions })
