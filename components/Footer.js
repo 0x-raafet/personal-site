@@ -24,7 +24,7 @@ export default function Footer() {
             <Link href="https://www.goodreads.com/user/show/125029202-bart-omiej-stefa-ski">Goodreads</Link>
           </Section>
           <Author>
-            Made with ❤️ Bart Stefański <br /> &copy; {new Date().getFullYear()} Bart Stefański. All Rights Reserved.
+            Made with ❤️ by Bart Stefański <br /> &copy; {new Date().getFullYear()} Bart Stefański. All Rights Reserved.
           </Author>
         </FooterContainer>
       </Wrapper>
