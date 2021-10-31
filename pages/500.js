@@ -9,10 +9,16 @@ export default function Custom500() {
       <Head>
         <title>Ooops XD | bstefanski.com</title>
       </Head>
-      <Container>
-        <h2>Oooops XD</h2>
-        <h1>500 - Server-side error occurred</h1>
-      </Container>
+      <Wrapper>
+        <Container>
+          <h2>Oooops XD</h2>
+          <h1>500 - Server-side error occurred</h1>
+        </Container>
+      </Wrapper>
     </>
   )
 }
+
+const Wrapper = styled.div`
+  padding: ${(p) => p.theme.spacings.xl}px 0;
+`
