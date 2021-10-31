@@ -24,11 +24,14 @@ export default function Navigation({ items }) {
 
 const Container = styled.ul`
   display: flex;
-  grid-gap: ${(p) => p.theme.spacings.sm}px;
   justify-content: center;
   padding: 0;
   list-style: none;
   text-align: center;
+
+  & > *:not(:first-child) {
+    margin-left: ${(p) => p.theme.spacings.sm}px;
+  }
 `
 
 const NavItem = styled.li`

@@ -28,8 +28,11 @@ const Container = styled.div`
   display: flex;
   justify-content: space-between;
   margin: 30px 0;
-  grid-gap: ${(p) => p.theme.spacings.sm}px;
   flex-wrap: wrap;
+
+  & > *:not(:first-child) {
+    margin-top: ${(p) => p.theme.spacings.sm}px;
+  }
 
   @media (max-width: ${(p) => p.theme.breakpoints.sm}) {
     flex-flow: column;
@@ -42,18 +45,30 @@ const AvatarContainer = styled.div`
   height: 100%;
   overflow: hidden;
   border-radius: 100px;
+  margin: auto 0;
+  margin-right: ${(p) => p.theme.spacings.sm}px;
+
+  @media (max-width: ${(p) => p.theme.breakpoints.sm}) {
+    margin-right: 0;
+  }
 `
 
 const Content = styled.div`
   flex: 1;
   display: flex;
   flex-direction: column;
-  grid-gap: ${(p) => p.theme.spacings['2xs']}px;
+
+  & > *:not(:first-child) {
+    margin-top: ${(p) => p.theme.spacings['2xs']}px;
+  }
 `
 
 const Links = styled.div`
   display: flex;
-  grid-gap: ${(p) => p.theme.spacings.xs}px;
+
+  & > *:not(:first-child) {
+    margin-left: ${(p) => p.theme.spacings.xs}px;
+  }
 `
 
 const AuthorTitle = styled.div`

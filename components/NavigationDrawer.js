@@ -100,7 +100,10 @@ const Wrapper = styled.div`
     padding: 0;
     margin: 0;
     list-style: none;
-    grid-gap: ${(p) => p.theme.spacings.md}px;
+
+    & > *:not(:first-child) {
+      margin-top: ${(p) => p.theme.spacings.md}px;
+    }
   }
 `
 

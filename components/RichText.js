@@ -55,6 +55,10 @@ const Container = styled.div`
     &:not(:last-child) {
       margin-bottom: 30px;
     }
+
+    @media (max-width: ${(p) => p.theme.breakpoints.sm}) {
+      font-size: ${(p) => p.theme.fontSizes['lg']}px;
+    }
   }
 `
 
@@ -70,6 +74,10 @@ const Paragraph = styled.p`
   & + ul,
   & + li {
     margin-top: -15px !important;
+  }
+
+  @media (max-width: ${(p) => p.theme.breakpoints.sm}) {
+    font-size: ${(p) => p.theme.fontSizes['lg']}px;
   }
 `
 
