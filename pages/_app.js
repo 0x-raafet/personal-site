@@ -3,6 +3,7 @@ import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { createGlobalStyle, ThemeProvider } from 'styled-components'
 import ClientOnly from 'components/ClientOnly'
+import Footer from 'components/Footer'
 import { GlobalStyle } from 'components/GlobalStyles'
 import Navbar from 'components/Navbar'
 import NavigationDrawer from 'components/NavigationDrawer'
@@ -67,6 +68,7 @@ function MyApp({ Component, pageProps }) {
         <ThemeProvider theme={theme}>
           <GlobalStyle />
           {isStandalone ? standaloneMarkup : contentMarkup}
+          <Footer />
         </ThemeProvider>
       </ThemeContextProvider>
     </>
