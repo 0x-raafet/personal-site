@@ -42,6 +42,7 @@ function MyApp({ Component, pageProps }) {
         <Navbar items={navItems} />
       </NavigationDrawer>
       {standaloneMarkup}
+      {!isStandalone && <Footer />}
       <ClientOnly>{isMobile && <PolishCowWidget onClick={on} />}</ClientOnly>
     </>
   )
@@ -68,7 +69,6 @@ function MyApp({ Component, pageProps }) {
         <ThemeProvider theme={theme}>
           <GlobalStyle />
           {isStandalone ? standaloneMarkup : contentMarkup}
-          {!isStandalone && <Footer />}
         </ThemeProvider>
       </ThemeContextProvider>
     </>
