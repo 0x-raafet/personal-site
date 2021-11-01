@@ -20,8 +20,8 @@ const PolishCowOverlay = dynamic(() => import('components/PolishCowOverlay'), { 
 
 const navItems = [
   { title: 'Home', href: '/' },
+  { title: 'Blog', href: '/blog' },
   { title: 'Snippets', href: '/snippets' },
-  { title: 'Links', href: '/links' },
 ]
 
 const standalonePaths = ['/memes', '/about-me', '/resume']
