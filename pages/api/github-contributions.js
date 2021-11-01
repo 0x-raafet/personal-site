@@ -11,12 +11,17 @@ export default async function GithubReactions(req, res) {
         contributionsCollection: {
           contributionCalendar: { totalContributions },
         },
+        pinnedItems: { edges: pinnedItems },
       },
     },
   } = await getContributions(EnvVars.GITHUB_TOKEN, 'bmstefanski', from, to)
   res.setHeader('Cache-Control', `s-maxage=3600, stale-while-revalidate`)
 
-  return res.send({ monthlyContributions: totalContributions })
+  return res.send({ monthlyContributions: totalContributions, pinnedItems: transformPinnedItems(pinnedItems) })
+}
+
+function transformPinnedItems(pinnedItems) {
+  return pinnedItems.map((singleItem) => singleItem.node)
 }
 
 async function getContributions(token, username, from, to) {
@@ -41,6 +46,31 @@ async function getContributions(token, username, from, to) {
                 weekday
               }
               firstDay
+            }
+          }
+        }
+        pinnedItems(last: 6) {
+          totalCount
+          edges {
+            node {
+              ... on Repository {
+                id
+                name
+                descriptionHTML
+                owner {
+                  login
+                  url
+                }
+                url
+                stargazers {
+                  totalCount
+                }
+                primaryLanguage {
+                  id
+                  color
+                  name
+                }
+              }
             }
           }
         }
