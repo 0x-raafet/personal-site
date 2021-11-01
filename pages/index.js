@@ -1,9 +1,13 @@
+import fetch from 'isomorphic-fetch'
 import groupBy from 'lodash/groupBy'
 import Head from 'next/head'
 import styled from 'styled-components'
+import AutofitGrid from 'components/AutofitGrid'
 import Link from 'components/Link'
 import MidDot from 'components/MidDot'
+import OpenSourceCard from 'components/OpenSourceCard'
 import Page from 'components/Page'
+import { EnvVars } from 'env'
 import { formatDate } from 'utils/formatDate'
 import { getReadTime } from 'utils/getReadTime'
 import { getAllPosts } from 'utils/postsFetcher'
@@ -11,12 +15,32 @@ import MetadataHead from 'views/HomePage/MetadataHead'
 import OpenGraphHead from 'views/HomePage/OpenGraphHead'
 import StructuredDataHead from 'views/HomePage/StructuredDataHead'
 
-export default function Home({ yearGroupedPosts }) {
+const LATEST_POSTS_COUNT = 5
+
+export default function Home({ yearGroupedPosts, monthlyContributions, pinnedItems, bookTitle, bookAuthor }) {
   return (
     <>
       <OpenGraphHead />
       <MetadataHead />
       <StructuredDataHead />
+      <Page title="Hello world">
+        <Description>
+          <strong>I am Bart</strong>, a self-taught full-stack software engineer based in Poland, working in React.js & Nest.js stack.
+          Passionate about Clean Code, Object-Oriented Architecture, and fast web. This month I made{' '}
+          <strong>
+            <Link href="https://github.com/bmstefanski">{monthlyContributions} open-source contributions</Link>
+          </strong>
+          . Currently, I am reading <Link href="https://www.goodreads.com/user/show/125029202-bart-omiej-stefa-ski">{bookTitle}</Link> by{' '}
+          {bookAuthor}.
+        </Description>
+      </Page>
+      <Page title="Open source" description="Projects I created or contributed to">
+        <AutofitGrid>
+          {pinnedItems.map((singleItem) => (
+            <OpenSourceCard key={singleItem.id} {...singleItem} />
+          ))}
+        </AutofitGrid>
+      </Page>
       <Page title="Blog posts" description="My latest blog posts">
         <List>
           {yearGroupedPosts.map(([year, posts]) => (
@@ -46,17 +70,35 @@ export default function Home({ yearGroupedPosts }) {
   )
 }
 
+const Description = styled.div`
+  font-size: ${(p) => p.theme.fontSizes['4xl']}px;
+  line-height: 1.5;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  margin-top: -${(p) => p.theme.spacings.sm}px;
+
+  @media (max-width: ${(p) => p.theme.breakpoints.sm}) {
+    font-size: ${(p) => p.theme.fontSizes['3xl']}px;
+  }
+`
+
 export async function getStaticProps() {
   const fetchedPosts = await getAllPosts()
-  const transformedPosts = fetchedPosts.map((singlePost) => ({
-    ...singlePost.meta,
-    slug: singlePost.slug,
-    readTime: getReadTime(singlePost.content),
-  }))
+  const transformedPosts = fetchedPosts
+    .map((singlePost) => ({
+      ...singlePost.meta,
+      slug: singlePost.slug,
+      readTime: getReadTime(singlePost.content),
+    }))
+    .slice(0, LATEST_POSTS_COUNT)
   const yearGroupedPosts = groupBy(sortDescByDate(transformedPosts), (post) => new Date(post.date).getFullYear())
 
+  const githubData = await fetch(EnvVars.URL + '/api/github-contributions').then((r) => r.json())
+  const goodreadsData = await fetch(EnvVars.URL + '/api/last-read').then((r) => r.json())
+
   return {
-    props: { yearGroupedPosts: Object.entries(yearGroupedPosts) },
+    props: { yearGroupedPosts: Object.entries(yearGroupedPosts), ...githubData, ...goodreadsData },
+    revalidate: 60 * 10 * 6,
   }
 
   function sortDescByDate(array) {
