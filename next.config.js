@@ -8,7 +8,7 @@ module.exports = withBundleAnalyzer({
   reactStrictMode: true,
   pageExtensions: ['js', 'jsx', 'mdx'],
   images: {
-    domains: [],
+    domains: ['cdn.akamai.steamstatic.com'],
     deviceSizes: [320, 640, 1080, 1200],
     imageSizes: [64, 128],
   },

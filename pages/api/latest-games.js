@@ -12,7 +12,7 @@ export default async function LatestGames(req, res) {
     .then((res) => res.json())
     .then((data) => data.response.games.map(transformResponse))
 
-  res.setHeader('Cache-Control', `s-maxage=3600, stale-while-revalidate`)
+  res.setHeader('Cache-Control', `s-maxage=60, stale-while-revalidate`)
 
   return res.send(result)
 }
@@ -20,11 +20,16 @@ export default async function LatestGames(req, res) {
 function transformResponse(payload) {
   return {
     name: payload.name,
+    steamLink: makeSteamAppLink(payload.appid),
     playtimeLastTwoWeeks: convertSecondsToHours(payload.playtime_2weeks),
     playtimeForever: convertSecondsToHours(payload.playtime_forever),
     iconUrl: makeSteamAssetUrl(payload.appid, payload.img_icon_url),
     logoUrl: makeSteamAssetUrl(payload.appid, payload.img_logo_url),
   }
+}
+
+function makeSteamAppLink(appId) {
+  return `https://steamcommunity.com/app/${appId}`
 }
 
 function makeSteamAssetUrl(appId, assetId) {
