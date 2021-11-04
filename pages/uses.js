@@ -1,4 +1,5 @@
 import fetch from 'isomorphic-fetch'
+import Head from 'next/head'
 import NextImage from 'next/image'
 import styled from 'styled-components'
 import AutofitGrid from 'components/AutofitGrid'
@@ -9,6 +10,9 @@ import { EnvVars } from 'env'
 export default function UsesPage({ latestGames }) {
   return (
     <>
+      <Head>
+        <title>Uses | bstefanski.com</title>
+      </Head>
       <Page title="Uses" description="Hardware stuff">
         <CustomAutofit>
           <Stack>
@@ -74,7 +78,7 @@ export default function UsesPage({ latestGames }) {
           <Stack>
             <Title>General</Title>
             <p>
-              <strong>Chair:</strong> Fotel Ergohuman Plus Elite
+              <strong>Chair:</strong> Ergohuman Plus Elite
             </p>
             <p>
               <strong>E-reader:</strong> Kindle 10 White 8GB
