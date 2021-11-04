@@ -5,4 +5,5 @@ export const EnvVars = {
   TWITTER_PROFILE: '"@bmstefanski"',
   REDIS_HOST: process.env.REDIS_HOST,
   GITHUB_TOKEN: process.env.GITHUB_TOKEN,
+  STEAM_KEY: process.env.STEAM_KEY,
 }
