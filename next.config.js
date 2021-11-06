@@ -28,4 +28,5 @@ module.exports = withBundleAnalyzer({
     return config
   },
   swcMinify: true,
+  experimental: { nftTracing: true },
 })
