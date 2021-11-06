@@ -24,8 +24,5 @@ export async function getSinglePost(slug) {
 
 export function getPostsDirectory() {
   let basePath = process.cwd()
-  if (process.env.NODE_ENV === 'production') {
-    basePath = path.join(process.cwd(), '.next/server/chunks')
-  }
   return path.join(basePath, 'posts')
 }

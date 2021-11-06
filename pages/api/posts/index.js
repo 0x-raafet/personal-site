@@ -9,10 +9,13 @@ import { getAllPostsSlugs } from 'utils/postsFetcher'
 
 export default async function PostsEndpoint(req, res) {
   res.setHeader('Cache-Control', `s-maxage=600, stale-while-revalidate`)
-  const pagesViews = await getAnalyticsAllPagesViews()
-  const allPostsSlugs = getAllPostsSlugs()
-
-  return res.send(pagesViews.filter((view) => allPostsSlugs.includes(view.slug)))
+  try {
+    const pagesViews = await getAnalyticsAllPagesViews()
+    const allPostsSlugs = getAllPostsSlugs()
+    return res.send(pagesViews.filter((view) => allPostsSlugs.includes(view.slug)))
+  } catch {
+    res.send({ message: 'Yoo, you fucked up man :/' })
+  }
 }
 
 async function getAnalyticsAllPagesViews() {

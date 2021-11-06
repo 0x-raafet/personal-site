@@ -21,10 +21,6 @@ module.exports = withBundleAnalyzer({
       config.resolve.fallback.tls = false
     }
 
-    if (!dev) {
-      config.plugins.push(new CopyPlugin({ patterns: [{ from: 'posts', to: 'posts' }] }))
-    }
-
     return config
   },
   swcMinify: true,
