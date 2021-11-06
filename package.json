@@ -4,8 +4,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "decrypt-secrets": "chmod +x .github/scripts/decrypt-private-keys.sh && ./.github/scripts/decrypt-private-keys.sh",
-    "prebuild": "yarn generate-og-images && yarn decrypt-secrets",
+    "prebuild": "yarn generate-og-images",
     "build": "next build",
     "dev": "next dev",
     "start": "next start",
