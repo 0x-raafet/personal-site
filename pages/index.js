@@ -84,11 +84,14 @@ const Description = styled.div`
 
 export async function getStaticProps() {
   const fetchedPosts = await getAllPosts()
+  const viewsData = await fetch(EnvVars.URL + '/api/posts').then((r) => r.json())
+
   const transformedPosts = fetchedPosts
     .map((singlePost) => ({
       ...singlePost.meta,
       slug: singlePost.slug,
       readTime: getReadTime(singlePost.content),
+      views: viewsData.find((item) => item.slug === singlePost.slug)?.views || 'N/A',
     }))
     .slice(0, LATEST_POSTS_COUNT)
   const yearGroupedPosts = groupBy(sortDescByDate(transformedPosts), (post) => new Date(post.date).getFullYear())

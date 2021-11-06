@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import Link from 'components/Link'
 import MidDot from 'components/MidDot'
 import Page from 'components/Page'
+import { EnvVars } from 'env'
 import { formatDate } from 'utils/formatDate'
 import { getReadTime } from 'utils/getReadTime'
 import { getAllPosts } from 'utils/postsFetcher'
@@ -98,15 +99,19 @@ const Details = styled.div`
 
 export async function getStaticProps() {
   const fetchedPosts = await getAllPosts()
+  const viewsData = await fetch(EnvVars.URL + '/api/posts').then((r) => r.json())
+
   const transformedPosts = fetchedPosts.map((singlePost) => ({
     ...singlePost.meta,
     slug: singlePost.slug,
     readTime: getReadTime(singlePost.content),
+    views: viewsData.find((item) => item.slug === singlePost.slug)?.views || 'N/A',
   }))
   const yearGroupedPosts = groupBy(sortDescByDate(transformedPosts), (post) => new Date(post.date).getFullYear())
 
   return {
     props: { yearGroupedPosts: Object.entries(yearGroupedPosts) },
+    revalidate: 60 * 10 * 6,
   }
 
   function sortDescByDate(array) {
