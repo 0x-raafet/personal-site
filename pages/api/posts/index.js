@@ -7,7 +7,7 @@ import * as path from 'path'
 import { EnvVars } from 'env'
 import { getAllPostsSlugs } from 'utils/postsFetcher'
 
-export default async function BumpViews(req, res) {
+export default async function PostsEndpoint(req, res) {
   res.setHeader('Cache-Control', `s-maxage=600, stale-while-revalidate`)
   const pagesViews = await getAnalyticsAllPagesViews()
   const allPostsSlugs = getAllPostsSlugs()
