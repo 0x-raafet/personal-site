@@ -40,6 +40,7 @@ test-timings.json
 
 # Envs 
 .env
+.github/secrets/*.txt
 
 # Vscode
 .vscode/
