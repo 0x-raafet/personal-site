@@ -32,7 +32,7 @@ export default async function PostEndpoint(req, res) {
     )
   }
 
-  res.setHeader('Cache-Control', `s-maxage=600, stale-while-revalidate`)
+  res.setHeader('Cache-Control', `s-maxage=300, stale-while-revalidate`)
 
   return res.status(200).send({
     heartReactions,
