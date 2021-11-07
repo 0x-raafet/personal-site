@@ -6,10 +6,8 @@ import AuthorInfo from 'components/AuthorInfo'
 import RichText from 'components/RichText'
 import Spacer from 'components/Spacer'
 import { useLazyLoadCss } from 'hooks/useLazyLoadCss'
-import { formatDate } from 'utils/formatDate'
-import { getReadTime } from 'utils/getReadTime'
-import { getAllPostsSlugs, getSinglePost } from 'utils/postsFetcher'
 import { serializeMdxContent } from 'utils/serializeMdxContent'
+import { getAllSnippetsSlugs, getSingleSnippet } from 'utils/snippetsFetcher'
 import Header from 'views/SingleArticlePage/Header'
 import MetadataHead from 'views/SingleArticlePage/MetadataHead'
 import OpenGraphHead from 'views/SingleArticlePage/OpenGraphHead'
@@ -19,22 +17,20 @@ const Comments = dynamic(() => import('views/SingleArticlePage/Comments'), { ssr
 const ReactionsWidget = dynamic(() => import('components/ReactionsWidget'), { ssr: false })
 
 export default function SingleArticlePage(props) {
-  const { slug, content, meta, readTime } = props
-  const { title, description, date } = meta
-
-  const [noJavaScriptMarkup] = useLazyLoadCss('prism-theme.css')
-
-  const formattedDate = formatDate(new Date(date))
+  const { slug, content, meta } = props
+  const { title, description } = meta
 
   return (
     <>
-      <Head>{noJavaScriptMarkup}</Head>
+      <Head>
+        <link rel="stylesheet" href={`/prism-theme.css`} />
+      </Head>
       <OpenGraphHead slug={slug} {...meta} />
       <StructuredDataHead slug={slug} {...meta} />
       <MetadataHead {...meta} />
       <Container id="content">
         <ReactionsWidget />
-        <Header title={title} formattedDate={formattedDate} readTime={readTime} />
+        <Header title={title} />
         <RichText {...content} />
         <AuthorInfo />
         <Comments />
@@ -44,7 +40,7 @@ export default function SingleArticlePage(props) {
 }
 
 export async function getStaticPaths() {
-  const posts = getAllPostsSlugs()
+  const posts = getAllSnippetsSlugs()
   return {
     paths: posts.map((slug) => ({ params: { slug } })),
     fallback: false,
@@ -52,9 +48,9 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const { slug, content, meta } = await getSinglePost(params.slug)
+  const { slug, content, meta } = await getSingleSnippet(params.slug)
   const serializedContent = await serializeMdxContent(content, meta)
-  return { props: { slug, content: serializedContent, meta, readTime: getReadTime(content) } }
+  return { props: { slug, content: serializedContent, meta } }
 }
 
 const Container = styled.main`

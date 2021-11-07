@@ -107,6 +107,10 @@ const Container = styled.header`
   @media (max-width: ${(p) => p.theme.breakpoints.xl}) {
     width: 95%;
   }
+
+  @media (max-width: ${(p) => p.theme.breakpoints.md}) {
+    margin: 0 auto 60px auto;
+  }
 `
 
 const Content = styled.div`
