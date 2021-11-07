@@ -6,7 +6,7 @@ export default function AuthorInfo(props) {
   return (
     <Container>
       <AvatarContainer>
-        <NextImage src="/avatar.jpeg" width={96} height={96} />
+        <NextImage src="/avatar.png" width={96} height={96} />
       </AvatarContainer>
       <Content>
         <AuthorTitle>Bart Stefański</AuthorTitle>

@@ -7,14 +7,14 @@ export default function Rss() {}
 
 export async function getServerSideProps(ctxt) {
   return withCacheEffectivePage(async ({ res }) => {
-    res.write(mapToXmlFormat(await getAllPosts()))
+    res.write(await mapToXmlFormat(await getAllPosts()))
     res.end()
   })(ctxt)
 }
 
-function mapToXmlFormat(items) {
+async function mapToXmlFormat(items) {
   return `<?xml version="1.0" ?>
-  <rss xmlns:media="http://search.yahoo.com/mrss/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/" version="2.0">
+  <rss xmlns:media="http://search.yahoo.com/mrss/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0">
   <channel>
     <title>bstefanski.com</title>
     <link>https://bstefanski.com/</link>
@@ -23,14 +23,15 @@ function mapToXmlFormat(items) {
     <generator>bstefanski.com</generator>
     <atom:link href="https://bstefanski.com/rss" rel="self" type="application/rss+xml"/>
     <language>en</language>
-    ${items.map(makeSingleRssItem).join('\n')}
+    ${(await Promise.all(items.map(makeSingleRssItem))).join('\n')}
   </channel>
   </rss>`
 }
 
-function makeSingleRssItem(post) {
+async function makeSingleRssItem(post) {
   const {
     meta: { title, description, date, tags },
+    content,
     slug,
   } = post
   const ogImageUrl = EnvVars.OG_IMAGES_URL + `${slug}.png`
@@ -47,6 +48,7 @@ function makeSingleRssItem(post) {
         <category>
           <![CDATA[ ${xmlescape(tags)} ]]>
         </category>
+        <content><![CDATA[ ${content} ]]></content>
         <media:thumbnail url="${ogImageUrl}"/>
         <media:content url="${ogImageUrl}" medium="image">
           <media:title type="html"> ${xmlescape(title)} </media:title>
