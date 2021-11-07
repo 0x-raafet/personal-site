@@ -8,35 +8,31 @@ import { EnvVars } from 'env'
 import { formatDate } from 'utils/formatDate'
 import { getReadTime } from 'utils/getReadTime'
 import { makeApiUrl } from 'utils/makeApiUrl'
-import { getAllPosts } from 'utils/postsFetcher'
+import { getAllSnippets } from 'utils/snippetsFetcher'
 
-export default function Blog({ yearGroupedPosts }) {
+export default function SnippetsPage({ yearGroupedSnippets }) {
   return (
     <>
       <Head>
-        <title>Blog | bstefanski.com</title>
+        <title>Snippets | bstefanski.com</title>
       </Head>
-      <Page title="Blog posts" description="The archive of blog posts">
+      <Page title="Snippets" description="Useful snippets">
         <List>
-          {yearGroupedPosts.map(([year, posts]) => (
+          {yearGroupedSnippets.map(([year, snippets]) => (
             <YearSection key={year}>
               <Year>{year}</Year>
-              <Posts>
-                {posts.map((singlePost) => {
-                  const formattedDate = formatDate(new Date(singlePost.date))
+              <Snippets>
+                {snippets.map((singleSnippet) => {
+                  const formattedDate = formatDate(new Date(singleSnippet.date))
 
                   return (
-                    <ListItem key={singlePost.slug}>
-                      <Link href={'/' + singlePost.slug}>{singlePost.title}</Link>
-                      <Details>
-                        <time dateTime={singlePost.date}>{formattedDate}</time> <MidDot /> {singlePost.readTime} <MidDot />{' '}
-                        {singlePost.views || 'N/A'} views
-                      </Details>
-                      <p>{singlePost.description}</p>
+                    <ListItem key={singleSnippet.slug}>
+                      <Link href={'/snippets/' + singleSnippet.slug}>{singleSnippet.title}</Link>
+                      <Details>{singleSnippet.views || 'N/A'} views</Details>
                     </ListItem>
                   )
                 })}
-              </Posts>
+              </Snippets>
             </YearSection>
           ))}
         </List>
@@ -65,13 +61,13 @@ const Year = styled.p`
   }
 `
 
-const Posts = styled.div`
+const Snippets = styled.div`
   display: flex;
   flex-direction: column;
   flex: 8;
 
   & > *:not(:first-child) {
-    margin-top: ${(p) => p.theme.spacings.md}px;
+    margin-top: ${(p) => p.theme.spacings.sm}px;
   }
 
   @media (max-width: ${(p) => p.theme.breakpoints.md}) {
@@ -85,7 +81,7 @@ const List = styled.div`
   flex-direction: column;
 
   & > *:not(:first-child) {
-    margin-top: ${(p) => p.theme.spacings.lg}px;
+    margin-top: ${(p) => p.theme.spacings.md}px;
   }
 `
 
@@ -105,21 +101,20 @@ const Details = styled.div`
 `
 
 export async function getStaticProps() {
-  const fetchedPosts = await getAllPosts()
+  const fetchedSnippets = await getAllSnippets()
   const viewsData = await fetch(makeApiUrl('/api/views'))
     .then((r) => r.json())
-    .then((r) => r.posts)
+    .then((r) => r.snippets)
 
-  const transformedPosts = fetchedPosts.map((singlePost) => ({
-    ...singlePost.meta,
-    slug: singlePost.slug,
-    readTime: getReadTime(singlePost.content),
-    views: viewsData.find((item) => item.slug === singlePost.slug)?.views || 'N/A',
+  const transformedSnippets = fetchedSnippets.map((singleSnippet) => ({
+    ...singleSnippet.meta,
+    slug: singleSnippet.slug,
+    views: viewsData.find((item) => item.slug === singleSnippet.slug)?.views || 'N/A',
   }))
-  const yearGroupedPosts = groupBy(sortDescByDate(transformedPosts), (post) => new Date(post.date).getFullYear())
+  const yearGroupedSnippets = groupBy(sortDescByDate(transformedSnippets), (snippet) => new Date(snippet.date).getFullYear())
 
   return {
-    props: { yearGroupedPosts: Object.entries(yearGroupedPosts) },
+    props: { yearGroupedSnippets: Object.entries(yearGroupedSnippets) },
     revalidate: 60 * 10 * 6,
   }
 

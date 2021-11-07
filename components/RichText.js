@@ -16,6 +16,7 @@ export default function RichText(props) {
 const Container = styled.div`
   display: flex;
   ${'' /* Opting-out of margin-collapse */}
+  margin-bottom: 38px;
 
   flex-direction: column;
   width: 100%;

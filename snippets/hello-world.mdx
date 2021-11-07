@@ -1,39 +1,9 @@
 ---
-title: Creating accessible and non-flickering dark mode with Next.js
-description: A tutorial on how to create accessible and non-flickering dark mode with Next.js for both SSR and SSG.
+title: Hello world
+description: Hello world snippet
 date: '2021-09-11'
-tags: next.js,dark mode,theme
+tags: hello-world
 ---
 
-<Code code={`
-import Head from 'next/head'  
-import { ColorModeScript } from 'nextjs-color-mode'  
-  
-const criticalThemeCss = \`  
-.next-light-theme {  
---background: #fff;  
---text: #000;  
-}  
-  
-.next-dark-theme {  
---background: #000;  
---text: #fff;  
-}  
-  
-body {  
-  background: var(--background);  
-  color: var(--text);  
-}  
-\`  
-  
-function MyApp({ Component, pageProps }) {  
-  return (   
-    <>  
-      <Head>  
-        <style dangerouslySetInnerHTML={{ __html: criticalThemeCss }} />  
-      </Head>  
-      <ColorModeScript />  
-      <Component {...pageProps} />  
-    </>  
-  )  
-}`} language="jsx" />
+<Code code={`// will return two items randomly from the array using underscore  
+_.sample(['January', 'February', 'March'], 2);  `} language="jsx" />

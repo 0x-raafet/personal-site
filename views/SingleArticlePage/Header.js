@@ -28,7 +28,10 @@ const Title = styled.h1`
   font-weight: 600;
   font-size: ${(p) => p.theme.fontSizes['5xl']}px;
   line-height: 56px;
-  margin-bottom: 28px;
+
+  & + div {
+    margin-top: 28px;
+  }
 
   @media (max-width: ${(p) => p.theme.breakpoints.sm}) {
     font-size: ${(p) => p.theme.fontSizes['4xl']}px;
