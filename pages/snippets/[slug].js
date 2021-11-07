@@ -16,7 +16,7 @@ import StructuredDataHead from 'views/SingleArticlePage/StructuredDataHead'
 const Comments = dynamic(() => import('views/SingleArticlePage/Comments'), { ssr: false })
 const ReactionsWidget = dynamic(() => import('components/ReactionsWidget'), { ssr: false })
 
-export default function SingleArticlePage(props) {
+export default function SingleSnippetPage(props) {
   const { slug, content, meta } = props
   const { title, description } = meta
 

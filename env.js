@@ -8,4 +8,5 @@ export const EnvVars = {
   STEAM_KEY: process.env.STEAM_KEY,
   GA_VIEW_ID: process.env.GA_VIEW_ID,
   GOOGLE_PRIVATE_KEY_PASS: process.env.GOOGLE_PRIVATE_KEY_PASS,
+  isProduction: process.env.NODE_ENV === 'production',
 }

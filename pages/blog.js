@@ -99,7 +99,9 @@ const Details = styled.div`
 
 export async function getStaticProps() {
   const fetchedPosts = await getAllPosts()
-  const viewsData = await fetch(EnvVars.URL + '/api/posts').then((r) => r.json())
+  const viewsData = await fetch(makeApiUrl('/api/views'))
+    .then((r) => r.json())
+    .then((r) => r.posts)
 
   const transformedPosts = fetchedPosts.map((singlePost) => ({
     ...singlePost.meta,

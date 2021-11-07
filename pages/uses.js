@@ -6,6 +6,7 @@ import AutofitGrid from 'components/AutofitGrid'
 import Link from 'components/Link'
 import Page from 'components/Page'
 import { EnvVars } from 'env'
+import { makeApiUrl } from 'utils/makeApiUrl'
 
 export default function UsesPage({ latestGames }) {
   return (
@@ -151,7 +152,7 @@ const Game = styled.div`
 `
 
 export async function getStaticProps() {
-  const latestGames = await fetch(EnvVars.URL + '/api/latest-games').then((res) => res.json())
+  const latestGames = await fetch(makeApiUrl('/api/latest-games')).then((res) => res.json())
 
   return {
     props: { latestGames },

@@ -10,6 +10,7 @@ import Page from 'components/Page'
 import { EnvVars } from 'env'
 import { formatDate } from 'utils/formatDate'
 import { getReadTime } from 'utils/getReadTime'
+import { makeApiUrl } from 'utils/makeApiUrl'
 import { getAllPosts } from 'utils/postsFetcher'
 import MetadataHead from 'views/HomePage/MetadataHead'
 import OpenGraphHead from 'views/HomePage/OpenGraphHead'
@@ -84,7 +85,9 @@ const Description = styled.div`
 
 export async function getStaticProps() {
   const fetchedPosts = await getAllPosts()
-  const viewsData = await fetch(EnvVars.URL + '/api/posts').then((r) => r.json())
+  const viewsData = await fetch(makeApiUrl('/api/views'))
+    .then((r) => r.json())
+    .then((r) => r.posts)
 
   const transformedPosts = fetchedPosts
     .map((singlePost) => ({
@@ -96,8 +99,8 @@ export async function getStaticProps() {
     .slice(0, LATEST_POSTS_COUNT)
   const yearGroupedPosts = groupBy(sortDescByDate(transformedPosts), (post) => new Date(post.date).getFullYear())
 
-  const githubData = await fetch(EnvVars.URL + '/api/github-contributions').then((r) => r.json())
-  const goodreadsData = await fetch(EnvVars.URL + '/api/last-read').then((r) => r.json())
+  const githubData = await fetch(makeApiUrl('/api/github-contributions')).then((r) => r.json())
+  const goodreadsData = await fetch(makeApiUrl('/api/last-read')).then((r) => r.json())
 
   return {
     props: { yearGroupedPosts: Object.entries(yearGroupedPosts), ...githubData, ...goodreadsData },
