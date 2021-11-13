@@ -29,7 +29,7 @@ export default function Home({ yearGroupedPosts, monthlyContributions, pinnedIte
           <strong>I am Bart</strong>, a self-taught full-stack software engineer based in Poland, working in React.js & Nest.js stack.
           Passionate about Clean Code, Object-Oriented Architecture, and fast web. This month I made{' '}
           <strong>
-            <Link href="https://github.com/bmstefanski">{monthlyContributions} open-source contributions</Link>
+            <Link href="https://github.com/bmstefanski">{monthlyContributions} contributions</Link>
           </strong>
           . Currently, I am reading <Link href="https://www.goodreads.com/user/show/125029202-bart-omiej-stefa-ski">{bookTitle}</Link> by{' '}
           {bookAuthor}.
