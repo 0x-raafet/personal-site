@@ -1,6 +1,7 @@
 import NextImage from 'next/image'
 import React from 'react'
 import styled from 'styled-components'
+import { theme } from 'theme'
 import OptimizedImage from './OptimizedImage'
 
 export default function ArticleImage({ src, caption, ...rest }) {
@@ -23,7 +24,7 @@ const Wrapper = styled.div`
 
   .optimized-image-wrapper {
     position: relative;
-    max-width: ${(p) => p.theme.spacings.mediumContainer}px;
+    max-width: ${theme.spacings.mediumContainer}px;
 
     &::before {
       float: left;
@@ -41,7 +42,7 @@ const Wrapper = styled.div`
 
 const Caption = styled.small`
   display: block;
-  font-size: ${(p) => p.theme.fontSizes['sm']}px;
+  font-size: ${theme.fontSizes['sm']}px;
   text-align: center;
-  margin-bottom: ${(p) => p.theme.fontSizes['md']}px;
+  margin-bottom: ${theme.fontSizes['md']}px;
 `

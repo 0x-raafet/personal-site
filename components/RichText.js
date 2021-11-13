@@ -1,6 +1,7 @@
 import { MDXRemote } from 'next-mdx-remote'
 import styled from 'styled-components'
 import Code from 'components/Code'
+import { theme } from 'theme'
 import ArticleImage from './ArticleImage'
 import Link from './Link'
 import Quote from './Quote'
@@ -29,7 +30,7 @@ const Container = styled.div`
     word-break: break-word;
   }
 
-  @media (max-width: ${(p) => p.theme.breakpoints.md}) {
+  @media (max-width: ${theme.breakpoints.md}) {
     .remark-highlight {
       width: 100%;
       overflow-x: auto;
@@ -43,7 +44,7 @@ const Container = styled.div`
 
   ol,
   ul {
-    font-size: ${(p) => p.theme.fontSizes['xl']}px;
+    font-size: ${theme.fontSizes['xl']}px;
     line-height: 30px;
     margin: 0;
     padding-left: 24px;
@@ -57,14 +58,14 @@ const Container = styled.div`
       margin-bottom: 30px;
     }
 
-    @media (max-width: ${(p) => p.theme.breakpoints.sm}) {
-      font-size: ${(p) => p.theme.fontSizes['lg']}px;
+    @media (max-width: ${theme.breakpoints.sm}) {
+      font-size: ${theme.fontSizes['lg']}px;
     }
   }
 `
 
 const Paragraph = styled.p`
-  font-size: ${(p) => p.theme.fontSizes['xl']}px;
+  font-size: ${theme.fontSizes['xl']}px;
   line-height: 30px;
   hanging-punctuation: first;
 
@@ -77,19 +78,19 @@ const Paragraph = styled.p`
     margin-top: -15px !important;
   }
 
-  @media (max-width: ${(p) => p.theme.breakpoints.sm}) {
-    font-size: ${(p) => p.theme.fontSizes['lg']}px;
+  @media (max-width: ${theme.breakpoints.sm}) {
+    font-size: ${theme.fontSizes['lg']}px;
   }
 `
 
 const SecondHeading = styled.h2`
-  font-size: ${(p) => p.theme.fontSizes['3xl']}px;
+  font-size: ${theme.fontSizes['3xl']}px;
   line-height: 38px;
   margin-bottom: 38px;
 `
 
 const ThirdHeading = styled.h3`
-  font-size: ${(p) => p.theme.fontSizes['2xl']}px;
+  font-size: ${theme.fontSizes['2xl']}px;
   line-height: 34px;
   margin-bottom: 34px;
 `
@@ -103,7 +104,7 @@ const Break = styled.br`
 
 const TextHighlight = styled.code`
   display: inline-block;
-  padding: 0 ${(p) => p.theme.spacings['2xs']}px;
+  padding: 0 ${theme.spacings['2xs']}px;
   color: var(--primary);
   border-radius: 4px;
   background-color: var(--text-highlight);

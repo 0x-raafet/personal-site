@@ -1,6 +1,9 @@
+import { renderToString } from 'react-dom/server'
 import xmlescape from 'xml-escape'
+import RichText from 'components/RichText'
 import { EnvVars } from 'env'
 import { getAllPosts, getAllPostsSlugs } from 'utils/postsFetcher'
+import { serializeMdxContent } from 'utils/serializeMdxContent'
 import withCacheEffectivePage from 'utils/withCacheEffectivePage'
 
 export default function Rss() {}
@@ -37,6 +40,9 @@ async function makeSingleRssItem(post) {
   const ogImageUrl = EnvVars.OG_IMAGES_URL + `${slug}.png`
   const pubDate = new Date(date).toUTCString()
 
+  const serializedContent = await serializeMdxContent(content, post.meta)
+  const htmlContent = renderToString(<RichText {...serializedContent} />)
+
   return `
       <item>
         <title>${xmlescape(title)}</title>
@@ -48,7 +54,7 @@ async function makeSingleRssItem(post) {
         <category>
           <![CDATA[ ${xmlescape(tags)} ]]>
         </category>
-        <content><![CDATA[ ${content} ]]></content>
+        <content:encoded><![CDATA[ ${htmlContent} ]]></content:encoded>
         <media:thumbnail url="${ogImageUrl}"/>
         <media:content url="${ogImageUrl}" medium="image">
           <media:title type="html"> ${xmlescape(title)} </media:title>

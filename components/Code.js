@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import ClientOnly from 'components/ClientOnly'
 import Icon from 'components/icons/Icon'
 import { useClipboard } from 'hooks/useClipboard'
+import { theme } from 'theme'
 import CopyIcon from './icons/CopyIcon'
 
 export default function Code({ code, language, selectedLines = [], withCopyButton = true, withLineNumbers, caption }) {
@@ -65,8 +66,8 @@ const Caption = styled.small`
 
 const CopyButton = styled(CopyIcon)`
   position: absolute;
-  top: ${(p) => p.theme.spacings.sm}px;
-  right: ${(p) => p.theme.spacings.sm}px;
+  top: ${theme.spacings.sm}px;
+  right: ${theme.spacings.sm}px;
   visibility: hidden;
   background-color: var(--overlay);
   cursor: pointer;
@@ -110,12 +111,12 @@ const CodeWrapper = styled.div`
     position: absolute;
     height: 2.2em;
     content: '${(p) => p.language}';
-    right: ${(p) => p.theme.spacings.sm}px;
-    padding: ${(p) => p.theme.spacings.xs}px;
+    right: ${theme.spacings.sm}px;
+    padding: ${theme.spacings.xs}px;
     top: -2em;
     line-height: 10px;
     border-radius: 0.3em;
-    font-size: ${(p) => p.theme.fontSizes.md}px;
+    font-size: ${theme.fontSizes.md}px;
     text-transform: uppercase;
     background-color: inherit;
     font-weight: bold;
