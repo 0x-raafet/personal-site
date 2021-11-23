@@ -44,3 +44,6 @@ test-timings.json
 
 # Vscode
 .vscode/
+
+# og images
+public/og-images
