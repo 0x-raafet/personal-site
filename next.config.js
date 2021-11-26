@@ -23,6 +23,15 @@ module.exports = withBundleAnalyzer({
 
     return config
   },
+  async redirects() {
+    return [
+      {
+        source: '/resume',
+        destination: 'https://www.linkedin.com/in/bmstefanski/',
+        permanent: true,
+      },
+    ]
+  },
   swcMinify: true,
   experimental: { nftTracing: true },
 })
