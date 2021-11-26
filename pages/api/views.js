@@ -13,7 +13,7 @@ export default async function PostsEndpoint(req, res) {
   try {
     const pagesViews = await getAnalyticsAllPagesViews()
     const allPostsSlugs = getAllPostsSlugs()
-    const allSnippetsSlugs = await getAllSnippetsSlugs()
+    const allSnippetsSlugs = getAllSnippetsSlugs()
 
     return res.send({
       posts: pagesViews.filter((view) => allPostsSlugs.includes(view.slug)),
@@ -53,6 +53,11 @@ async function getAnalyticsAllPagesViews() {
 }
 
 function sanitizeSlug(slug) {
+  if (slug.includes('/snippets/')) {
+    const snippetsAwareSlug = slug.replace('/snippets', '')
+    return sanitizeSlug(snippetsAwareSlug)
+  }
+
   const slashLessSlug = slug.slice(1)
   const questionMarkIdx = slashLessSlug.indexOf('?')
   return removeAfterSlashPart(slashLessSlug.slice(0, questionMarkIdx === -1 ? slashLessSlug.length : questionMarkIdx))
