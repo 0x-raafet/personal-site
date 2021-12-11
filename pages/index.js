@@ -15,6 +15,7 @@ import { getAllPosts } from 'utils/postsFetcher'
 import MetadataHead from 'views/HomePage/MetadataHead'
 import OpenGraphHead from 'views/HomePage/OpenGraphHead'
 import StructuredDataHead from 'views/HomePage/StructuredDataHead'
+import Symbols from 'views/HomePage/Symbols'
 
 const LATEST_POSTS_COUNT = 5
 
@@ -24,6 +25,7 @@ export default function Home({ yearGroupedPosts, monthlyContributions, pinnedIte
       <OpenGraphHead />
       <MetadataHead />
       <StructuredDataHead />
+      <Symbols />
       <Page title="Hello world">
         <Description>
           <strong>I am Bart</strong>, a self-taught full-stack software engineer based in Poland, working in React.js & Nest.js stack.
