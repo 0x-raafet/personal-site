@@ -1,7 +1,7 @@
 import * as Drawer from '@accessible/drawer'
-import { useRouter } from 'next/dist/client/router'
 import dynamic from 'next/dynamic'
 import NextLink from 'next/link'
+import { useRouter } from 'next/router'
 import { lighten } from 'polished'
 import React, { useRef, useState } from 'react'
 import styled from 'styled-components'
