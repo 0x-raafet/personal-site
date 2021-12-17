@@ -59,16 +59,16 @@ function MyApp({ Component, pageProps }) {
           ga('send', 'pageview');`,
           }}
         />
-        <script async src="https://www.google-analytics.com/analytics.js"></script>
       </Head>
       <script dangerouslySetInnerHTML={{ __html: initColorModeScript }} />
-      <script async dangerouslySetInnerHTML={{ __html: initSecretMessageScript }} />
       <ThemeContextProvider>
         <ThemeProvider theme={theme}>
           <GlobalStyle />
           {isStandalone ? standaloneMarkup : contentMarkup}
         </ThemeProvider>
       </ThemeContextProvider>
+      <script defer dangerouslySetInnerHTML={{ __html: initSecretMessageScript }} />
+      <script defer src="https://www.google-analytics.com/analytics.js"></script>
     </>
   )
 }

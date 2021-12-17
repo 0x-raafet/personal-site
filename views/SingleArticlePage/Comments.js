@@ -15,7 +15,7 @@ export default function Comments() {
 
       script.setAttribute('src', 'https://utteranc.es/client.js')
       script.setAttribute('crossorigin', 'anonymous')
-      script.setAttribute('async', true)
+      script.setAttribute('defer', true)
       script.setAttribute('repo', 'bmstefanski/personal-site')
       script.setAttribute('issue-term', 'pathname')
       script.setAttribute('theme', widgetTheme)
