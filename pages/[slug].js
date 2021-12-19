@@ -1,10 +1,9 @@
 import dynamic from 'next/dynamic'
 import Head from 'next/head'
-import React, { useEffect } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import AuthorInfo from 'components/AuthorInfo'
 import RichText from 'components/RichText'
-import Spacer from 'components/Spacer'
 import { useLazyLoadCss } from 'hooks/useLazyLoadCss'
 import { formatDate } from 'utils/formatDate'
 import { getReadTime } from 'utils/getReadTime'
@@ -20,7 +19,7 @@ const ReactionsWidget = dynamic(() => import('components/ReactionsWidget'), { ss
 
 export default function SingleArticlePage(props) {
   const { slug, content, meta, readTime } = props
-  const { title, description, date } = meta
+  const { title, date } = meta
 
   const [noJavaScriptMarkup] = useLazyLoadCss('prism-theme.css')
 

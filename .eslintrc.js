@@ -15,7 +15,7 @@ module.exports = {
     'react/prop-types': 0,
     'react/react-in-jsx-scope': 0,
     'react/display-name': 0,
-    'no-unused-vars': 0,
+    'no-unused-vars': 1,
     'sort-imports': ['error', { ignoreCase: true, ignoreDeclarationSort: true }],
     'import/order': [
       1,
