@@ -2,7 +2,7 @@ import { withCacheEffectivePage } from 'next-cache-effective-pages'
 import * as xml from 'xml'
 import xmlescape from 'xml-escape'
 import { EnvVars } from 'env'
-import { getAllPosts, getAllPostsSlugs } from 'utils/postsFetcher'
+import { getAllPosts } from 'utils/postsFetcher'
 
 export default function Sitemap() {}
 

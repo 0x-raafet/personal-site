@@ -1,11 +1,9 @@
 import dynamic from 'next/dynamic'
 import Head from 'next/head'
-import React, { useEffect } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import AuthorInfo from 'components/AuthorInfo'
 import RichText from 'components/RichText'
-import Spacer from 'components/Spacer'
-import { useLazyLoadCss } from 'hooks/useLazyLoadCss'
 import { serializeMdxContent } from 'utils/serializeMdxContent'
 import { getAllSnippetsSlugs, getSingleSnippet } from 'utils/snippetsFetcher'
 import Header from 'views/SingleArticlePage/Header'
@@ -18,7 +16,7 @@ const ReactionsWidget = dynamic(() => import('components/ReactionsWidget'), { ss
 
 export default function SingleSnippetPage(props) {
   const { slug, content, meta } = props
-  const { title, description } = meta
+  const { title } = meta
 
   return (
     <>

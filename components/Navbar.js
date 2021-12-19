@@ -1,21 +1,18 @@
 import * as Drawer from '@accessible/drawer'
-import dynamic from 'next/dynamic'
 import NextLink from 'next/link'
 import { useRouter } from 'next/router'
-import { lighten } from 'polished'
 import React, { useRef, useState } from 'react'
 import styled from 'styled-components'
 import { useScrollPosition } from 'hooks/useScrollPosition'
 import ClientOnly from './ClientOnly'
 import ColorSwitcher from './ColorSwitcher'
-import FadeIn from './FadeIn'
 import { HamburgerIcon } from './icons/HamburgerIcon'
 import Logotype from './Logotype'
 import Navigation from './Navigation'
 
 export default function Navbar({ items }) {
   const router = useRouter()
-  const { open, close, toggle, isOpen } = Drawer.useDrawer()
+  const { toggle } = Drawer.useDrawer()
   const [scrollingDirection, setScrollingDirection] = useState('none')
 
   let lastScrollY = useRef(0)

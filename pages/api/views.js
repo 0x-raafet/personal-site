@@ -1,8 +1,6 @@
 import CryptoJS from 'crypto-js'
 import { google } from 'googleapis'
 import uniqBy from 'lodash/uniqBy'
-import * as fs from 'fs'
-import * as path from 'path'
 import { EnvVars } from 'env'
 import { googlePrivateKey } from 'secrets/google-private-key'
 import { getAllPostsSlugs } from 'utils/postsFetcher'

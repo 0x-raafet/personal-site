@@ -1,4 +1,3 @@
-import { subMonths } from 'date-fns'
 import _fetch from 'isomorphic-fetch'
 import floor from 'lodash/floor'
 import { EnvVars } from 'env'

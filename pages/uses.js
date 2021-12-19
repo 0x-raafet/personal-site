@@ -5,7 +5,6 @@ import styled from 'styled-components'
 import AutofitGrid from 'components/AutofitGrid'
 import Link from 'components/Link'
 import Page from 'components/Page'
-import { EnvVars } from 'env'
 import { makeApiUrl } from 'utils/makeApiUrl'
 
 export default function UsesPage({ latestGames }) {

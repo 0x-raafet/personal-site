@@ -2,11 +2,7 @@ import groupBy from 'lodash/groupBy'
 import Head from 'next/head'
 import styled from 'styled-components'
 import Link from 'components/Link'
-import MidDot from 'components/MidDot'
 import Page from 'components/Page'
-import { EnvVars } from 'env'
-import { formatDate } from 'utils/formatDate'
-import { getReadTime } from 'utils/getReadTime'
 import { makeApiUrl } from 'utils/makeApiUrl'
 import { getAllSnippets } from 'utils/snippetsFetcher'
 
@@ -23,8 +19,6 @@ export default function SnippetsPage({ yearGroupedSnippets }) {
               <Year>{year}</Year>
               <Snippets>
                 {snippets.map((singleSnippet) => {
-                  const formattedDate = formatDate(new Date(singleSnippet.date))
-
                   return (
                     <ListItem key={singleSnippet.slug}>
                       <Link href={'/snippets/' + singleSnippet.slug}>{singleSnippet.title}</Link>

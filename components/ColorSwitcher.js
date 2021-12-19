@@ -1,5 +1,4 @@
-import { darken } from 'polished'
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect } from 'react'
 import styled, { css } from 'styled-components'
 import { useThemeContext } from 'contexts/theme.context'
 import { useBoolean } from 'hooks/useBoolean'

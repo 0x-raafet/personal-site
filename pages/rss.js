@@ -2,7 +2,7 @@ import { renderToString } from 'react-dom/server'
 import xmlescape from 'xml-escape'
 import RichText from 'components/RichText'
 import { EnvVars } from 'env'
-import { getAllPosts, getAllPostsSlugs } from 'utils/postsFetcher'
+import { getAllPosts } from 'utils/postsFetcher'
 import { serializeMdxContent } from 'utils/serializeMdxContent'
 import withCacheEffectivePage from 'utils/withCacheEffectivePage'
 

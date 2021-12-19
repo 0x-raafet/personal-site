@@ -1,11 +1,10 @@
 /* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable @next/next/no-img-element */
-import dynamic from 'next/dynamic'
 import styled from 'styled-components'
 import { useSound } from 'hooks/useSound'
 
 export default function Jebaited() {
-  const [playSong, { stop: stopSong, sound }] = useSound('/jebaited-song.mp3', {
+  useSound('/jebaited-song.mp3', {
     volume: 0.4,
     interrupt: true,
     autoplay: true,
