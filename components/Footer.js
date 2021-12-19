@@ -10,10 +10,8 @@ export default function Footer() {
           <Section>
             <SectionTitle>Pages</SectionTitle>
             <Link href="/snippets">Snippets</Link>
-            <Link href="/links">Links</Link>
             <Link href="/uses">Uses</Link>
-            <Link href="/memes">Memes</Link>
-            <Link href="/colophon">Colophon</Link>
+            {/* <Link href="/colophon">Colophon</Link> */}
             <Link href="/resume">Resume</Link>
             <Link href="/rss">RSS</Link>
           </Section>
@@ -22,6 +20,7 @@ export default function Footer() {
             <Link href="https://github.com/bmstefanski">GitHub</Link>
             <Link href="https://twitter.com/bmstefanski">Twitter</Link>
             <Link href="https://www.goodreads.com/user/show/125029202-bart-omiej-stefa-ski">Goodreads</Link>
+            <Link href="https://www.linkedin.com/in/bmstefanski">LinkedIn</Link>
           </Section>
           <Author>
             Made with ❤️ by Bart Stefański <br /> &copy; {new Date().getFullYear()} Bart Stefański. All Rights Reserved.
