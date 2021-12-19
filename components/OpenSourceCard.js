@@ -17,7 +17,7 @@ export default function OpenSourceCard({
           {ownerLogin}/{name}
         </Title>
       </Link>
-      <div dangerouslySetInnerHTML={{ __html: descriptionHTML }} />
+      <Description dangerouslySetInnerHTML={{ __html: descriptionHTML }} />
 
       <LanguageWrapper>
         <LanguageColor circleColor={languageColor} />
@@ -33,13 +33,28 @@ export default function OpenSourceCard({
   )
 }
 
+const Description = styled.div`
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+`
+
 const Title = styled.p`
   font-size: ${(p) => p.theme.fontSizes['lg']}px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
 `
 
 const LanguageWrapper = styled.div`
   display: flex;
   align-items: center;
+  justify-self: flex-end;
+  margin-top: auto;
 
   & > *:not(:first-child):not(:last-child) {
     margin-left: ${(p) => p.theme.spacings['2xs']}px;
@@ -68,8 +83,13 @@ const LanguageColor = styled.span`
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
+  height: 150px;
 
-  & > *:not(:first-child) {
-    margin-top: ${(p) => p.theme.spacings.xs}px;
+  @media (max-width: ${(p) => p.theme.breakpoints.md}) {
+    height: 100%;
+  }
+
+  & > *:not(:last-child) {
+    margin-bottom: ${(p) => p.theme.spacings.xs}px;
   }
 `

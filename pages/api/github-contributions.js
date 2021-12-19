@@ -17,7 +17,7 @@ export default async function GithubReactions(req, res) {
   } = await getContributions(EnvVars.GITHUB_TOKEN, 'bmstefanski', from, to)
   res.setHeader('Cache-Control', `s-maxage=3600, stale-while-revalidate`)
 
-  return res.send({ monthlyContributions: totalContributions, pinnedItems: transformPinnedItems(pinnedItems) })
+  return res.send({ monthlyContributions: totalContributions, pinnedItems: transformPinnedItems(pinnedItems).slice(0, 3) })
 }
 
 function transformPinnedItems(pinnedItems) {

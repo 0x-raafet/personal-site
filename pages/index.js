@@ -15,8 +15,6 @@ import OpenGraphHead from 'views/HomePage/OpenGraphHead'
 import StructuredDataHead from 'views/HomePage/StructuredDataHead'
 import Symbols from 'views/HomePage/Symbols'
 
-const LATEST_POSTS_COUNT = 5
-
 export default function Home({ yearGroupedPosts, monthlyContributions, pinnedItems, bookTitle, bookAuthor }) {
   return (
     <>
@@ -35,7 +33,7 @@ export default function Home({ yearGroupedPosts, monthlyContributions, pinnedIte
           {bookAuthor}.
         </Description>
       </Page>
-      <Page title="Open source" description="Projects I created or contributed to">
+      <Page title="Open source" description="Pinned open source projects">
         <AutofitGrid>
           {pinnedItems.map((singleItem) => (
             <OpenSourceCard key={singleItem.id} {...singleItem} />
@@ -82,6 +80,8 @@ const Description = styled.div`
     font-size: ${(p) => p.theme.fontSizes['3xl']}px;
   }
 `
+
+const LATEST_POSTS_COUNT = 5
 
 export async function getStaticProps() {
   const fetchedPosts = await getAllPosts()
