@@ -9,7 +9,6 @@ import { ThemeContextProvider } from 'contexts/theme.context'
 import { EnvVars } from 'env'
 import { theme } from 'theme'
 import { initColorModeScript } from 'utils/initColorMode'
-import { initSecretMessageScript } from 'utils/initSecretMessage'
 
 const navItems = [
   { title: 'Home', href: '/' },
@@ -55,7 +54,6 @@ function MyApp({ Component, pageProps }) {
           {isStandalone ? standaloneMarkup : contentMarkup}
         </ThemeProvider>
       </ThemeContextProvider>
-      <script defer dangerouslySetInnerHTML={{ __html: initSecretMessageScript }} />
       <script defer src="https://www.google-analytics.com/analytics.js"></script>
     </>
   )
