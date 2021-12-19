@@ -74,11 +74,20 @@ export default function UsesPage({ latestGames }) {
             <p>
               <strong>External SSD:</strong> Samsung SSD T5 1 TB
             </p>
+            <p>
+              <strong>Keyboard:</strong> Keychron K2 v2 (Kailh Box White Switches)
+            </p>
           </Stack>
           <Stack>
             <Title>General</Title>
             <p>
               <strong>Chair:</strong> Ergohuman Plus Elite
+            </p>
+            <p>
+              <strong>Desk:</strong> Ikea BEKANT 160x80
+            </p>
+            <p>
+              <strong>Mousepad:</strong> SteelSeries QcK Prism Cloth XL
             </p>
             <p>
               <strong>E-reader:</strong> Kindle 10 White 8GB
