@@ -5,6 +5,7 @@ import Footer from 'components/Footer'
 import { GlobalStyle } from 'components/GlobalStyles'
 import Navbar from 'components/Navbar'
 import NavigationDrawer from 'components/NavigationDrawer'
+import PageTransition from 'components/PageTransition'
 import { ThemeContextProvider } from 'contexts/theme.context'
 import { EnvVars } from 'env'
 import { theme } from 'theme'
@@ -29,7 +30,7 @@ function MyApp({ Component, pageProps }) {
       <NavigationDrawer items={navItems}>
         <Navbar items={navItems} />
       </NavigationDrawer>
-      {standaloneMarkup}
+      <PageTransition>{standaloneMarkup}</PageTransition>
       {!isStandalone && <Footer />}
     </>
   )
