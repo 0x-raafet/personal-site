@@ -1,23 +1,32 @@
 import CryptoJS from 'crypto-js'
 import { google } from 'googleapis'
+import _fetch from 'isomorphic-fetch'
 import uniqBy from 'lodash/uniqBy'
 import { EnvVars } from 'env'
 import { googlePrivateKey } from 'secrets/google-private-key'
-import { getAllPostsSlugs } from 'utils/postsFetcher'
-import { getAllSnippetsSlugs } from 'utils/snippetsFetcher'
+import { getAllPosts } from 'utils/postsFetcher'
+import { getAllSnippets } from 'utils/snippetsFetcher'
 
 export default async function PostsEndpoint(req, res) {
   res.setHeader('Cache-Control', `s-maxage=600, stale-while-revalidate`)
+
   try {
+    const allPosts = await getAllPosts()
+    const allSnippets = await getAllSnippets()
     const pagesViews = await getAnalyticsAllPagesViews()
-    const allPostsSlugs = getAllPostsSlugs()
-    const allSnippetsSlugs = getAllSnippetsSlugs()
+    const pagesViewsForem = await getArticlesViewsFromForem(allPosts)
+
+    const allPostsSlugs = allPosts.map((post) => post.slug)
+    const allSnippetsSlugs = allSnippets.map((snippet) => snippet.slug)
 
     return res.send({
-      posts: pagesViews.filter((view) => allPostsSlugs.includes(view.slug)),
+      posts: pagesViews
+        .filter((view) => allPostsSlugs.includes(view.slug))
+        .map((prev) => ({ ...prev, views: `${Number(prev.views) + Number(pagesViewsForem[prev.slug])}` })),
       snippets: pagesViews.filter((view) => allSnippetsSlugs.includes(view.slug)),
     })
-  } catch {
+  } catch (e) {
+    console.error(e)
     res.send({ posts: [], snippets: [] })
   }
 }
@@ -48,6 +57,25 @@ async function getAnalyticsAllPagesViews() {
   }
 
   return []
+}
+
+async function getArticlesViewsFromForem(allPosts) {
+  return _fetch('https://dev.to/api/articles/me/published', { headers: { 'api-key': EnvVars.FOREM_API_KEY } })
+    .then((res) => res.json())
+    .then((foremPosts) =>
+      allPosts.map((localPost) => ({
+        [localPost.slug]: foremPosts.find((foremPost) => foremPost.slug === localPost.meta.foremSlug)?.page_views_count || 0,
+      })),
+    )
+    .then((data) => convertKeyValToObject(data))
+}
+
+function convertKeyValToObject(array) {
+  return array.reduce((result, item) => {
+    const key = Object.keys(item)[0]
+    result[key] = item[key]
+    return result
+  }, {})
 }
 
 function sanitizeSlug(slug) {
