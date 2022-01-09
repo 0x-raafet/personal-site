@@ -9,7 +9,6 @@ export default function Footer() {
         <FooterContainer>
           <Section>
             <SectionTitle>Pages</SectionTitle>
-            <Link href="/snippets">Snippets</Link>
             <Link href="/uses">Uses</Link>
             {/* <Link href="/colophon">Colophon</Link> */}
             <Link href="/resume">Resume</Link>

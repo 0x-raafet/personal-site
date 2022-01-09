@@ -5,29 +5,24 @@ import uniqBy from 'lodash/uniqBy'
 import { EnvVars } from 'env'
 import { googlePrivateKey } from 'secrets/google-private-key'
 import { getAllPosts } from 'utils/postsFetcher'
-import { getAllSnippets } from 'utils/snippetsFetcher'
 
 export default async function PostsEndpoint(req, res) {
   res.setHeader('Cache-Control', `s-maxage=600, stale-while-revalidate`)
 
   try {
     const allPosts = await getAllPosts()
-    const allSnippets = await getAllSnippets()
     const pagesViews = await getAnalyticsAllPagesViews()
     const pagesViewsForem = await getArticlesViewsFromForem(allPosts)
-
     const allPostsSlugs = allPosts.map((post) => post.slug)
-    const allSnippetsSlugs = allSnippets.map((snippet) => snippet.slug)
 
     return res.send({
       posts: pagesViews
         .filter((view) => allPostsSlugs.includes(view.slug))
         .map((prev) => ({ ...prev, views: `${Number(prev.views) + Number(pagesViewsForem[prev.slug])}` })),
-      snippets: pagesViews.filter((view) => allSnippetsSlugs.includes(view.slug)),
     })
   } catch (e) {
     console.error(e)
-    res.send({ posts: [], snippets: [] })
+    res.send({ posts: [] })
   }
 }
 

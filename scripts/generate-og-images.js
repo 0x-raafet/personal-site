@@ -6,13 +6,11 @@ const path = require('path')
 
 ;(async function () {
   const postsDirectory = path.join(process.cwd(), 'posts')
-  const snippetsDirectory = path.join(process.cwd(), 'snippets')
 
   const allPosts = getAllEntries(postsDirectory)
-  const allSnippets = getAllEntries(snippetsDirectory)
 
   // prettier-ignore
-  Promise.all([...allPosts, ...allSnippets]
+  Promise.all(allPosts
     .map(([slug, directory]) => getSinglePost(slug, directory))
     .map(fetchImageBlob))
     .then(writeFilesToPublicDirectory)

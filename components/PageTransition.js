@@ -28,7 +28,7 @@ export default function PageTransition({ children }) {
   }
 
   return (
-    <Animation key={router.route} delay={50} duration={350}>
+    <Animation key={router.route} delay={50} duration={400}>
       {children}
     </Animation>
   )

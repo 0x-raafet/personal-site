@@ -14,7 +14,6 @@ import { initColorModeScript } from 'utils/initColorMode'
 const navItems = [
   { title: 'Home', href: '/' },
   { title: 'Blog', href: '/blog' },
-  { title: 'Snippets', href: '/snippets' },
 ]
 
 const standalonePaths = []
