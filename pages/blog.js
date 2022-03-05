@@ -118,7 +118,7 @@ export async function getStaticProps() {
   const yearGroupedPosts = groupBy(sortDescByDate(transformedPosts), (post) => new Date(post.date).getFullYear())
 
   return {
-    props: { yearGroupedPosts: Object.entries(yearGroupedPosts) },
+    props: { yearGroupedPosts: Object.entries(yearGroupedPosts).reverse() },
     revalidate: 60 * 10 * 6,
   }
 

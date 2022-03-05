@@ -89,21 +89,22 @@ export async function getStaticProps() {
     .then((r) => r.json())
     .then((r) => r.posts)
 
-  const transformedPosts = fetchedPosts
-    .map((singlePost) => ({
-      ...singlePost.meta,
-      slug: singlePost.slug,
-      readTime: getReadTime(singlePost.content),
-      views: viewsData.find((item) => item.slug === singlePost.slug)?.views || 'N/A',
-    }))
-    .slice(0, LATEST_POSTS_COUNT)
-  const yearGroupedPosts = groupBy(sortDescByDate(transformedPosts), (post) => new Date(post.date).getFullYear())
+  const transformedPosts = fetchedPosts.map((singlePost) => ({
+    ...singlePost.meta,
+    slug: singlePost.slug,
+    readTime: getReadTime(singlePost.content),
+    views: viewsData.find((item) => item.slug === singlePost.slug)?.views || 'N/A',
+  }))
+
+  const yearGroupedPosts = groupBy(sortDescByDate(transformedPosts.reverse().slice(0, LATEST_POSTS_COUNT)), (post) =>
+    new Date(post.date).getFullYear(),
+  )
 
   const githubData = await fetch(makeApiUrl('/api/github-contributions')).then((r) => r.json())
   const goodreadsData = await fetch(makeApiUrl('/api/last-read')).then((r) => r.json())
 
   return {
-    props: { yearGroupedPosts: Object.entries(yearGroupedPosts), ...githubData, ...goodreadsData },
+    props: { yearGroupedPosts: Object.entries(yearGroupedPosts).reverse(), ...githubData, ...goodreadsData },
     revalidate: 60 * 10 * 6,
   }
 
