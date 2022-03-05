@@ -70,7 +70,7 @@ const Paragraph = styled.p`
   hanging-punctuation: first;
 
   &:not(:last-child) {
-    margin-bottom: 30px;
+    margin-bottom: 20px;
   }
 
   & + ul,
@@ -99,7 +99,7 @@ const Break = styled.br`
   display: block;
   content: '';
   margin: 0;
-  height: 30px;
+  height: 15px;
 `
 
 const TextHighlight = styled.code`
