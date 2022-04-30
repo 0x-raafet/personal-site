@@ -1,6 +1,9 @@
+const partytown = require('@builder.io/partytown/utils')
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
 })
+const CopyPlugin = require('copy-webpack-plugin')
+const path = require('path')
 
 module.exports = withBundleAnalyzer({
   reactStrictMode: true,
@@ -18,6 +21,17 @@ module.exports = withBundleAnalyzer({
       config.resolve.fallback.net = false
       config.resolve.fallback.tls = false
     }
+
+    config.plugins.push(
+      new CopyPlugin({
+        patterns: [
+          {
+            from: partytown.libDirPath(),
+            to: path.join(__dirname, 'public', '~partytown'),
+          },
+        ],
+      }),
+    )
 
     return config
   },

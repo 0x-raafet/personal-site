@@ -1,3 +1,4 @@
+import { Partytown } from '@builder.io/partytown/react'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { ThemeProvider } from 'styled-components'
@@ -24,6 +25,34 @@ function MyApp({ Component, pageProps }) {
   const isStandalone = standalonePaths.includes(router.pathname)
   const standaloneMarkup = <Component {...pageProps} />
 
+  const partytownScripts = (
+    <>
+      <Partytown
+        forward={['dataLayer.push', 'fbq']}
+        resolveUrl={(url) => {
+          if (['connect.facebook.net', 'www.googletagmanager.com', 'www.google-analytics.com'].includes(url.hostname)) {
+            // eslint-disable-next-line no-restricted-globals
+            const proxyUrl = new URL(`${self.location.origin}/api/cors-proxy`)
+            proxyUrl.searchParams.append('url', url.href)
+            return proxyUrl
+          }
+
+          return url
+        }}
+      />
+      <script
+        type="text/partytown"
+        dangerouslySetInnerHTML={{
+          __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5877HF4');`,
+        }}
+      />
+    </>
+  )
+
   const contentMarkup = (
     <>
       <NavigationDrawer items={navItems}>
@@ -39,13 +68,7 @@ function MyApp({ Component, pageProps }) {
       <Head>
         <link rel="icon" type="image/png" href="/favicon.png" />
         <link rel="alternate" type="application/rss+xml" href={EnvVars.URL + 'rss'} title="RSS 2.0" />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-          ga('create', 'UA-117119829-1', 'auto');
-          ga('send', 'pageview');`,
-          }}
-        />
+        {partytownScripts}
       </Head>
       <script dangerouslySetInnerHTML={{ __html: initColorModeScript }} />
       <ThemeContextProvider>
@@ -54,7 +77,6 @@ function MyApp({ Component, pageProps }) {
           {isStandalone ? standaloneMarkup : contentMarkup}
         </ThemeProvider>
       </ThemeContextProvider>
-      <script defer src="https://www.google-analytics.com/analytics.js"></script>
     </>
   )
 }
