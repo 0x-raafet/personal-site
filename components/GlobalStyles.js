@@ -78,6 +78,15 @@ export const GlobalStyle = createGlobalStyle`
   --tint-green: 	hsl(150, 43%, 97%);
 }
 
+@font-face {
+  font-family: 'Wotfard-Regular';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/Wotfard-Regular.woff2') format('woff2'), url('/fonts/Wotfard-Regular.woff') format('woff');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
 /* Box sizing rules */
 *,
 *::before,
@@ -123,20 +132,7 @@ html {
   touch-action: manipulation;
   text-rendering: optimizelegibility;
   text-size-adjust: 100%;
-  font-family: ui-sans-serif, 
-    system-ui,
-    -apple-system, 
-    BlinkMacSystemFont, 
-    "Segoe UI", 
-    Roboto, 
-    "Helvetica Neue", 
-    Arial, 
-    "Noto Sans", 
-    sans-serif, 
-    "Apple Color Emoji", 
-    "Segoe UI Emoji", 
-    "Segoe UI Symbol", 
-    "Noto Color Emoji";
+  font-family: "Wotfard-Regular", Futura, -apple-system, sans-serif;
 } 
 
 /* Set core body defaults */
@@ -144,15 +140,7 @@ body {
   min-height: 100vh;
   text-rendering: optimizeSpeed;
   line-height: 1.5;
-  font-family: system-ui,
-		-apple-system,
-		'Segoe UI',
-		Roboto,
-		Helvetica,
-		Arial,
-		sans-serif,
-		'Apple Color Emoji',
-		'Segoe UI Emoji';
+  font-family: "Wotfard-Regular", Futura, -apple-system, sans-serif;
   color: var(--text);
   background: var(--background);
   font-feature-settings: "kern";
