@@ -132,7 +132,7 @@ html {
   touch-action: manipulation;
   text-rendering: optimizelegibility;
   text-size-adjust: 100%;
-  font-family: "Wotfard-Regular", Futura, -apple-system, sans-serif;
+  font-family: "Wotfard-Regular", -apple-system, sans-serif;
 } 
 
 /* Set core body defaults */
@@ -140,7 +140,7 @@ body {
   min-height: 100vh;
   text-rendering: optimizeSpeed;
   line-height: 1.5;
-  font-family: "Wotfard-Regular", Futura, -apple-system, sans-serif;
+  font-family: "Wotfard-Regular", -apple-system, sans-serif;
   color: var(--text);
   background: var(--background);
   font-feature-settings: "kern";
