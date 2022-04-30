@@ -3,8 +3,10 @@ import Icon from './Icon'
 
 export function HamburgerIcon(props) {
   return (
-    <Icon {...props}>
+    <Icon width="100%" height="100%" {...props}>
       <svg
+        width="24px"
+        height="24px"
         stroke="currentColor"
         fill="currentColor"
         strokeWidth="0"
