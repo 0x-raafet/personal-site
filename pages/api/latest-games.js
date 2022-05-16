@@ -3,17 +3,21 @@ import floor from 'lodash/floor'
 import { EnvVars } from 'env'
 
 export default async function LatestGames(req, res) {
-  const apiRoot = 'http://api.steampowered.com'
-  const steamProfileId = '76561198329610483'
-  const result = await _fetch(
-    apiRoot + `/IPlayerService/GetRecentlyPlayedGames/v0001/?key=${EnvVars.STEAM_KEY}&steamid=${steamProfileId}&format=json`,
-  )
-    .then((res) => res.json())
-    .then((data) => data.response.games.map(transformResponse))
+  try {
+    const apiRoot = 'http://api.steampowered.com'
+    const steamProfileId = '76561198329610483'
+    const result = await _fetch(
+      apiRoot + `/IPlayerService/GetRecentlyPlayedGames/v0001/?key=${EnvVars.STEAM_KEY}&steamid=${steamProfileId}&format=json`,
+    )
+      .then((res) => res.json())
+      .then((data) => data.response.games.map(transformResponse))
 
-  res.setHeader('Cache-Control', `s-maxage=60, stale-while-revalidate`)
-
-  return res.send(result)
+    res.setHeader('Cache-Control', `s-maxage=60, stale-while-revalidate`)
+    return res.send(result)
+  } catch (e) {
+    console.error(e)
+    return res.send([])
+  }
 }
 
 function transformResponse(payload) {

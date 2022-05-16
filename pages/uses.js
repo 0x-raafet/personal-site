@@ -160,10 +160,12 @@ const Game = styled.div`
 `
 
 export async function getStaticProps() {
-  const latestGames = await fetch(makeApiUrl('/api/latest-games')).then((res) => res.json())
+  const latestGames = await fetch(makeApiUrl('/api/latest-games'))
+    .then((res) => res.json())
+    .catch((e) => console.log(e))
 
   return {
-    props: { latestGames },
+    props: { latestGames: latestGames || [] },
     revalidate: 60,
   }
 }
