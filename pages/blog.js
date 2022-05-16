@@ -28,7 +28,7 @@ export default function Blog({ yearGroupedPosts }) {
                     <ListItem key={singlePost.slug}>
                       <Link href={'/' + singlePost.slug}>{singlePost.title}</Link>
                       <Details>
-                        <time dateTime={singlePost.date}>{formattedDate}</time> <MidDot /> {singlePost.readTime}
+                        <time dateTime={singlePost.date}>{formattedDate}</time>
                         {/* <MidDot />{' '} */}
                         {/* {singlePost.views || 'N/A'} views */}
                       </Details>

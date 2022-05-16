@@ -10,7 +10,7 @@ export default function Header({ title, formattedDate, readTime }) {
       <Title>{title}</Title>
       {hasNoDateNorReadtime ? null : (
         <DetailsContainer>
-          {formattedDate} <MidDot /> {readTime}
+          {formattedDate} <MidDot />
         </DetailsContainer>
       )}
     </HeaderContainer>
