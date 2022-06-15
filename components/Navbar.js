@@ -4,8 +4,6 @@ import { useRouter } from 'next/router'
 import React, { useRef, useState } from 'react'
 import styled from 'styled-components'
 import { useScrollPosition } from 'hooks/useScrollPosition'
-import ClientOnly from './ClientOnly'
-import ColorSwitcher from './ColorSwitcher'
 import { HamburgerIcon } from './icons/HamburgerIcon'
 import Logotype from './Logotype'
 import Navigation from './Navigation'
@@ -64,9 +62,9 @@ export default function Navbar({ items }) {
           <Navigation items={items} />
         </NavigationWrapper>
         <div className="color-switcher-wrapper" style={{ width: '52px', height: '52px' }}>
-          <ClientOnly>
+          {/* <ClientOnly>
             <ColorSwitcher />
-          </ClientOnly>
+          </ClientOnly> */}
         </div>
         <HamburgerMenuWrapper>
           <HamburgerIcon onClick={toggle} />

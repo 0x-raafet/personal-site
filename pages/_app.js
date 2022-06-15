@@ -12,7 +12,6 @@ import PageTransition from 'components/PageTransition'
 import { ThemeContextProvider } from 'contexts/theme.context'
 import { EnvVars } from 'env'
 import { theme } from 'theme'
-import { initColorModeScript } from 'utils/initColorMode'
 
 const navItems = [
   { title: 'Home', href: '/' },
@@ -74,7 +73,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <link rel="alternate" type="application/rss+xml" href={EnvVars.URL + 'rss'} title="RSS 2.0" />
         {partytownScripts}
       </Head>
-      <script dangerouslySetInnerHTML={{ __html: initColorModeScript }} />
       <ThemeContextProvider>
         <ThemeProvider theme={theme}>
           <GlobalStyle />

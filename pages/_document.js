@@ -32,7 +32,7 @@ export default class MyDocument extends Document {
     return (
       <Html>
         <Head />
-        <body className="light-theme">
+        <body className="dark-theme">
           <noscript>
             <iframe
               title="gtag ns"
