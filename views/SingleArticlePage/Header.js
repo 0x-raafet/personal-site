@@ -25,7 +25,7 @@ const HeaderContainer = styled.div`
 `
 
 const Title = styled.h1`
-  font-weight: 600;
+  font-weight: bold;
   font-size: ${(p) => p.theme.fontSizes['5xl']}px;
   line-height: 56px;
 
