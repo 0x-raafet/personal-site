@@ -68,7 +68,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   return (
     <>
       <Head>
-        <link rel="preload" href="/fonts/Wotfard-Regular.woff2" as="font" type="font/woff2" crossOrigin="" />
+        <link rel="preload" href="/fonts/rubik-v20-latin-regular.woff2" as="font" type="font/woff2" crossOrigin="" />
+        <link rel="preload" href="/fonts/rubik-v20-latin-700.woff2" as="font" type="font/woff2" crossOrigin="" />
         <link rel="icon" type="image/png" href="/favicon.png" />
         <link rel="alternate" type="application/rss+xml" href={EnvVars.URL + 'rss'} title="RSS 2.0" />
         {partytownScripts}

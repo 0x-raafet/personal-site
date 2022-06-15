@@ -23,7 +23,7 @@ const Container = styled.div`
   width: 100%;
 
   section:not(:last-child) {
-    margin-bottom: 38px;
+    margin-bottom: 32px;
   }
 
   a {
@@ -85,14 +85,14 @@ const Paragraph = styled.p`
 
 const SecondHeading = styled.h2`
   font-size: ${theme.fontSizes['3xl']}px;
-  line-height: 38px;
-  margin-bottom: 38px;
+  line-height: 24px;
+  margin-bottom: 24px;
 `
 
 const ThirdHeading = styled.h3`
   font-size: ${theme.fontSizes['2xl']}px;
-  line-height: 34px;
-  margin-bottom: 34px;
+  line-height: 18px;
+  margin-bottom: 18px;
 `
 
 const Break = styled.br`
