@@ -4,13 +4,11 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "prebuild": "yarn generate-og-images",
     "build": "next build",
     "dev": "next dev",
     "start": "next start",
     "lint": "next lint",
     "analyze": "ANALYZE=true yarn build",
-    "generate-og-images": "node scripts/generate-og-images.js",
     "format": "eslint \"{,!(node_modules)/**/}*.{js,jsx}\" --fix"
   },
   "dependencies": {

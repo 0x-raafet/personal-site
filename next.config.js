@@ -20,6 +20,8 @@ module.exports = withBundleAnalyzer({
       config.resolve.fallback.worker_threads = false
       config.resolve.fallback.net = false
       config.resolve.fallback.tls = false
+    } else {
+      require('./scripts/generate-og-images')
     }
 
     config.plugins.push(
