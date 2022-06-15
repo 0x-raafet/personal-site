@@ -7,6 +7,21 @@ const path = require('path')
 
 module.exports = withBundleAnalyzer({
   reactStrictMode: true,
+  externalHelpers: true,
+  swcMinify: true,
+  compiler: {
+    styledComponents: true,
+  },
+  experimental: {
+    nftTracing: true,
+    legacyBrowsers: false,
+    browsersListForSwc: true,
+    modularizeImports: {
+      lodash: {
+        transform: 'lodash/{{member}}',
+      },
+    },
+  },
   pageExtensions: ['js', 'jsx', 'mdx'],
   images: {
     domains: ['cdn.akamai.steamstatic.com'],
@@ -71,9 +86,4 @@ module.exports = withBundleAnalyzer({
       },
     ]
   },
-  swcMinify: true,
-  compiler: {
-    styledComponents: true,
-  },
-  experimental: { nftTracing: true },
 })
