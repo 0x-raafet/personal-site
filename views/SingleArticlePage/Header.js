@@ -1,6 +1,5 @@
 import React from 'react'
 import styled from 'styled-components'
-import MidDot from 'components/MidDot'
 
 export default function Header({ title, formattedDate, readTime }) {
   const hasNoDateNorReadtime = !formattedDate && !readTime
@@ -8,11 +7,7 @@ export default function Header({ title, formattedDate, readTime }) {
   return (
     <HeaderContainer>
       <Title>{title}</Title>
-      {hasNoDateNorReadtime ? null : (
-        <DetailsContainer>
-          {formattedDate} <MidDot />
-        </DetailsContainer>
-      )}
+      {hasNoDateNorReadtime ? null : <DetailsContainer>{formattedDate}</DetailsContainer>}
     </HeaderContainer>
   )
 }

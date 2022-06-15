@@ -1,3 +1,5 @@
+import '../public/fonts/style.css'
+
 import { Partytown } from '@builder.io/partytown/react'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
