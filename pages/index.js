@@ -96,7 +96,7 @@ export async function getStaticProps() {
     views: viewsData.find((item) => item.slug === singlePost.slug)?.views || 'N/A',
   }))
 
-  const yearGroupedPosts = groupBy(sortDescByDate(transformedPosts.reverse().slice(0, LATEST_POSTS_COUNT)), (post) =>
+  const yearGroupedPosts = groupBy(sortDescByDate(transformedPosts.reverse()).slice(0, LATEST_POSTS_COUNT), (post) =>
     new Date(post.date).getFullYear(),
   )
 
