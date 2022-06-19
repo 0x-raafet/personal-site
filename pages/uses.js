@@ -99,7 +99,7 @@ export default function UsesPage({ latestGames }) {
         <CustomAutofit>
           {latestGames.map((singleGame) => (
             <Game key={singleGame.name}>
-              <NextImage src={singleGame.logoUrl} alt={`${singleGame.name} cover`} width={184} height={69} objectFit="contain" />
+              <NextImage src={singleGame.logoUrl} alt={`${singleGame.name} cover`} width={32} height={32} objectFit="contain" />
               <Stack>
                 <Link href={singleGame.steamLink || '#'}>{singleGame.name}</Link>
                 <p>
@@ -118,7 +118,7 @@ export default function UsesPage({ latestGames }) {
 }
 
 const CustomAutofit = styled(AutofitGrid)`
-  --autofit-grid-item-size: 350px;
+  --autofit-grid-item-size: 250px;
 
   @media (max-width: ${(p) => p.theme.breakpoints.sm}) {
     --autofit-grid-item-size: 300px;

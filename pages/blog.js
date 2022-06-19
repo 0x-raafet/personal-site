@@ -2,7 +2,6 @@ import groupBy from 'lodash/groupBy'
 import Head from 'next/head'
 import styled from 'styled-components'
 import Link from 'components/Link'
-import MidDot from 'components/MidDot'
 import Page from 'components/Page'
 import { formatDate } from 'utils/formatDate'
 import { getReadTime } from 'utils/getReadTime'
@@ -120,7 +119,7 @@ export async function getStaticProps() {
 
   return {
     props: { yearGroupedPosts: Object.entries(yearGroupedPosts).reverse() },
-    revalidate: 60 * 10 * 6,
+    revalidate: 60,
   }
 
   function sortDescByDate(array) {

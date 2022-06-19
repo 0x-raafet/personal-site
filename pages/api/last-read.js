@@ -7,7 +7,7 @@ export default async function Goodreads(req, res) {
 
   await page.goto('https://www.goodreads.com/user/show/125029202-bart-omiej-stefa-ski')
 
-  res.setHeader('Cache-Control', `s-maxage=86400, stale-while-revalidate`)
+  res.setHeader('Cache-Control', `s-maxage=3600, stale-while-revalidate`)
 
   const results = await page.evaluate(() => {
     const currentlyReadingElement = document.querySelector('#currentlyReadingReviews')

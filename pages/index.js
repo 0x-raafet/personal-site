@@ -105,7 +105,7 @@ export async function getStaticProps() {
 
   return {
     props: { yearGroupedPosts: Object.entries(yearGroupedPosts).reverse(), ...githubData, ...goodreadsData },
-    revalidate: 60 * 10 * 6,
+    revalidate: 60,
   }
 
   function sortDescByDate(array) {
