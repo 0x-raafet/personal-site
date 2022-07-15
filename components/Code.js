@@ -99,7 +99,7 @@ const CopyButton = styled(CopyIcon)`
 const CodeWrapper = styled.div`
   position: relative;
   border-radius: 0.3em;
-  margin-top: 45px;
+  margin-top: 25px;
   transition: visibility 0.1s;
 
   &:not(:last-child) {

@@ -3,9 +3,9 @@ import styled from 'styled-components'
 import { theme } from 'theme'
 import OptimizedImage from './OptimizedImage'
 
-export default function ArticleImage({ src, caption, ...rest }) {
+export default function ArticleImage({ src, caption, maxHeight, ...rest }) {
   return (
-    <Wrapper>
+    <Wrapper maxHeight={maxHeight}>
       <OptimizedImage objectFit="cover" src={src} {...rest} />
       <Caption>{caption}</Caption>
     </Wrapper>
@@ -17,12 +17,9 @@ const Wrapper = styled.div`
   flex-direction: column;
   width: 100%;
 
-  &:not(:last-child) {
-    margin-bottom: 30px;
-  }
-
   .optimized-image-wrapper {
     position: relative;
+    max-height: ${(props) => props.maxHeight};
     max-width: ${theme.spacings.mediumContainer}px;
 
     &::before {

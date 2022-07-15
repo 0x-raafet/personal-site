@@ -55,7 +55,7 @@ const Container = styled.div`
     }
 
     &:not(:last-child) {
-      margin-bottom: 30px;
+      margin-bottom: 20px;
     }
 
     @media (max-width: ${theme.breakpoints.sm}) {
@@ -66,7 +66,7 @@ const Container = styled.div`
 
 const Paragraph = styled.p`
   font-size: ${theme.fontSizes['xl']}px;
-  line-height: 30px;
+  line-height: 1.75;
   hanging-punctuation: first;
 
   &:not(:last-child) {

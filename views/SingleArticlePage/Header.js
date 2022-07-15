@@ -22,7 +22,7 @@ const HeaderContainer = styled.div`
 const Title = styled.h1`
   font-weight: bold;
   font-size: ${(p) => p.theme.fontSizes['5xl']}px;
-  line-height: 56px;
+  line-height: 1.33333;
 
   & + div {
     margin-top: 28px;
