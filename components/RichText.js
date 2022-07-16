@@ -108,7 +108,7 @@ const TextHighlight = styled.code`
   color: var(--primary);
   border-radius: 4px;
   background-color: var(--text-highlight);
-  font-size: 20px;
+  font-size: inherit;
   font-family: inherit;
 `
 
