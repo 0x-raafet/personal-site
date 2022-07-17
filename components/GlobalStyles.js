@@ -3,7 +3,7 @@ import { createGlobalStyle } from 'styled-components'
 export const GlobalStyle = createGlobalStyle`
 .light-theme {
   --background: hsl(228, 100%, 99%);
-  --text: var(--gray-800);
+  --text: hsl(0deg, 0%, 100%);
   --text-lighter: var(--gray-700);
   --heading: var(--gray-900);
   --tint-primary: var(--tint-blue);
