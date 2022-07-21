@@ -26,7 +26,7 @@ async function mapToXmlFormat(items) {
     <generator>bstefanski.com</generator>
     <atom:link href="https://bstefanski.com/rss" rel="self" type="application/rss+xml"/>
     <language>en</language>
-    ${(await Promise.all(items.map(makeSingleRssItem))).join('\n')}
+    ${(await Promise.all(items.sort((a, b) => new Date(b.meta.date) - new Date(a.meta.date)).map(makeSingleRssItem))).join('\n')}
   </channel>
   </rss>`
 }

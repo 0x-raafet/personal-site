@@ -24,7 +24,9 @@ function mapToXmlFormat(items, host) {
               'xmlns:news': 'http://www.google.com/schemas/sitemap-news/0.9',
             },
           },
-          ...items.map((singleItem) => makeSingleSitemapItem(singleItem, host)),
+          ...items
+            .sort((a, b) => new Date(b.meta.date) - new Date(a.meta.date))
+            .map((singleItem) => makeSingleSitemapItem(singleItem, host)),
         ],
       },
     ],
