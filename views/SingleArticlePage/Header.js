@@ -15,7 +15,7 @@ export default function Header({ title, formattedDate, readTime }) {
 const HeaderContainer = styled.div`
   display: flex;
   flex-direction: column;
-  max-width: ${(p) => p.theme.spacings.smallContainer}px;
+  max-width: 750px;
   margin-bottom: 60px;
 `
 
