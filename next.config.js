@@ -1,6 +1,3 @@
-/**
- * @type {import('next').NextConfig}
- */
 const partytown = require('@builder.io/partytown/utils')
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
@@ -16,8 +13,8 @@ module.exports = withBundleAnalyzer({
     styledComponents: true,
   },
   experimental: {
+    nftTracing: true,
     legacyBrowsers: false,
-    outputFileTracing: true,
     browsersListForSwc: true,
     modularizeImports: {
       lodash: {
