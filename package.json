@@ -8,7 +8,7 @@
     "dev": "next dev",
     "start": "next start",
     "lint": "next lint",
-    "analyze": "ANALYZE=true yarn build",
+    "analyze": "ANALYZE=true pnpm build",
     "format": "eslint \"{,!(node_modules)/**/}*.{js,jsx}\" --fix"
   },
   "dependencies": {
@@ -25,7 +25,7 @@
     "ioredis": "^4.28.0",
     "isomorphic-fetch": "^3.0.0",
     "lodash": "^4.17.21",
-    "next": "^12.1.5",
+    "next": "^12.2.3",
     "next-cache-effective-pages": "^1.8.0",
     "next-mdx-remote": "^3.0.2",
     "path": "^0.12.7",
