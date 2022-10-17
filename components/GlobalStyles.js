@@ -34,6 +34,12 @@ export const GlobalStyle = createGlobalStyle`
 }
 
 :root {
+
+  --border: rgb(234, 234, 234);
+    --bg-primary: white;
+    --text-primary: rgb(35 35 35);
+    --text-secondary: rgb(31, 155, 240);
+    
   --gray-900: hsl(230, 60%, 16%);
   --gray-800: hsl(228, 18%, 34%);
   --gray-700: hsl(230, 14%, 48%);
@@ -159,7 +165,133 @@ button,
 textarea,
 select {
   font: inherit;
+} 
+
+.tweet-info {
+
+  margin-top: 1rem;
+    font-size: .875rem;
+    line-height: 1.25rem;
+    display: flex;
+    align-items: center;
+    color: rgb(148, 163, 184);
 }
+
+.tweet-info-favourite {
+  width: 1.25rem;
+    height: 1.25rem;
+    margin-right: 0.5rem;
+}
+
+.tweet-info-date {
+  margin-left: 1rem;
+}
+
+.tweet-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .tweet-author-image {
+    width: 48px;
+    height: 48px;
+    border-radius: 9999px;
+  }
+  .tweet-author-info {
+    margin-left: 1rem;
+  }
+  .tweet-author-name {
+    line-height: 1rem;
+    font-weight: 500;
+  }
+  .tweet-author-handler {
+    line-height: 1.8rem;
+    color: var(--text-secondary);
+  }
+
+  .tweet-content {
+    margin-top: 1rem;
+  }
+  .tweet-content a {
+    color: var(--text-secondary);
+  }
+  .tweet-content .emoji {
+    display: inline-block;
+    height: 1.2em;
+    width: 1.2em;
+    margin: 0 0.05em 0 0.1em;
+    vertical-align: -0.1em;
+  }
+
+  .tweet-media {
+    margin-top: 1rem;
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+    overflow: hidden;
+  }
+  .tweet-summary-card-text {
+    border-top: 1px solid var(--border);
+    padding: 0.75rem;
+    font-size: 0.95rem;
+    color: var(--subtext-primary);
+  }
+  .tweet-summary-card-text span {
+    font-size: 0.9rem;
+  }
+  .tweet-summary-card-text h2 {
+    color: var(--text-primary);
+  }
+  .tweet-summary {
+    display: flex;
+  }
+  .tweet-summary img {
+    width: 130px;
+    height: 130px;
+  }
+  .tweet-summary > div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-left: 1px solid var(--border);
+    border-top: 0px !important;
+  }
+
+  .tweet-image {
+    width: 100%;
+  }
+  .tweet-quoted .tweet {
+    margin-top: 1rem;
+    width: 100%;
+  }
+
+  .tweet {
+    max-width: 515px;
+    padding: 2rem;
+    color: var(--text-primary);
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+    background: var(--bg-primary);
+    overflow: auto;
+  } 
+  .tweet-author {
+    display: flex;
+    align-items: center;
+  }
+  .tweet-author-title {
+    display: flex;
+    align-items: center;
+  }  
+  .tweet-author-verified {
+    width: 1.25rem;
+    height: 1.25rem;
+    margin-left: 0.25rem;
+    color: var(--text-secondary);
+  } 
+  .tweet-logo {
+    color: var(--text-secondary);
+  }
+
+  
 
 /* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
 @media (prefers-reduced-motion: reduce) {
@@ -175,5 +307,4 @@ select {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
-
 }`

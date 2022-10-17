@@ -14,7 +14,7 @@ import OpenGraphHead from 'views/HomePage/OpenGraphHead'
 import StructuredDataHead from 'views/HomePage/StructuredDataHead'
 import Symbols from 'views/HomePage/Symbols'
 
-export default function Home({ yearGroupedPosts, monthlyContributions, pinnedItems, bookTitle, bookAuthor }) {
+export default function Home({ yearGroupedPosts, monthlyContributions, pinnedItems }) {
   return (
     <>
       <OpenGraphHead />
@@ -28,8 +28,7 @@ export default function Home({ yearGroupedPosts, monthlyContributions, pinnedIte
           <strong>
             <Link href="https://github.com/bmstefanski">{monthlyContributions} contributions</Link>
           </strong>
-          . Currently, I am reading <Link href="https://www.goodreads.com/user/show/125029202-bart-omiej-stefa-ski">{bookTitle}</Link> by{' '}
-          {bookAuthor}.
+          .
         </Description>
       </Page>
       <Page title="Open source" description="Pinned open source projects">
@@ -101,10 +100,9 @@ export async function getStaticProps() {
   )
 
   const githubData = await fetch(makeApiUrl('/api/github-contributions')).then((r) => r.json())
-  const goodreadsData = await fetch(makeApiUrl('/api/last-read')).then((r) => r.json())
 
   return {
-    props: { yearGroupedPosts: Object.entries(yearGroupedPosts).reverse(), ...githubData, ...goodreadsData },
+    props: { yearGroupedPosts: Object.entries(yearGroupedPosts).reverse(), ...githubData },
     revalidate: 60,
   }
 
