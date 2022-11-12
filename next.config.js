@@ -61,6 +61,12 @@ module.exports = withBundleAnalyzer({
       },
     ]
   },
+  async rewrites() {
+    return [
+      { source: '/widget.js', destination: 'https://made-by-widget.vercel.app/main.modern.js' },
+      { source: '/widget.css', destination: 'https://made-by-widget.vercel.app/main.css' },
+    ]
+  },
   async headers() {
     return [
       {
