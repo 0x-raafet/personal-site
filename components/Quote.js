@@ -1,5 +1,6 @@
+import { styled } from '@linaria/react'
 import React from 'react'
-import styled from 'styled-components'
+import { withTheme } from 'theme'
 
 export default function Quote({ content, author, cite }) {
   return (
@@ -10,10 +11,10 @@ export default function Quote({ content, author, cite }) {
   )
 }
 
-const Container = styled.figure`
+const Container = withTheme(styled.figure`
   border-left: 1px solid var(--primary);
   padding: 30px;
-  quotes: ${`"\\201c" "\\201d" "\\2018" "\\2019"`};
+  quotes: ${`)"\\201c" "\\201d" "\\2018" "\\2019"`};
   color: var(--primary);
 
   &::before {
@@ -25,19 +26,19 @@ const Container = styled.figure`
     opacity: 0.6;
     font-family: arial, sans-serif;
   }
-`
+`)
 
-const Blockquote = styled.blockquote`
+const Blockquote = withTheme(styled.blockquote`
   color: var(--text);
   display: inline;
   font-size: ${(p) => p.theme.fontSizes['xl']}px;
   line-height: 30px;
   font-style: italic;
   hanging-punctuation: first;
-`
+`)
 
-const Caption = styled.figcaption`
+const Caption = withTheme(styled.figcaption`
   color: var(--text);
   display: block;
   margin-top: 30px;
-`
+`)

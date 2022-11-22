@@ -1,8 +1,9 @@
+import { styled } from '@linaria/react'
 import Highlight, { defaultProps } from 'prism-react-renderer'
 import React from 'react'
-import styled from 'styled-components'
 import ClientOnly from 'components/ClientOnly'
 import { useClipboard } from 'hooks/useClipboard'
+import { withTheme } from 'theme'
 import { theme } from 'theme'
 import CopyIcon from './icons/CopyIcon'
 
@@ -57,13 +58,13 @@ export default function Code({ code, language, selectedLines = [], withCopyButto
   )
 }
 
-const Caption = styled.small`
+const Caption = withTheme(styled.small`
   position: relative;
   top: -22px;
   word-break: break-word;
-`
+`)
 
-const CopyButton = styled(CopyIcon)`
+const CopyButton = withTheme(styled(CopyIcon)`
   position: absolute;
   top: ${theme.spacings.sm}px;
   right: ${theme.spacings.sm}px;
@@ -94,9 +95,9 @@ const CopyButton = styled(CopyIcon)`
   &:hover {
     background-color: var(--overlay-lighter);
   }
-`
+`)
 
-const CodeWrapper = styled.div`
+const CodeWrapper = withTheme(styled.div`
   position: relative;
   border-radius: 0.3em;
   margin-top: 25px;
@@ -127,27 +128,27 @@ const CodeWrapper = styled.div`
       visibility: visible;
     }
   }
-`
+`)
 
-const Pre = styled.pre`
+const Pre = withTheme(styled.pre`
   text-align: left;
   margin: 1em 0;
   padding: 0.5em;
   overflow: scroll;
-`
+`)
 
-const Line = styled.div`
+const Line = withTheme(styled.div`
   display: flex;
-`
+`)
 
-const LineNo = styled.span`
+const LineNo = withTheme(styled.span`
   display: table-cell;
   text-align: right;
   padding-right: 1em;
   user-select: none;
   opacity: 0.5;
-`
+`)
 
-const LineContent = styled.span`
+const LineContent = withTheme(styled.span`
   display: table-cell;
-`
+`)

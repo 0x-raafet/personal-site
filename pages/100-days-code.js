@@ -1,16 +1,9 @@
-import groupBy from 'lodash/groupBy'
+import { styled } from '@linaria/react'
 import Head from 'next/head'
-import styled from 'styled-components'
-import Link from 'components/Link'
-import Page from 'components/Page'
-import { formatDate } from 'utils/formatDate'
-import { getReadTime } from 'utils/getReadTime'
-import { makeApiUrl } from 'utils/makeApiUrl'
-import { getAllPosts } from 'utils/postsFetcher'
-import AutofitGrid from 'components/AutofitGrid'
-import _fetch from 'isomorphic-fetch'
 import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry'
-import * as fs from 'fs'
+import AutofitGrid from 'components/AutofitGrid'
+import Page from 'components/Page'
+import { withTheme } from 'theme'
 
 export default function Blog({ tweets }) {
   return (
@@ -36,7 +29,7 @@ export default function Blog({ tweets }) {
   )
 }
 
-const Intro = styled.div`
+const Intro = withTheme(styled.div`
   font-size: ${(p) => p.theme.fontSizes['3xl']}px;
   font-weight: bold;
   line-height: 1.25;
@@ -47,9 +40,9 @@ const Intro = styled.div`
   @media (max-width: ${(p) => p.theme.breakpoints.sm}) {
     font-size: ${(p) => p.theme.fontSizes['2xl']}px;
   }
-`
+`)
 
-const Stats = styled.div`
+const Stats = withTheme(styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -62,9 +55,9 @@ const Stats = styled.div`
     justify-content: center;
     gap: 10px;
   }
-`
+`)
 
-const Stat = styled.div`
+const Stat = withTheme(styled.div`
   font-size: ${(p) => p.theme.fontSizes.xl}px;
   font-weight: bold;
   line-height: 1.5;
@@ -76,15 +69,7 @@ const Stat = styled.div`
   @media (max-width: ${(p) => p.theme.breakpoints.sm}) {
     font-size: ${(p) => p.theme.fontSizes.lg}px;
   }
-`
-
-const CustomAutofit = styled(AutofitGrid)`
-  --autofit-grid-item-size: 500px;
-
-  @media (max-width: ${(p) => p.theme.breakpoints.md}) {
-    --autofit-grid-item-size: 280px;
-  }
-`
+`)
 
 export async function getStaticProps() {
   return {

@@ -1,5 +1,6 @@
+import { styled } from '@linaria/react'
 import React from 'react'
-import styled from 'styled-components'
+import { withTheme } from 'theme'
 import { theme } from 'theme'
 import OptimizedImage from './OptimizedImage'
 
@@ -12,7 +13,7 @@ export default function ArticleImage({ src, caption, maxHeight, ...rest }) {
   )
 }
 
-const Wrapper = styled.div`
+const Wrapper = withTheme(styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -34,11 +35,11 @@ const Wrapper = styled.div`
       clear: both;
     }
   }
-`
+`)
 
-const Caption = styled.small`
+const Caption = withTheme(styled.small`
   display: block;
   font-size: ${theme.fontSizes['sm']}px;
   text-align: center;
   margin-bottom: ${theme.fontSizes['md']}px;
-`
+`)

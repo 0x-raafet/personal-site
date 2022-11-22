@@ -1,6 +1,7 @@
+import { styled } from '@linaria/react'
 import NextImage from 'next/image'
 import React from 'react'
-import styled from 'styled-components'
+import { withTheme } from 'theme'
 
 export default function OptimizedImage({ src, ...rest }) {
   return (
@@ -17,6 +18,6 @@ export default function OptimizedImage({ src, ...rest }) {
   )
 }
 
-const Wrapper = styled.div`
+const Wrapper = withTheme(styled.div`
   position: relative;
-`
+`)

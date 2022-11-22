@@ -47,3 +47,5 @@ test-timings.json
 
 # partytown
 public/~partytown
+
+.dccache

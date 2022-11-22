@@ -1,10 +1,11 @@
+import { styled } from '@linaria/react'
 import fetch from 'isomorphic-fetch'
 import Head from 'next/head'
 import NextImage from 'next/image'
-import styled from 'styled-components'
 import AutofitGrid from 'components/AutofitGrid'
 import Link from 'components/Link'
 import Page from 'components/Page'
+import { withTheme } from 'theme'
 import { makeApiUrl } from 'utils/makeApiUrl'
 
 export default function UsesPage({ latestGames }) {
@@ -117,30 +118,30 @@ export default function UsesPage({ latestGames }) {
   )
 }
 
-const CustomAutofit = styled(AutofitGrid)`
+const CustomAutofit = withTheme(styled(AutofitGrid)`
   --autofit-grid-item-size: 250px;
 
   @media (max-width: ${(p) => p.theme.breakpoints.sm}) {
     --autofit-grid-item-size: 300px;
   }
-`
+`)
 
-const Title = styled.div`
+const Title = withTheme(styled.div`
   font-weight: bold;
   font-size: ${(p) => p.theme.fontSizes.xl}px;
   margin-bottom: ${(p) => p.theme.spacings.xs}px;
-`
+`)
 
-const Stack = styled.div`
+const Stack = withTheme(styled.div`
   display: flex;
   flex-direction: column;
 
   & > *:not(:first-child) {
     margin-top: ${(p) => p.theme.spacings['2xs']}px;
   }
-`
+`)
 
-const Game = styled.div`
+const Game = withTheme(styled.div`
   display: flex;
 
   & > *:not(:first-child) {
@@ -157,7 +158,7 @@ const Game = styled.div`
       margin-left: 0;
     }
   }
-`
+`)
 
 export async function getStaticProps() {
   const latestGames = await fetch(makeApiUrl('/api/latest-games'))

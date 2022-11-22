@@ -1,8 +1,9 @@
 /* eslint-disable @next/next/no-img-element */
+import { styled } from '@linaria/react'
 import React, { useEffect, useState } from 'react'
-import styled from 'styled-components'
 import useEscClose from 'hooks/useEscClose'
 import { useSound } from 'hooks/useSound'
+import { withTheme } from 'theme'
 import { randomRange } from 'utils/randomRange'
 
 export default function PolishCowOverlay({ onClose }) {
@@ -84,7 +85,7 @@ export default function PolishCowOverlay({ onClose }) {
   )
 }
 
-const Container = styled.div`
+const Container = withTheme(styled.div`
   width: 100vw;
   height: 100vh;
   cursor: none;
@@ -119,9 +120,9 @@ const Container = styled.div`
       transform: scale(1);
     }
   }
-`
+`)
 
-const Captions = styled.div`
+const Captions = withTheme(styled.div`
   color: black;
   width: 65%;
   height: 250px;
@@ -188,13 +189,13 @@ const Captions = styled.div`
       text-shadow: -9px 4px 0px teal;
     }
   }
-`
+`)
 
-const Pointer = styled.div`
+const Pointer = withTheme(styled.div`
   position: absolute;
   top: 100px;
   width: fit-content;
   left: 50%;
   pointer-events: none;
   user-select: none;
-`
+`)

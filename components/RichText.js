@@ -1,6 +1,7 @@
+import { styled } from '@linaria/react'
 import { MDXRemote } from 'next-mdx-remote'
-import styled from 'styled-components'
 import Code from 'components/Code'
+import { withTheme } from 'theme'
 import { theme } from 'theme'
 import ArticleImage from './ArticleImage'
 import Link from './Link'
@@ -14,7 +15,7 @@ export default function RichText(props) {
   )
 }
 
-const Container = styled.div`
+const Container = withTheme(styled.div`
   display: flex;
   ${'' /* Opting-out of margin-collapse */}
   margin-bottom: 38px;
@@ -62,9 +63,9 @@ const Container = styled.div`
       font-size: ${theme.fontSizes['lg']}px;
     }
   }
-`
+`)
 
-const Paragraph = styled.p`
+const Paragraph = withTheme(styled.p`
   font-size: ${theme.fontSizes['xl']}px;
   line-height: 1.75;
   hanging-punctuation: first;
@@ -81,28 +82,28 @@ const Paragraph = styled.p`
   @media (max-width: ${theme.breakpoints.sm}) {
     font-size: ${theme.fontSizes['lg']}px;
   }
-`
+`)
 
-const SecondHeading = styled.h2`
+const SecondHeading = withTheme(styled.h2`
   font-size: ${theme.fontSizes['3xl']}px;
   line-height: 1.4;
   margin-bottom: 24px;
-`
+`)
 
-const ThirdHeading = styled.h3`
+const ThirdHeading = withTheme(styled.h3`
   font-size: ${theme.fontSizes['2xl']}px;
   line-height: 1.4;
   margin-bottom: 18px;
-`
+`)
 
-const Break = styled.br`
+const Break = withTheme(styled.br`
   display: block;
   content: '';
   margin: 0;
   height: 15px;
-`
+`)
 
-const TextHighlight = styled.code`
+const TextHighlight = withTheme(styled.code`
   display: inline-block;
   padding: 0 ${theme.spacings['2xs']}px;
   color: var(--primary);
@@ -110,7 +111,7 @@ const TextHighlight = styled.code`
   background-color: var(--text-highlight);
   font-size: inherit;
   font-family: inherit;
-`
+`)
 
 const components = {
   h2: SecondHeading,

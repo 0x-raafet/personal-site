@@ -1,8 +1,9 @@
 import * as OriginalDrawer from '@accessible/drawer'
+import { styled } from '@linaria/react'
 import NextLink from 'next/link'
 import { useRouter } from 'next/router'
 import { useEffect, useRef } from 'react'
-import styled from 'styled-components'
+import { withTheme } from 'theme'
 import ClientOnly from './ClientOnly'
 import CloseIcon from './icons/CloseIcon'
 
@@ -59,7 +60,7 @@ function DrawerCloseButton() {
   return <CloseIcon className="close-icon" _ref={ref} {...a11yProps} />
 }
 
-const Wrapper = styled.div`
+const Wrapper = withTheme(styled.div`
   .my-drawer {
     width: 100%;
     height: 100%;
@@ -105,9 +106,9 @@ const Wrapper = styled.div`
       margin-top: ${(p) => p.theme.spacings.md}px;
     }
   }
-`
+`)
 
-const NavItem = styled.li`
+const NavItem = withTheme(styled.li`
   a {
     font-size: ${(p) => p.theme.fontSizes['4xl']}px;
     text-transform: uppercase;
@@ -117,4 +118,4 @@ const NavItem = styled.li`
     border-radius: 5px;
     padding: 5px 10px;
   }
-`
+`)

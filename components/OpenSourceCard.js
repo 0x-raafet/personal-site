@@ -1,5 +1,6 @@
+import { styled } from '@linaria/react'
 import React from 'react'
-import styled from 'styled-components'
+import { withTheme } from 'theme'
 import Link from './Link'
 
 export default function OpenSourceCard({
@@ -33,24 +34,24 @@ export default function OpenSourceCard({
   )
 }
 
-const Description = styled.div`
+const Description = withTheme(styled.div`
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 3;
-`
+`)
 
-const Title = styled.p`
+const Title = withTheme(styled.p`
   font-size: ${(p) => p.theme.fontSizes['lg']}px;
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 1;
-`
+`)
 
-const LanguageWrapper = styled.div`
+const LanguageWrapper = withTheme(styled.div`
   display: flex;
   align-items: center;
   justify-self: flex-end;
@@ -59,9 +60,9 @@ const LanguageWrapper = styled.div`
   & > *:not(:first-child):not(:last-child) {
     margin-left: ${(p) => p.theme.spacings['2xs']}px;
   }
-`
+`)
 
-const StarsWrapper = styled.div`
+const StarsWrapper = withTheme(styled.div`
   display: flex;
   align-items: center;
   margin-left: auto;
@@ -70,17 +71,17 @@ const StarsWrapper = styled.div`
   & > *:not(:first-child) {
     margin-left: ${(p) => p.theme.spacings['2xs']}px;
   }
-`
+`)
 
-const LanguageColor = styled.span`
+const LanguageColor = withTheme(styled.span`
   display: flex;
   border-radius: 100px;
   width: 18px;
   height: 18px;
   background-color: ${(p) => p.circleColor};
-`
+`)
 
-const Wrapper = styled.div`
+const Wrapper = withTheme(styled.div`
   display: flex;
   flex-direction: column;
   height: 150px;
@@ -92,4 +93,4 @@ const Wrapper = styled.div`
   & > *:not(:last-child) {
     margin-bottom: ${(p) => p.theme.spacings.xs}px;
   }
-`
+`)

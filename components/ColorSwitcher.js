@@ -1,7 +1,8 @@
+import { styled } from '@linaria/react'
 import React, { useEffect } from 'react'
-import styled, { css } from 'styled-components'
 import { useThemeContext } from 'contexts/theme.context'
 import { useBoolean } from 'hooks/useBoolean'
+import { withTheme } from 'theme'
 import MoonIcon from './icons/MoonIcon'
 import SunIcon from './icons/SunIcon'
 
@@ -46,7 +47,7 @@ export default function ColorSwitcher(props) {
   )
 }
 
-const ColorSwitcherContainer = styled.div`
+const ColorSwitcherContainer = withTheme(styled.div`
   display: flex;
   user-select: none;
   padding: ${(p) => p.theme.spacings['2xs']}px;
@@ -69,12 +70,6 @@ const ColorSwitcherContainer = styled.div`
     pointer-events: ${(p) => (p.isLightMode ? 'auto' : 'none')};
     width: ${(p) => (p.isLightMode ? '40px' : 0)};
     height: ${(p) => (p.isLightMode ? '40px' : 0)};
-
-    ${(p) =>
-      !p.isLightMode &&
-      css`
-        padding: 0;
-      `}
   }
 
   .sun-icon {
@@ -83,11 +78,5 @@ const ColorSwitcherContainer = styled.div`
     pointer-events: ${(p) => (p.isLightMode ? 'none' : 'auto')};
     width: ${(p) => (p.isLightMode ? 0 : '40px')};
     height: ${(p) => (p.isLightMode ? 0 : '40px')};
-
-    ${(p) =>
-      p.isLightMode &&
-      css`
-        padding: 0;
-      `}
   }
-`
+`)

@@ -1,6 +1,7 @@
+import { styled } from '@linaria/react'
 import NextLink from 'next/link'
 import React from 'react'
-import styled from 'styled-components'
+import { withTheme } from 'theme'
 
 export default function Link(props) {
   const { className, children, href } = props
@@ -11,7 +12,7 @@ export default function Link(props) {
   )
 }
 
-const Anchor = styled.a`
+const Anchor = withTheme(styled.a`
   display: inline;
   width: fit-content;
   text-decoration: none;
@@ -34,4 +35,4 @@ const Anchor = styled.a`
     color: var(--tint-primary);
     background-size: 100% 100%;
   }
-`
+`)

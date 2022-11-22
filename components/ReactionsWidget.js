@@ -1,8 +1,9 @@
+import { styled } from '@linaria/react'
 import NextImage from 'next/image'
 import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
-import styled from 'styled-components'
 import { useDebouncedCallback } from 'use-debounce'
+import { withTheme } from 'theme'
 import FadeIn from './FadeIn'
 
 const MAX_REACTIONS_PER_USER = 5
@@ -47,7 +48,7 @@ export default function ReactionsWidget() {
   )
 }
 
-const Wrapper = styled.div`
+const Wrapper = withTheme(styled.div`
   position: sticky;
   z-index: ${(p) => p.theme.zIndexes.reactionsWidget};
   width: ${(p) => p.theme.spacings.lg}px;
@@ -73,9 +74,9 @@ const Wrapper = styled.div`
   @media (max-width: ${(p) => p.theme.breakpoints.xl}) {
     display: none;
   }
-`
+`)
 
-const ReactionsCount = styled.div`
+const ReactionsCount = withTheme(styled.div`
   margin: auto;
   background: var(--overlay);
   opacity: 0.5;
@@ -83,4 +84,4 @@ const ReactionsCount = styled.div`
   border-radius: 10px;
   width: fit-content;
   padding: 5px 10px;
-`
+`)

@@ -4,7 +4,6 @@ import '../public/fonts/style.css'
 import { Partytown } from '@builder.io/partytown/react'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-import { ThemeProvider } from 'styled-components'
 import Footer from 'components/Footer'
 import { GlobalStyle } from 'components/GlobalStyles'
 import Navbar from 'components/Navbar'
@@ -12,7 +11,7 @@ import NavigationDrawer from 'components/NavigationDrawer'
 import PageTransition from 'components/PageTransition'
 import { ThemeContextProvider } from 'contexts/theme.context'
 import { EnvVars } from 'env'
-import { theme } from 'theme'
+import { theme, ThemeProvider } from 'theme'
 
 const navItems = [
   { title: 'Home', href: '/' },
@@ -92,7 +91,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         />
       </Head>
       <ThemeContextProvider>
-        <ThemeProvider theme={theme}>
+        <ThemeProvider>
           <GlobalStyle />
           {isStandalone ? standaloneMarkup : contentMarkup}
         </ThemeProvider>

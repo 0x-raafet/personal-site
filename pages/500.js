@@ -1,7 +1,8 @@
+import { styled } from '@linaria/react'
 import Head from 'next/head'
 import React from 'react'
-import styled from 'styled-components'
 import Container from 'components/Container'
+import { withTheme } from 'theme'
 
 export default function Custom500() {
   return (
@@ -19,6 +20,6 @@ export default function Custom500() {
   )
 }
 
-const Wrapper = styled.div`
+const Wrapper = withTheme(styled.div`
   padding: ${(p) => p.theme.spacings.xl}px 0;
-`
+`)

@@ -1,4 +1,7 @@
+import { createTheming } from '@callstack/react-theme-provider'
 import { invert, lighten } from 'polished'
+
+// theming.js
 
 export const theme = {
   spacings: {
@@ -38,3 +41,6 @@ export const theme = {
     drawer: '9999',
   },
 }
+const { ThemeProvider, withTheme } = createTheming(theme)
+
+export { ThemeProvider, withTheme }

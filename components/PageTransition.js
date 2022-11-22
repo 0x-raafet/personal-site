@@ -1,18 +1,8 @@
+import { styled } from '@linaria/react'
 import { useRouter } from 'next/router'
 import React, { useEffect, useRef } from 'react'
-import styled, { keyframes } from 'styled-components'
+import { withTheme } from 'theme'
 
-const keyframe = keyframes`
-  from {
-    opacity: 0;
-    transform: translate3d(0, 50px, 0);
-  }
-
-  to {
-    opacity: 1;
-    transform: translate3d(0, 0, 0);
-  }
-`
 export default function PageTransition({ children }) {
   const isFirstRender = useRef(false)
   const router = useRouter()
@@ -47,9 +37,21 @@ function Animation({ duration, delay, children }) {
   )
 }
 
-const Wrapper = styled.div`
+const Wrapper = withTheme(styled.div`
   @media (prefers-reduced-motion: no-preference) {
-    animation-name: ${keyframe};
+    animation-name: keyframe;
     animation-fill-mode: backwards;
+
+    @keyframes keyframe {
+      from {
+        opacity: 0;
+        transform: translate3d(0, 50px, 0);
+      }
+
+      to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+      }
+    }
   }
-`
+`)

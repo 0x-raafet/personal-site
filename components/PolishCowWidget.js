@@ -1,6 +1,7 @@
+import { styled } from '@linaria/react'
 import NextImage from 'next/image'
 import React from 'react'
-import styled from 'styled-components'
+import { withTheme } from 'theme'
 
 export default function PolishCowWidget({ onClick }) {
   return (
@@ -10,7 +11,7 @@ export default function PolishCowWidget({ onClick }) {
   )
 }
 
-const Wrapper = styled.div`
+const Wrapper = withTheme(styled.div`
   width: 64px;
   position: fixed;
   bottom: ${(p) => p.theme.spacings.sm}px;
@@ -24,4 +25,4 @@ const Wrapper = styled.div`
   @media (prefers-reduced-motion) {
     display: none;
   }
-`
+`)

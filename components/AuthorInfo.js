@@ -1,5 +1,6 @@
+import { styled } from '@linaria/react'
 import NextImage from 'next/image'
-import styled from 'styled-components'
+import { withTheme } from 'theme'
 import Link from './Link'
 
 export default function AuthorInfo(props) {
@@ -24,7 +25,7 @@ export default function AuthorInfo(props) {
   )
 }
 
-const Container = styled.div`
+const Container = withTheme(styled.div`
   display: flex;
   justify-content: space-between;
   margin: 30px 0;
@@ -37,9 +38,9 @@ const Container = styled.div`
   @media (max-width: ${(p) => p.theme.breakpoints.sm}) {
     flex-flow: column;
   }
-`
+`)
 
-const AvatarContainer = styled.div`
+const AvatarContainer = withTheme(styled.div`
   display: flex;
   width: ${(p) => p.theme.spacings.lg}px;
   height: 100%;
@@ -51,9 +52,9 @@ const AvatarContainer = styled.div`
   @media (max-width: ${(p) => p.theme.breakpoints.sm}) {
     margin-right: 0;
   }
-`
+`)
 
-const Content = styled.div`
+const Content = withTheme(styled.div`
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -61,17 +62,17 @@ const Content = styled.div`
   & > *:not(:first-child) {
     margin-top: ${(p) => p.theme.spacings['2xs']}px;
   }
-`
+`)
 
-const Links = styled.div`
+const Links = withTheme(styled.div`
   display: flex;
 
   & > *:not(:first-child) {
     margin-left: ${(p) => p.theme.spacings.xs}px;
   }
-`
+`)
 
-const AuthorTitle = styled.div`
+const AuthorTitle = withTheme(styled.div`
   font-size: ${(p) => p.theme.fontSizes['lg']}px;
   font-weight: bold;
-`
+`)

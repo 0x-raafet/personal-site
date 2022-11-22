@@ -1,9 +1,10 @@
 import * as Drawer from '@accessible/drawer'
+import { styled } from '@linaria/react'
 import NextLink from 'next/link'
 import { useRouter } from 'next/router'
 import React, { useRef, useState } from 'react'
-import styled from 'styled-components'
 import { useScrollPosition } from 'hooks/useScrollPosition'
+import { withTheme } from 'theme'
 import { HamburgerIcon } from './icons/HamburgerIcon'
 import Logotype from './Logotype'
 import Navigation from './Navigation'
@@ -74,7 +75,7 @@ export default function Navbar({ items }) {
   )
 }
 
-const Container = styled.header`
+const Container = withTheme(styled.header`
   display: flex;
   align-items: center;
   position: sticky;
@@ -106,9 +107,9 @@ const Container = styled.header`
   @media (max-width: ${(p) => p.theme.breakpoints.md}) {
     margin: 0 auto 60px auto;
   }
-`
+`)
 
-const Content = styled.div`
+const Content = withTheme(styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -123,19 +124,19 @@ const Content = styled.div`
       margin-left: auto;
     }
   }
-`
+`)
 
-const HamburgerMenuWrapper = styled.div`
+const HamburgerMenuWrapper = withTheme(styled.div`
   display: none;
   @media (max-width: ${(p) => p.theme.breakpoints.md}) {
     display: block;
     line-height: 1;
   }
-`
+`)
 
-const NavigationWrapper = styled.div`
+const NavigationWrapper = withTheme(styled.div`
   display: block;
   @media (max-width: ${(p) => p.theme.breakpoints.md}) {
     display: none;
   }
-`
+`)

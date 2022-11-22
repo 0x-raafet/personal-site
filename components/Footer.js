@@ -1,4 +1,5 @@
-import styled from 'styled-components'
+import { styled } from '@linaria/react'
+import { withTheme } from 'theme'
 import Container from './Container'
 import Link from './Link'
 
@@ -31,23 +32,23 @@ export default function Footer() {
   )
 }
 
-const Wrapper = styled.footer`
+const Wrapper = withTheme(styled.footer`
   background: var(--navbar);
   padding: ${(p) => p.theme.spacings.lg}px 0;
-`
+`)
 
-const FooterContainer = styled(Container)`
+const FooterContainer = withTheme(styled(Container)`
   align-items: flex-start;
   flex-direction: row;
   flex-wrap: wrap;
-`
+`)
 
-const DecorativeBar = styled.div`
+const DecorativeBar = withTheme(styled.div`
   width: 100%;
   height: ${(p) => p.theme.spacings['2xs']}px;
   background: var(--primary);
-`
-const Author = styled.div`
+`)
+const Author = withTheme(styled.div`
   margin-top: auto;
   margin-left: auto;
 
@@ -55,9 +56,9 @@ const Author = styled.div`
     margin: auto;
     margin-top: ${(p) => p.theme.spacings.md}px;
   }
-`
+`)
 
-const Section = styled.div`
+const Section = withTheme(styled.div`
   display: flex;
   flex-direction: column;
 
@@ -79,9 +80,9 @@ const Section = styled.div`
       margin-left: ${(p) => p.theme.spacings.md}px;
     }
   }
-`
+`)
 
-const SectionTitle = styled.h1`
+const SectionTitle = withTheme(styled.h1`
   font-size: ${(p) => p.theme.fontSizes.sm}px;
   font-weight: bold;
   line-height: 1.5;
@@ -94,4 +95,4 @@ const SectionTitle = styled.h1`
   @media (max-width: ${(p) => p.theme.breakpoints.sm}) {
     line-height: 2;
   }
-`
+`)

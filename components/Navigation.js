@@ -1,7 +1,8 @@
+import { styled } from '@linaria/react'
 import NextLink from 'next/link'
 import { useRouter } from 'next/router'
 import React from 'react'
-import styled, { css } from 'styled-components'
+import { withTheme } from 'theme'
 
 export default function Navigation({ items }) {
   const router = useRouter()
@@ -22,7 +23,7 @@ export default function Navigation({ items }) {
   )
 }
 
-const Container = styled.ul`
+const Container = withTheme(styled.ul`
   display: flex;
   justify-content: center;
   padding: 0;
@@ -32,9 +33,9 @@ const Container = styled.ul`
   & > *:not(:first-child) {
     margin-left: ${(p) => p.theme.spacings.sm}px;
   }
-`
+`)
 
-const NavItem = styled.li`
+const NavItem = withTheme(styled.li`
   a {
     font-size: ${(p) => p.theme.fontSizes['lg']}px;
     display: block;
@@ -51,11 +52,5 @@ const NavItem = styled.li`
     &:focus {
       background-color: var(--navbar-item-focus);
     }
-
-    ${(p) =>
-      p.isActive &&
-      css`
-        background-color: var(--navbar-item-focus);
-      `}
   }
-`
+`)

@@ -1,10 +1,11 @@
+import { styled } from '@linaria/react'
 import dynamic from 'next/dynamic'
 import Head from 'next/head'
 import React from 'react'
-import styled from 'styled-components'
 import AuthorInfo from 'components/AuthorInfo'
 import RichText from 'components/RichText'
 import { useLazyLoadCss } from 'hooks/useLazyLoadCss'
+import { withTheme } from 'theme'
 import { formatDate } from 'utils/formatDate'
 import { getReadTime } from 'utils/getReadTime'
 import { getAllPostsSlugs, getSinglePost } from 'utils/postsFetcher'
@@ -56,7 +57,7 @@ export async function getStaticProps({ params }) {
   return { props: { slug, content: serializedContent, meta, readTime: getReadTime(content) } }
 }
 
-const Container = styled.main`
+const Container = withTheme(styled.main`
   display: flex;
   position: relative;
   flex-direction: column;
@@ -65,4 +66,4 @@ const Container = styled.main`
   padding: 0 ${(p) => p.theme.spacings.xs}px;
   margin: 0 auto;
   margin-bottom: 38px;
-`
+`)

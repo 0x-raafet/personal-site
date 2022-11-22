@@ -1,8 +1,9 @@
+import { styled } from '@linaria/react'
 import groupBy from 'lodash/groupBy'
 import Head from 'next/head'
-import styled from 'styled-components'
 import Link from 'components/Link'
 import Page from 'components/Page'
+import { withTheme } from 'theme'
 import { formatDate } from 'utils/formatDate'
 import { getReadTime } from 'utils/getReadTime'
 import { makeApiUrl } from 'utils/makeApiUrl'
@@ -44,15 +45,15 @@ export default function Blog({ yearGroupedPosts }) {
   )
 }
 
-const YearSection = styled.div`
+const YearSection = withTheme(styled.div`
   display: flex;
 
   @media (max-width: ${(p) => p.theme.breakpoints.md}) {
     flex-direction: column;
   }
-`
+`)
 
-const Year = styled.p`
+const Year = withTheme(styled.p`
   font-size: ${(p) => p.theme.fontSizes['3xl']}px;
   font-weight: bold;
   flex: 2;
@@ -62,9 +63,9 @@ const Year = styled.p`
     margin-bottom: ${(p) => p.theme.spacings.sm}px;
     text-align: center;
   }
-`
+`)
 
-const Posts = styled.div`
+const Posts = withTheme(styled.div`
   display: flex;
   flex-direction: column;
   flex: 8;
@@ -77,18 +78,18 @@ const Posts = styled.div`
     flex: 1;
     margin: auto;
   }
-`
+`)
 
-const List = styled.div`
+const List = withTheme(styled.div`
   display: flex;
   flex-direction: column;
 
   & > *:not(:first-child) {
     margin-top: ${(p) => p.theme.spacings.lg}px;
   }
-`
+`)
 
-const ListItem = styled.div`
+const ListItem = withTheme(styled.div`
   font-size: ${(p) => p.theme.fontSizes['2xl']}px;
   max-width: ${(p) => p.theme.spacings.smallContainer}px;
 
@@ -96,12 +97,12 @@ const ListItem = styled.div`
     margin-top: ${(p) => p.theme.spacings['2xs']}px;
     font-size: ${(p) => p.theme.fontSizes.lg}px;
   }
-`
+`)
 
-const Details = styled.div`
+const Details = withTheme(styled.div`
   font-size: ${(p) => p.theme.fontSizes.md}px;
   opacity: 0.8;
-`
+`)
 
 export async function getStaticProps() {
   const fetchedPosts = await getAllPosts()

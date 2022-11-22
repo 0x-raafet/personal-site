@@ -16,17 +16,17 @@ import { useEffect, useRef } from 'react';
 import { down } from 'styled-breakpoints';   
 import styled from 'styled-components';  
   
-const GridContainer = styled(Container)\`  
+const GridContainer = withTheme(styled.Container)\`  
   \${down('sm')} {  
     max-width: 100%;  
     margin: unset;  
     padding: 0;  
   }  
-\`;  
+\`);  
   
-const Grid = styled.div<{ desktopMinWidth: string; mobileMinWidth: string }>\`  
+const Grid = withTheme(styled.div<{ desktopMinWidth: string; mobileMinWidth: string }>\`  
   display: grid;  
-  grid-template-columns: \${({ desktopMinWidth }) => \`repeat(auto-fill, minmax(\${desktopMinWidth}, 1fr))\`};  
+  grid-template-columns: \${({ desktopMinWidth }) => \`)repeat(auto-fill, minmax(\${desktopMinWidth}, 1fr))\`};  
   grid-gap: 18px;  
   
   \${down('sm')} {  
