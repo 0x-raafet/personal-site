@@ -62,8 +62,8 @@ const Container = withTheme(styled.main`
   position: relative;
   flex-direction: column;
   align-items: center;
-  max-width: ${(p) => p.theme.spacings.mediumContainer}px;
-  padding: 0 ${(p) => p.theme.spacings.xs}px;
+  max-width: 900px;
+  padding: 0 12px;
   margin: 0 auto;
   margin-bottom: 38px;
 `)

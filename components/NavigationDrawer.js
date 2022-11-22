@@ -64,7 +64,7 @@ const Wrapper = withTheme(styled.div`
   .my-drawer {
     width: 100%;
     height: 100%;
-    z-index: ${(p) => p.theme.zIndexes.drawer};
+    z-index: 9999;
     background: var(--background);
     transition: margin-left 0.3s cubic-bezier(0.82, 0.085, 0.395, 0.895);
     overflow: hidden;
@@ -74,14 +74,14 @@ const Wrapper = withTheme(styled.div`
     position: relative;
     height: 100%;
     margin: auto;
-    max-width: ${(p) => p.theme.spacings.mediumContainer}px;
-    padding: 0 ${(p) => p.theme.spacings.xs}px;
+    max-width: 900px;
+    padding: 0 12px;
   }
 
   .close-icon {
     position: absolute;
-    right: ${(p) => p.theme.spacings.sm}px;
-    top: ${(p) => p.theme.spacings.sm}px;
+    right: 24px;
+    top: 24px;
   }
 
   .drawer-closed {
@@ -103,14 +103,14 @@ const Wrapper = withTheme(styled.div`
     list-style: none;
 
     & > *:not(:first-child) {
-      margin-top: ${(p) => p.theme.spacings.md}px;
+      margin-top: 48px;
     }
   }
 `)
 
 const NavItem = withTheme(styled.li`
   a {
-    font-size: ${(p) => p.theme.fontSizes['4xl']}px;
+    font-size: 32px;
     text-transform: uppercase;
     display: block;
     color: currentColor;

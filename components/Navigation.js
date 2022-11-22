@@ -31,13 +31,13 @@ const Container = withTheme(styled.ul`
   text-align: center;
 
   & > *:not(:first-child) {
-    margin-left: ${(p) => p.theme.spacings.sm}px;
+    margin-left: 24px;
   }
 `)
 
 const NavItem = withTheme(styled.li`
   a {
-    font-size: ${(p) => p.theme.fontSizes['lg']}px;
+    font-size: 16px;
     display: block;
     color: currentColor;
     text-decoration: none;

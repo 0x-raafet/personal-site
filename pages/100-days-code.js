@@ -30,15 +30,15 @@ export default function Blog({ tweets }) {
 }
 
 const Intro = withTheme(styled.div`
-  font-size: ${(p) => p.theme.fontSizes['3xl']}px;
+  font-size: 28px;
   font-weight: bold;
   line-height: 1.25;
   letter-spacing: -0.02em;
   color: var(--text);
   text-align: center;
 
-  @media (max-width: ${(p) => p.theme.breakpoints.sm}) {
-    font-size: ${(p) => p.theme.fontSizes['2xl']}px;
+  @media (max-width: 30em) {
+    font-size: 22px;
   }
 `)
 
@@ -50,7 +50,7 @@ const Stats = withTheme(styled.div`
   margin-top: 20px;
   gap: 50px;
 
-  @media (max-width: ${(p) => p.theme.breakpoints.md}) {
+  @media (max-width: 48em) {
     flex-direction: column;
     justify-content: center;
     gap: 10px;
@@ -58,7 +58,7 @@ const Stats = withTheme(styled.div`
 `)
 
 const Stat = withTheme(styled.div`
-  font-size: ${(p) => p.theme.fontSizes.xl}px;
+  font-size: 20px;
   font-weight: bold;
   line-height: 1.5;
   text-transform: uppercase;
@@ -66,8 +66,8 @@ const Stat = withTheme(styled.div`
   color: var(--primary);
   opacity: 0.8;
 
-  @media (max-width: ${(p) => p.theme.breakpoints.sm}) {
-    font-size: ${(p) => p.theme.fontSizes.lg}px;
+  @media (max-width: 30em) {
+    font-size: 16px;
   }
 `)
 

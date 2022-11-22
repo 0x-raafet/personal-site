@@ -50,7 +50,7 @@ export default function ColorSwitcher(props) {
 const ColorSwitcherContainer = withTheme(styled.div`
   display: flex;
   user-select: none;
-  padding: ${(p) => p.theme.spacings['2xs']}px;
+  padding: 6px;
   border-radius: 8px;
   transition: background-color 0.15s;
 

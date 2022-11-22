@@ -20,5 +20,5 @@ export default function Custom404() {
 }
 
 const Wrapper = withTheme(styled.div`
-  padding: ${(p) => p.theme.spacings.xl}px 0;
+  padding: 192px 0;
 `)

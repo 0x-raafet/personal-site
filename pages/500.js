@@ -21,5 +21,5 @@ export default function Custom500() {
 }
 
 const Wrapper = withTheme(styled.div`
-  padding: ${(p) => p.theme.spacings.xl}px 0;
+  padding: 192px 0;
 `)

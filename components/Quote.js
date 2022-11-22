@@ -31,7 +31,7 @@ const Container = withTheme(styled.figure`
 const Blockquote = withTheme(styled.blockquote`
   color: var(--text);
   display: inline;
-  font-size: ${(p) => p.theme.fontSizes['xl']}px;
+  font-size: 20px;
   line-height: 30px;
   font-style: italic;
   hanging-punctuation: first;

@@ -91,7 +91,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         />
       </Head>
       <ThemeContextProvider>
-        <ThemeProvider>
+        <ThemeProvider theme={theme}>
           <GlobalStyle />
           {isStandalone ? standaloneMarkup : contentMarkup}
         </ThemeProvider>

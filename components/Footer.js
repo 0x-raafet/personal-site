@@ -34,7 +34,7 @@ export default function Footer() {
 
 const Wrapper = withTheme(styled.footer`
   background: var(--navbar);
-  padding: ${(p) => p.theme.spacings.lg}px 0;
+  padding: 96px 0;
 `)
 
 const FooterContainer = withTheme(styled(Container)`
@@ -45,16 +45,16 @@ const FooterContainer = withTheme(styled(Container)`
 
 const DecorativeBar = withTheme(styled.div`
   width: 100%;
-  height: ${(p) => p.theme.spacings['2xs']}px;
+  height: 6px;
   background: var(--primary);
 `)
 const Author = withTheme(styled.div`
   margin-top: auto;
   margin-left: auto;
 
-  @media (max-width: ${(p) => p.theme.breakpoints.sm}) {
+  @media (max-width: 30em) {
     margin: auto;
-    margin-top: ${(p) => p.theme.spacings.md}px;
+    margin-top: 48px;
   }
 `)
 
@@ -63,36 +63,36 @@ const Section = withTheme(styled.div`
   flex-direction: column;
 
   &:not(:first-child) {
-    margin-left: ${(p) => p.theme.spacings['lg']}px;
+    margin-left: 96px;
   }
 
   & > *:not(:first-child) {
-    margin-top: ${(p) => p.theme.spacings['2xs']}px;
+    margin-top: 6px;
   }
 
   a {
-    font-size: ${(p) => p.theme.fontSizes['lg']}px;
+    font-size: 16px;
   }
 
-  @media (max-width: ${(p) => p.theme.breakpoints.md}) {
+  @media (max-width: 48em) {
     flex: 1;
     &:not(:first-child) {
-      margin-left: ${(p) => p.theme.spacings.md}px;
+      margin-left: 48px;
     }
   }
 `)
 
 const SectionTitle = withTheme(styled.h1`
-  font-size: ${(p) => p.theme.fontSizes.sm}px;
+  font-size: 12px;
   font-weight: bold;
   line-height: 1.5;
   text-transform: uppercase;
   letter-spacing: 0.1em;
   color: var(--text);
   opacity: 0.8;
-  margin-bottom: ${(p) => p.theme.spacings['2xs']}px;
+  margin-bottom: 6px;
 
-  @media (max-width: ${(p) => p.theme.breakpoints.sm}) {
+  @media (max-width: 30em) {
     line-height: 2;
   }
 `)

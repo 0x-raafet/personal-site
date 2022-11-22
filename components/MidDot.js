@@ -5,7 +5,7 @@ const MidDot = withTheme(styled.span`
   &::before {
     display: inline-block;
     content: '·';
-    margin: 0 ${(p) => p.theme.spacings['2xs']}px;
+    margin: 0 6px;
   }
 `)
 

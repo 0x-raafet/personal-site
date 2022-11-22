@@ -22,19 +22,19 @@ const HeaderContainer = withTheme(styled.div`
 
 const Title = withTheme(styled.h1`
   font-weight: bold;
-  font-size: ${(p) => p.theme.fontSizes['5xl']}px;
+  font-size: 40px;
   line-height: 1.33333;
 
   & + div {
     margin-top: 28px;
   }
 
-  @media (max-width: ${(p) => p.theme.breakpoints.sm}) {
-    font-size: ${(p) => p.theme.fontSizes['4xl']}px;
+  @media (max-width: 30em) {
+    font-size: 32px;
   }
 `)
 
 const DetailsContainer = withTheme(styled.div`
-  font-size: ${(p) => p.theme.fontSizes['md']}px;
+  font-size: 14px;
   color: var(--text-lighter);
 `)

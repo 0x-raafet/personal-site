@@ -14,9 +14,7 @@ export default function ReactionsWidget() {
   const router = useRouter()
 
   const sendReactionsToApi = useDebouncedCallback(() => {
-    fetch(`/api/posts/${router.query.slug}/give-heart`, { method: 'POST', body: JSON.stringify({ count: reactions }) }).then((res) =>
-      res.json(),
-    )
+    fetch(`/api/posts/${router.query.slug}/give-heart`, { method: 'POST', body: JSON.stringify({ count: reactions }) })
   }, 1000)
 
   useEffect(() => {
@@ -50,14 +48,14 @@ export default function ReactionsWidget() {
 
 const Wrapper = withTheme(styled.div`
   position: sticky;
-  z-index: ${(p) => p.theme.zIndexes.reactionsWidget};
-  width: ${(p) => p.theme.spacings.lg}px;
+  z-index: 999;
+  width: 96px;
   height: 110px;
   cursor: pointer;
   user-select: none;
 
   margin-top: -110px;
-  margin-left: -${(p) => p.theme.spacings.xl}px;
+  margin-left: -192px;
   margin-right: auto;
   top: 550px;
   transition: transform 0.3s;
@@ -71,7 +69,7 @@ const Wrapper = withTheme(styled.div`
     transform: scale(1.15);
   }
 
-  @media (max-width: ${(p) => p.theme.breakpoints.xl}) {
+  @media (max-width: 80em) {
     display: none;
   }
 `)
@@ -80,7 +78,7 @@ const ReactionsCount = withTheme(styled.div`
   margin: auto;
   background: var(--overlay);
   opacity: 0.5;
-  margin-top: ${(p) => p.theme.spacings['2xs']}px;
+  margin-top: 6px;
   border-radius: 10px;
   width: fit-content;
   padding: 5px 10px;

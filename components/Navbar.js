@@ -79,32 +79,30 @@ const Container = withTheme(styled.header`
   display: flex;
   align-items: center;
   position: sticky;
-  top: ${(p) => p.theme.spacings.xs}px;
+  top: 12px;
   width: 100%;
-  max-width: ${(p) => p.theme.spacings.largeContainer}px;
+  max-width: 1100px;
   height: 75px;
-  margin: 0 auto ${(p) => p.theme.spacings.lg}px auto;
+  margin: 0 auto 96px auto;
   box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
   border-radius: 20px;
   background-color: var(--navbar);
 
   visibility: ${(p) => (p.isNavbarHidden ? 'hidden' : 'visible')};
   transform: ${(p) =>
-    p.isNavbarHidden
-      ? `translateY(-75px) translateY(-${p.theme.spacings.xs}px) translateZ(0) scale(1)`
-      : 'translateY(0) translateZ(0) scale(1)'};
+    p.isNavbarHidden ? `translateY(-75px) translateY(-10px) translateZ(0) scale(1)` : 'translateY(0) translateZ(0) scale(1)'};
   backface-visibility: hidden;
   transition-property: transform, visibility, height;
   transition-duration: 0.15s;
   transition-timing-function: ease-in-out;
 
-  z-index: ${(p) => p.theme.zIndexes.navbar};
+  z-index: 1000;
 
-  @media (max-width: ${(p) => p.theme.breakpoints.xl}) {
+  @media (max-width: 80em) {
     width: 95%;
   }
 
-  @media (max-width: ${(p) => p.theme.breakpoints.md}) {
+  @media (max-width: 48em) {
     margin: 0 auto 60px auto;
   }
 `)
@@ -114,10 +112,10 @@ const Content = withTheme(styled.div`
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  padding: 0 ${(p) => p.theme.spacings.md}px;
+  padding: 0 48px;
 
-  @media (max-width: ${(p) => p.theme.breakpoints.md}) {
-    padding: 0 ${(p) => p.theme.spacings['2xs']}px;
+  @media (max-width: 48em) {
+    padding: 0 6px;
     justify-content: flex-start;
 
     .color-switcher-wrapper {
@@ -128,7 +126,7 @@ const Content = withTheme(styled.div`
 
 const HamburgerMenuWrapper = withTheme(styled.div`
   display: none;
-  @media (max-width: ${(p) => p.theme.breakpoints.md}) {
+  @media (max-width: 48em) {
     display: block;
     line-height: 1;
   }
@@ -136,7 +134,7 @@ const HamburgerMenuWrapper = withTheme(styled.div`
 
 const NavigationWrapper = withTheme(styled.div`
   display: block;
-  @media (max-width: ${(p) => p.theme.breakpoints.md}) {
+  @media (max-width: 48em) {
     display: none;
   }
 `)

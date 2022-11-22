@@ -70,14 +70,14 @@ export default function Home({ yearGroupedPosts, monthlyContributions, pinnedIte
 }
 
 const Description = withTheme(styled.div`
-  font-size: ${(p) => p.theme.fontSizes['4xl']}px;
+  font-size: 32px;
   line-height: 1.5;
   letter-spacing: -0.02em;
   color: var(--text);
-  margin-top: -${(p) => p.theme.spacings.sm}px;
+  margin-top: -24px;
 
-  @media (max-width: ${(p) => p.theme.breakpoints.sm}) {
-    font-size: ${(p) => p.theme.fontSizes['3xl']}px;
+  @media (max-width: 30em) {
+    font-size: 28px;
   }
 `)
 
@@ -115,19 +115,19 @@ export async function getStaticProps() {
 const YearSection = withTheme(styled.div`
   display: flex;
 
-  @media (max-width: ${(p) => p.theme.breakpoints.md}) {
+  @media (max-width: 48em) {
     flex-direction: column;
   }
 `)
 
 const Year = withTheme(styled.p`
-  font-size: ${(p) => p.theme.fontSizes['3xl']}px;
+  font-size: 28px;
   font-weight: bold;
   flex: 2;
 
-  @media (max-width: ${(p) => p.theme.breakpoints.md}) {
+  @media (max-width: 48em) {
     flex: 1;
-    margin-bottom: ${(p) => p.theme.spacings.sm}px;
+    margin-bottom: 24px;
     text-align: center;
   }
 `)
@@ -138,10 +138,10 @@ const Posts = withTheme(styled.div`
   flex: 8;
 
   & > *:not(:first-child) {
-    margin-top: ${(p) => p.theme.spacings.md}px;
+    margin-top: 48px;
   }
 
-  @media (max-width: ${(p) => p.theme.breakpoints.md}) {
+  @media (max-width: 48em) {
     flex: 1;
     margin: auto;
   }
@@ -152,21 +152,21 @@ const List = withTheme(styled.div`
   flex-direction: column;
 
   & > *:not(:first-child) {
-    margin-top: ${(p) => p.theme.spacings.lg}px;
+    margin-top: 96px;
   }
 `)
 
 const ListItem = withTheme(styled.div`
-  font-size: ${(p) => p.theme.fontSizes['2xl']}px;
-  max-width: ${(p) => p.theme.spacings.smallContainer}px;
+  font-size: 22px;
+  max-width: 700px;
 
   p {
-    margin-top: ${(p) => p.theme.spacings['2xs']}px;
-    font-size: ${(p) => p.theme.fontSizes.lg}px;
+    margin-top: 6px;
+    font-size: 16px;
   }
 `)
 
 const Details = withTheme(styled.div`
-  font-size: ${(p) => p.theme.fontSizes.md}px;
+  font-size: 14px;
   opacity: 0.8;
 `)

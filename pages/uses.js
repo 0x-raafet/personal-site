@@ -121,15 +121,15 @@ export default function UsesPage({ latestGames }) {
 const CustomAutofit = withTheme(styled(AutofitGrid)`
   --autofit-grid-item-size: 250px;
 
-  @media (max-width: ${(p) => p.theme.breakpoints.sm}) {
+  @media (max-width: 30em) {
     --autofit-grid-item-size: 300px;
   }
 `)
 
 const Title = withTheme(styled.div`
   font-weight: bold;
-  font-size: ${(p) => p.theme.fontSizes.xl}px;
-  margin-bottom: ${(p) => p.theme.spacings.xs}px;
+  font-size: 20px;
+  margin-bottom: 12px;
 `)
 
 const Stack = withTheme(styled.div`
@@ -137,7 +137,7 @@ const Stack = withTheme(styled.div`
   flex-direction: column;
 
   & > *:not(:first-child) {
-    margin-top: ${(p) => p.theme.spacings['2xs']}px;
+    margin-top: 6px;
   }
 `)
 
@@ -145,16 +145,16 @@ const Game = withTheme(styled.div`
   display: flex;
 
   & > *:not(:first-child) {
-    margin-left: ${(p) => p.theme.spacings.sm}px;
+    margin-left: 24px;
   }
 
-  @media (max-width: ${(p) => p.theme.breakpoints.sm}) {
+  @media (max-width: 30em) {
     flex-direction: column;
     text-align: center;
     align-items: center;
 
     & > *:not(:first-child) {
-      margin-top: ${(p) => p.theme.spacings.sm}px;
+      margin-top: 24px;
       margin-left: 0;
     }
   }

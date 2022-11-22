@@ -28,7 +28,7 @@ export default function Code({ code, language, selectedLines = [], withCopyButto
       <Highlight {...defaultProps} theme={null} code={code} language={nullAwareLanguage}>
         {({ className, style, tokens, getLineProps, getTokenProps }) => (
           <>
-            <CodeWrapper className="code-wrapper" language={nullAwareLanguage}>
+            <CodeWrapper className="code-wrapper" data-language={nullAwareLanguage}>
               {withCopyButton && copyButtonMarkup}
               <Pre className={className} style={style}>
                 {tokens.map((line, i) => {
@@ -110,7 +110,7 @@ const CodeWrapper = withTheme(styled.div`
   &::after {
     position: absolute;
     height: 2.2em;
-    content: '${(p) => p.language}';
+    content: attr(data-language);
     right: ${theme.spacings.sm}px;
     padding: ${theme.spacings.xs}px;
     top: -2em;

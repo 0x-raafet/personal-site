@@ -14,11 +14,11 @@ export default function PolishCowWidget({ onClick }) {
 const Wrapper = withTheme(styled.div`
   width: 64px;
   position: fixed;
-  bottom: ${(p) => p.theme.spacings.sm}px;
-  right: ${(p) => p.theme.spacings.sm}px;
+  bottom: 24px;
+  right: 24px;
   cursor: pointer;
 
-  @media (max-width: ${(p) => p.theme.breakpoints.lg}) {
+  @media (max-width: 62em) {
     display: none;
   }
 

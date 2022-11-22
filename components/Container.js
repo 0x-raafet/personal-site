@@ -5,8 +5,8 @@ const Container = withTheme(styled.main`
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-width: ${(p) => p.theme.spacings.largeContainer}px;
-  padding: 0 ${(p) => p.theme.spacings.xs}px;
+  max-width: 1100px;
+  padding: 0 12px;
   margin: 0 auto;
 `)
 

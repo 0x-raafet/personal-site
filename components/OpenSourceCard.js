@@ -43,7 +43,7 @@ const Description = withTheme(styled.div`
 `)
 
 const Title = withTheme(styled.p`
-  font-size: ${(p) => p.theme.fontSizes['lg']}px;
+  font-size: 16px;
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
@@ -58,7 +58,7 @@ const LanguageWrapper = withTheme(styled.div`
   margin-top: auto;
 
   & > *:not(:first-child):not(:last-child) {
-    margin-left: ${(p) => p.theme.spacings['2xs']}px;
+    margin-left: 6px;
   }
 `)
 
@@ -69,7 +69,7 @@ const StarsWrapper = withTheme(styled.div`
   justify-content: flex-end;
 
   & > *:not(:first-child) {
-    margin-left: ${(p) => p.theme.spacings['2xs']}px;
+    margin-left: 6px;
   }
 `)
 
@@ -86,11 +86,11 @@ const Wrapper = withTheme(styled.div`
   flex-direction: column;
   height: 150px;
 
-  @media (max-width: ${(p) => p.theme.breakpoints.md}) {
+  @media (max-width: 48em) {
     height: 100%;
   }
 
   & > *:not(:last-child) {
-    margin-bottom: ${(p) => p.theme.spacings.xs}px;
+    margin-bottom: 12px;
   }
 `)
