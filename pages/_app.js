@@ -72,23 +72,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <link rel="icon" type="image/png" href="/favicon.png" />
         <link rel="alternate" type="application/rss+xml" href={EnvVars.URL + 'rss'} title="RSS 2.0" />
         {partytownScripts}
-        <link rel="stylesheet" href="./widget.css" />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `(function (w, d, s, o, f, js, fjs) {
-        w[o] =
-          w[o] ||
-          function () {
-            (w[o].q = w[o].q || []).push(arguments);
-          };
-        (js = d.createElement(s)), (fjs = d.getElementsByTagName(s)[0]);
-        js.id = o;
-        js.src = f;
-        js.defer = 1;
-        fjs.parentNode.insertBefore(js, fjs);
-      })(window, document, 'script', '_mb-widget', './widget.js');`,
-          }}
-        />
       </Head>
       <ThemeContextProvider>
         <ThemeProvider theme={theme}>
