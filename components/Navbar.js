@@ -56,7 +56,7 @@ export default function Navbar({ items }) {
   return (
     <Container isNavbarHidden={isNavbarHidden}>
       <Content>
-        <NextLink href="/" passHref>
+        <NextLink href="/" passHref legacyBehavior>
           <Logotype />
         </NextLink>
         <NavigationWrapper>
@@ -72,7 +72,7 @@ export default function Navbar({ items }) {
         </HamburgerMenuWrapper>
       </Content>
     </Container>
-  )
+  );
 }
 
 const Container = withTheme(styled.header`

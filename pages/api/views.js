@@ -101,7 +101,7 @@ function createJwtToken() {
 }
 
 function replaceEscapeSequenceWithLineBreak(v) {
-  return v.replace(/\\n/gm, '\n')
+  return v.replace(/\\n/gm, '\n');
 }
 
 function getPrivateKeyFileContents() {
