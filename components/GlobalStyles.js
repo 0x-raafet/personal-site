@@ -135,7 +135,7 @@ export const GlobalStyle = css`
       touch-action: manipulation;
       text-rendering: optimizelegibility;
       text-size-adjust: 100%;
-      font-family: 'Rubik', -apple-system, sans-serif;
+      font-family: 'Rubik', 'Rubik-fallback', -apple-system, sans-serif;
     }
 
     /* Set core body defaults */
@@ -143,7 +143,7 @@ export const GlobalStyle = css`
       min-height: 100vh;
       text-rendering: optimizeSpeed;
       line-height: 1.5;
-      font-family: 'Rubik', -apple-system, sans-serif;
+      font-family: 'Rubik', 'Rubik-fallback', -apple-system, sans-serif;
       color: var(--text);
       background: var(--background);
       font-feature-settings: 'kern';
