@@ -9,15 +9,14 @@ const path = require('path')
 module.exports = withLinaria(
   withBundleAnalyzer({
     reactStrictMode: true,
+    poweredByHeader: false,
     externalHelpers: true,
-    // swcMinify: true,
     compiler: {
       styledComponents: true,
     },
     experimental: {
       nftTracing: true,
       legacyBrowsers: false,
-      // browsersListForSwc: true,
       modularizeImports: {
         lodash: {
           transform: 'lodash/{{member}}',
