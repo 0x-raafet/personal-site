@@ -5,17 +5,21 @@ import { useEffect } from 'react'
 
 export default function Comments() {
   useEffect(() => {
-    let script = document.createElement('script')
-    let anchor = document.getElementById('inject-comments-for-uterances')
+    const commentsElement = document.querySelector('#inject-comments-for-uterances')
 
-    script.setAttribute('src', 'https://utteranc.es/client.js')
-    script.setAttribute('crossorigin', 'anonymous')
-    script.setAttribute('defer', true)
-    script.setAttribute('repo', 'bmstefanski/personal-site')
-    script.setAttribute('issue-term', 'pathname')
-    script.setAttribute('theme', 'github-dark')
-    script.setAttribute('loading', 'lazy')
-    anchor.appendChild(script)
+    if (commentsElement.children.length === 0) {
+      let script = document.createElement('script')
+      let anchor = document.getElementById('inject-comments-for-uterances')
+
+      script.setAttribute('src', 'https://utteranc.es/client.js')
+      script.setAttribute('crossorigin', 'anonymous')
+      script.setAttribute('defer', true)
+      script.setAttribute('repo', 'bmstefanski/personal-site')
+      script.setAttribute('issue-term', 'pathname')
+      script.setAttribute('theme', 'github-dark')
+      script.setAttribute('loading', 'lazy')
+      anchor.appendChild(script)
+    }
   }, [])
 
   return <div id="inject-comments-for-uterances" style={{ width: '100%' }}></div>
