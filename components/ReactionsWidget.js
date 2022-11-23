@@ -1,5 +1,5 @@
 import { styled } from '@linaria/react'
-import NextImage from "next/legacy/image";
+import NextImage from "next/image";
 import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
 import { useDebouncedCallback } from 'use-debounce'
@@ -39,11 +39,22 @@ export default function ReactionsWidget() {
   return (
     <Wrapper>
       <FadeIn delay={1000}>
-        <NextImage onClick={handleOnClick} unoptimized src="/heart.png" width={96} height={64} alt="Heart" objectFit="contain" />
+        <NextImage
+          onClick={handleOnClick}
+          unoptimized
+          src="/heart.png"
+          width={96}
+          height={64}
+          alt="Heart"
+          style={{
+            maxWidth: "100%",
+            height: "auto",
+            objectFit: "contain"
+          }} />
         <ReactionsCount>{heartReactions + reactions}</ReactionsCount>
       </FadeIn>
     </Wrapper>
-  )
+  );
 }
 
 const Wrapper = withTheme(styled.div`

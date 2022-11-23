@@ -1,5 +1,5 @@
 import { styled } from '@linaria/react'
-import NextImage from "next/legacy/image";
+import NextImage from "next/image";
 import { withTheme } from 'theme'
 import Link from './Link'
 
@@ -7,7 +7,14 @@ export default function AuthorInfo(props) {
   return (
     <Container>
       <AvatarContainer>
-        <NextImage src="/avatar.png" width={96} height={96} />
+        <NextImage
+          src="/avatar.png"
+          width={96}
+          height={96}
+          style={{
+            maxWidth: "100%",
+            height: "auto"
+          }} />
       </AvatarContainer>
       <Content>
         <AuthorTitle>Bart Stefański</AuthorTitle>
@@ -22,7 +29,7 @@ export default function AuthorInfo(props) {
         </Links>
       </Content>
     </Container>
-  )
+  );
 }
 
 const Container = withTheme(styled.div`

@@ -1,5 +1,5 @@
 import { styled } from '@linaria/react'
-import NextImage from "next/legacy/image";
+import NextImage from "next/image";
 import React from 'react'
 import { withTheme } from 'theme'
 
@@ -10,12 +10,14 @@ export default function OptimizedImage({ src, ...rest }) {
         src={src}
         placeholder="blur"
         blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mPkj6+vBwAC4AFuNSmtGAAAAABJRU5ErkJggg=="
-        layout="fill"
-        objectFit="cover"
         {...rest}
-      />
+        fill
+        sizes="100vw"
+        style={{
+          objectFit: "cover"
+        }} />
     </Wrapper>
-  )
+  );
 }
 
 const Wrapper = withTheme(styled.div`
