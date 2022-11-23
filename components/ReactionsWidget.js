@@ -1,5 +1,5 @@
 import { styled } from '@linaria/react'
-import NextImage from 'next/image'
+import NextImage from "next/legacy/image";
 import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
 import { useDebouncedCallback } from 'use-debounce'

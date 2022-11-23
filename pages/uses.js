@@ -1,7 +1,7 @@
 import { styled } from '@linaria/react'
 import fetch from 'isomorphic-fetch'
 import Head from 'next/head'
-import NextImage from 'next/image'
+import NextImage from "next/legacy/image";
 import AutofitGrid from 'components/AutofitGrid'
 import Link from 'components/Link'
 import Page from 'components/Page'

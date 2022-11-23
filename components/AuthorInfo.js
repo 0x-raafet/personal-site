@@ -1,5 +1,5 @@
 import { styled } from '@linaria/react'
-import NextImage from 'next/image'
+import NextImage from "next/legacy/image";
 import { withTheme } from 'theme'
 import Link from './Link'
 
