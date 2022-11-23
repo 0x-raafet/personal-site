@@ -1,60 +1,36 @@
 import * as Drawer from '@accessible/drawer'
 import { styled } from '@linaria/react'
+import throttle from 'lodash/throttle'
 import NextLink from 'next/link'
-import { useRouter } from 'next/router'
-import React, { useRef, useState } from 'react'
-import { useScrollPosition } from 'hooks/useScrollPosition'
+import React, { useEffect, useRef, useState } from 'react'
 import { withTheme } from 'theme'
 import { HamburgerIcon } from './icons/HamburgerIcon'
 import Logotype from './Logotype'
 import Navigation from './Navigation'
 
 export default function Navbar({ items }) {
-  const router = useRouter()
-  const { toggle } = Drawer.useDrawer()
-  const [scrollingDirection, setScrollingDirection] = useState('none')
+  const { toggle, isOpen: isMenuDrawerOpen } = Drawer.useDrawer()
 
-  let lastScrollY = useRef(0)
-  const lastRoute = useRef()
-  const stepSize = useRef(50)
+  const prevScrollPos = useRef(0)
+  const [visible, setVisible] = useState(true)
 
-  useScrollPosition(scrollPositionCallback, [router.asPath], false, false, 50)
+  useEffect(() => {
+    const handleScroll = throttle(() => {
+      const currentScrollPos = window.pageYOffset
 
-  function scrollPositionCallback({ currPos }) {
-    const routerPath = router.asPath
-    const hasRouteChanged = routerPath !== lastRoute.current
+      const isVisible = isMenuDrawerOpen ? true : prevScrollPos.current > currentScrollPos
+      setVisible(currentScrollPos <= 100 || (prevScrollPos.current > 100 && isVisible))
 
-    if (hasRouteChanged) {
-      lastRoute.current = routerPath
-      setScrollingDirection('none')
-      return
-    }
+      prevScrollPos.current = currentScrollPos
+    }, 16)
 
-    const currentScrollY = currPos.y
-    const isScrollingUp = currentScrollY > lastScrollY.current
-    const scrollDifference = Math.abs(lastScrollY.current - currentScrollY)
-    const hasScrolledWholeStep = scrollDifference >= stepSize.current
-    const isInNonCollapsibleArea = lastScrollY.current > -200
+    window.addEventListener('scroll', handleScroll)
 
-    if (isInNonCollapsibleArea) {
-      setScrollingDirection('none')
-      lastScrollY.current = currentScrollY
-      return
-    }
-
-    if (!hasScrolledWholeStep) {
-      lastScrollY.current = currentScrollY
-      return
-    }
-
-    setScrollingDirection(isScrollingUp ? 'up' : 'down')
-    lastScrollY.current = currentScrollY
-  }
-
-  const isNavbarHidden = scrollingDirection === 'down'
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [isMenuDrawerOpen])
 
   return (
-    <Container isNavbarHidden={isNavbarHidden}>
+    <Container isNavbarHidden={!visible}>
       <Content>
         <NextLink href="/" passHref legacyBehavior>
           <Logotype />
@@ -72,7 +48,7 @@ export default function Navbar({ items }) {
         </HamburgerMenuWrapper>
       </Content>
     </Container>
-  );
+  )
 }
 
 const Container = withTheme(styled.header`
