@@ -4,12 +4,14 @@ import React from 'react'
 import { withTheme } from 'theme'
 
 export default function Link(props) {
-  const { className, children, href } = props
+  const { className, target, children, href } = props
   return (
     <NextLink href={href} passHref legacyBehavior>
-      <Anchor className={className}>{children}</Anchor>
+      <Anchor target={target} className={className}>
+        {children}
+      </Anchor>
     </NextLink>
-  );
+  )
 }
 
 const Anchor = withTheme(styled.a`

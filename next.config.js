@@ -57,7 +57,7 @@ module.exports = withLinaria(
       return [
         {
           source: '/resume',
-          destination: 'https://www.linkedin.com/in/bmstefanski/',
+          destination: 'https://www.linkedin.com/in/bart-stefanski/',
           permanent: true,
         },
       ]

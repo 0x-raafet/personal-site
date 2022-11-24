@@ -12,15 +12,30 @@ export default function Footer() {
             <SectionTitle>Pages</SectionTitle>
             <Link href="/uses">Uses</Link>
             {/* <Link href="/colophon">Colophon</Link> */}
-            <Link href="/resume">Resume</Link>
-            <Link href="/rss">RSS</Link>
+            <Link href="/resume" target="_blank">
+              Resume
+            </Link>
+            <Link href="/rss" target="_blank">
+              RSS
+            </Link>
           </Section>
           <Section>
             <SectionTitle>Socials</SectionTitle>
-            <Link href="https://github.com/bmstefanski">GitHub</Link>
-            <Link href="https://twitter.com/bmstefanski">Twitter</Link>
-            <Link href="https://www.goodreads.com/user/show/125029202-bart-omiej-stefa-ski">Goodreads</Link>
-            <Link href="https://www.linkedin.com/in/bmstefanski">LinkedIn</Link>
+            <Link target="_blank" href="https://github.com/bmstefanski">
+              GitHub
+            </Link>
+            <Link target="_blank" href="https://twitter.com/bmstefanski">
+              Twitter
+            </Link>
+            <Link target="_blank" href="https://www.goodreads.com/user/show/125029202-bart-omiej-stefa-ski">
+              Goodreads
+            </Link>
+            <Link target="_blank" href="https://www.linkedin.com/in/bart-stefanski/">
+              LinkedIn
+            </Link>
+            <Link target="_blank" href="https://www.instagram.com/bmstefanski/">
+              Instagram
+            </Link>
           </Section>
           <Author>
             Made with ❤️ by Bart Stefański <br /> &copy; {new Date().getFullYear()} Bart Stefański. All Rights Reserved.
