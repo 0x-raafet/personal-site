@@ -22,7 +22,7 @@ export default function Navbar({ items }) {
       setVisible(currentScrollPos <= 100 || (prevScrollPos.current > 100 && isVisible))
 
       prevScrollPos.current = currentScrollPos
-    }, 16)
+    }, 32)
 
     window.addEventListener('scroll', handleScroll)
 
