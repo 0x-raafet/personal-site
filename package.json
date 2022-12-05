@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "@accessible/drawer": "^3.0.2",
-    "@builder.io/partytown": "^0.5.2",
+    "@builder.io/partytown": "^0.7.2",
     "@callstack/react-theme-provider": "^3.0.8",
     "@linaria/babel-preset": "^4.3.0",
     "@linaria/core": "^4.2.2",
