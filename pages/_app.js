@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-css-tags */
 import '../public/fonts/style.css'
+import 'intersection-observer'
 
 import Head from 'next/head'
 import { useRouter } from 'next/router'

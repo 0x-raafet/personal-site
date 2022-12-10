@@ -2930,6 +2930,11 @@ event-target-shim@^5.0.0:
   resolved "https://registry.yarnpkg.com/event-target-shim/-/event-target-shim-5.0.1.tgz#5d4d3ebdf9583d63a5333ce2deb7480ab2b05789"
   integrity sha512-i/2XbnSz/uxRCU6+NdVJgKWDTM427+MqYbkQzD321DuCQJUqOuJKIA0IM2+W2xtYHdKOmZ4dR6fExsd4SXL+WQ==
 
+exenv@^1.2.2:
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/exenv/-/exenv-1.2.2.tgz#2ae78e85d9894158670b03d47bec1f03bd91bb9d"
+  integrity sha512-Z+ktTxTwv9ILfgKCk32OX3n/doe+OcLTRtqK9pcL+JsP3J1/VW8Uvl4ZjLlKqeW4rzK4oesDOGMEMRIZqtP4Iw==
+
 extend-shallow@^2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/extend-shallow/-/extend-shallow-2.0.1.tgz#51af7d614ad9a9f610ea1bafbb989d6b1c56890f"
@@ -3513,6 +3518,11 @@ internal-slot@^1.0.3:
     get-intrinsic "^1.1.0"
     has "^1.0.3"
     side-channel "^1.0.4"
+
+intersection-observer@^0.12.2:
+  version "0.12.2"
+  resolved "https://registry.yarnpkg.com/intersection-observer/-/intersection-observer-0.12.2.tgz#4a45349cc0cd91916682b1f44c28d7ec737dc375"
+  integrity sha512-7m1vEcPCxXYI8HqnL8CKI6siDyD+eIWSwgB3DZA+ZTogxk9I4CDnj4wilt9x/+/QbHI4YG5YZNmC6458/e9Ktg==
 
 ioredis@^4.28.0:
   version "4.28.0"
@@ -4811,6 +4821,14 @@ react-html-attributes@^1.4.6:
   integrity sha512-uS3MmThNKFH2EZUQQw4k5pIcU7XIr208UE5dktrj/GOH1CMagqxDl4DCLpt3o2l9x+IB5nVYBeN3Cr4IutBXAg==
   dependencies:
     html-element-attributes "^1.0.0"
+
+react-hydration-on-demand@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/react-hydration-on-demand/-/react-hydration-on-demand-2.1.0.tgz#cec2dc2a5981d7872f41cd7fee3721577b7ed429"
+  integrity sha512-7zEudD1lffj0U24SFlvkQyFuuJN9/PQLJ5j1QOVwY20IbRmxnGWhLBm2rq9gIA38hjbYT33Y+aOZGZqwALWbTA==
+  dependencies:
+    "@babel/runtime" "^7.10.2"
+    exenv "^1.2.2"
 
 react-is@^16.7.0, react-is@^16.8.1:
   version "16.13.1"

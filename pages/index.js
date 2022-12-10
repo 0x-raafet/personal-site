@@ -1,6 +1,7 @@
 import { styled } from '@linaria/react'
 import fetch from 'isomorphic-fetch'
 import groupBy from 'lodash/groupBy'
+import withHydrationOnDemand from 'react-hydration-on-demand'
 import AutofitGrid from 'components/AutofitGrid'
 import Link from 'components/Link'
 import OpenSourceCard from 'components/OpenSourceCard'
@@ -32,42 +33,58 @@ export default function Home({ yearGroupedPosts, monthlyContributions, pinnedIte
           .
         </Description>
       </Page>
-      <Page title="Open source" description="Pinned open source projects">
-        <AutofitGrid>
-          {pinnedItems.map((singleItem) => (
-            <OpenSourceCard key={singleItem.id} {...singleItem} />
-          ))}
-        </AutofitGrid>
-      </Page>
-      <Page title="Blog posts" description="My latest blog posts">
-        <List>
-          {yearGroupedPosts.map(([year, posts]) => (
-            <YearSection key={year}>
-              <Year>{year}</Year>
-              <Posts>
-                {posts.map((singlePost) => {
-                  const formattedDate = formatDate(new Date(singlePost.date))
-
-                  return (
-                    <ListItem key={singlePost.slug}>
-                      <Link href={'/' + singlePost.slug}>{singlePost.title}</Link>
-                      <Details>
-                        <time dateTime={singlePost.date}>{formattedDate}</time>
-                        {/* <MidDot />{' '} */}
-                        {/* {singlePost.views || 'N/A'} views */}
-                      </Details>
-                      <p>{singlePost.description}</p>
-                    </ListItem>
-                  )
-                })}
-              </Posts>
-            </YearSection>
-          ))}
-        </List>
-      </Page>
+      <HyratedOpenSourceSection pinnedItems={pinnedItems} />
+      <HydratedBlogPostsSection yearGroupedPosts={yearGroupedPosts} />
     </>
   )
 }
+
+const OpenSourceSection = ({ pinnedItems }) => {
+  return (
+    <Page title="Open source" description="Pinned open source projects">
+      <AutofitGrid>
+        {pinnedItems.map((singleItem) => (
+          <OpenSourceCard key={singleItem.id} {...singleItem} />
+        ))}
+      </AutofitGrid>
+    </Page>
+  )
+}
+
+const HyratedOpenSourceSection = withHydrationOnDemand({ on: ['visible'] })(OpenSourceSection)
+
+const BlogPostsSection = ({ yearGroupedPosts }) => {
+  return (
+    <Page title="Blog posts" description="My latest blog posts">
+      <List>
+        {yearGroupedPosts.map(([year, posts]) => (
+          <YearSection key={year}>
+            <Year>{year}</Year>
+            <Posts>
+              {posts.map((singlePost) => {
+                const formattedDate = formatDate(new Date(singlePost.date))
+
+                return (
+                  <ListItem key={singlePost.slug}>
+                    <Link href={'/' + singlePost.slug}>{singlePost.title}</Link>
+                    <Details>
+                      <time dateTime={singlePost.date}>{formattedDate}</time>
+                      {/* <MidDot />{' '} */}
+                      {/* {singlePost.views || 'N/A'} views */}
+                    </Details>
+                    <p>{singlePost.description}</p>
+                  </ListItem>
+                )
+              })}
+            </Posts>
+          </YearSection>
+        ))}
+      </List>
+    </Page>
+  )
+}
+
+const HydratedBlogPostsSection = withHydrationOnDemand({ on: ['visible'] })(BlogPostsSection)
 
 const Description = withTheme(styled.div`
   font-size: 32px;
