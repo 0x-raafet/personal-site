@@ -11,9 +11,6 @@ module.exports = withLinaria(
     reactStrictMode: true,
     poweredByHeader: false,
     externalHelpers: true,
-    compiler: {
-      styledComponents: true,
-    },
     experimental: {
       nftTracing: true,
       legacyBrowsers: false,
@@ -30,13 +27,7 @@ module.exports = withLinaria(
       imageSizes: [64, 128],
     },
     webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
-      if (!isServer) {
-        config.resolve.fallback.fs = false
-        config.resolve.fallback.child_process = false
-        config.resolve.fallback.worker_threads = false
-        config.resolve.fallback.net = false
-        config.resolve.fallback.tls = false
-      } else {
+      if (isServer) {
         require('./scripts/generate-og-images')
       }
 
