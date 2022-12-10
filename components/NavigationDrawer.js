@@ -45,12 +45,14 @@ function NavItems({ items }) {
       {items.map((singleItem, idx) => {
         return (
           <NavItem key={idx}>
-            <NextLink href={singleItem.href} legacyBehavior>{singleItem.title}</NextLink>
+            <NextLink prefetch={false} href={singleItem.href} legacyBehavior>
+              {singleItem.title}
+            </NextLink>
           </NavItem>
-        );
+        )
       })}
     </ul>
-  );
+  )
 }
 
 function DrawerCloseButton() {

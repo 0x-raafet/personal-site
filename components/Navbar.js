@@ -32,7 +32,7 @@ export default function Navbar({ items }) {
   return (
     <Container isNavbarHidden={!visible}>
       <Content>
-        <NextLink href="/" passHref legacyBehavior>
+        <NextLink href="/" prefetch={false} passHref legacyBehavior>
           <Logotype />
         </NextLink>
         <NavigationWrapper>

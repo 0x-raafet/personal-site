@@ -6,7 +6,7 @@ import { withTheme } from 'theme'
 export default function Link(props) {
   const { className, target, children, href } = props
   return (
-    <NextLink href={href} passHref legacyBehavior>
+    <NextLink href={href} prefetch={false} passHref legacyBehavior>
       <Anchor target={target} className={className}>
         {children}
       </Anchor>
