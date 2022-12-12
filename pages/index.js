@@ -25,7 +25,7 @@ export default function Home({ yearGroupedPosts, monthlyContributions, pinnedIte
       <Symbols />
       <Page title="Hello world">
         <Description>
-          <strong>I am Bart</strong>, a self-taught full-stack software engineer based in Poland, working in React.js & Nest.js stack.
+          <strong>I am Bart</strong>, a self-taught full-stack software engineer based in Poland, working in Next.js & Nest.js stack.
           Passionate about Clean Code, Object-Oriented Architecture, and fast web. This month I made{' '}
           <strong>
             <Link href="https://github.com/bmstefanski">{monthlyContributions} contributions</Link>
