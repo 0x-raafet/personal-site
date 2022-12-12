@@ -45,8 +45,8 @@ const Container = withTheme(styled.div`
 
   ol,
   ul {
-    font-size: ${theme.fontSizes['xl']}px;
-    line-height: 30px;
+    font-size: ${theme.fontSizes['2xl']}px;
+    line-height: calc(1em + 0.725rem);
     margin: 0;
     padding-left: 24px;
     li {
@@ -66,8 +66,8 @@ const Container = withTheme(styled.div`
 `)
 
 const Paragraph = withTheme(styled.p`
-  font-size: ${theme.fontSizes['xl']}px;
-  line-height: 1.75;
+  font-size: ${theme.fontSizes['2xl']}px;
+  line-height: calc(1em + 0.725rem);
   hanging-punctuation: first;
 
   &:not(:last-child) {
@@ -86,13 +86,13 @@ const Paragraph = withTheme(styled.p`
 
 const SecondHeading = withTheme(styled.h2`
   font-size: ${theme.fontSizes['3xl']}px;
-  line-height: 1.4;
+  line-height: calc(1em + 0.725rem);
   margin-bottom: 24px;
 `)
 
 const ThirdHeading = withTheme(styled.h3`
   font-size: ${theme.fontSizes['2xl']}px;
-  line-height: 1.4;
+  line-height: calc(1em + 0.725rem);
   margin-bottom: 18px;
 `)
 

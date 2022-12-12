@@ -22,7 +22,7 @@ async function mapToXmlFormat(items) {
     <title>bstefanski.com</title>
     <link>https://bstefanski.com/</link>
     <description>  
-      <![CDATA[ A self-taught full-stack software engineer based in Poland, working in React.js & Nest.js Stack. Passionate about Clean Code, Object-Oriented Architecture and fast web. ]]></description>
+      <![CDATA[ A self-taught full-stack software engineer based in Poland, working in Next.js & Nest.js Stack. Passionate about Clean Code, Object-Oriented Architecture and fast web. ]]></description>
     <generator>bstefanski.com</generator>
     <atom:link href="https://bstefanski.com/rss" rel="self" type="application/rss+xml"/>
     <language>en</language>

@@ -3,7 +3,7 @@ import React from 'react'
 
 export default function MetadataHead(props) {
   const description =
-    'A self-taught full-stack software engineer based in Poland, working in React.js & Nest.js Stack. Passionate about Clean Code, Object-Oriented Architecture and fast web. '
+    'A self-taught full-stack software engineer based in Poland, working in Next.js & Nest.js Stack. Passionate about Clean Code, Object-Oriented Architecture and fast web. '
 
   return (
     <Head>

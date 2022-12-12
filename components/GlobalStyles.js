@@ -19,19 +19,19 @@ export const GlobalStyle = css`
     }
 
     .dark-theme {
-      --background: hsl(220, 26%, 14%);
-      --text: var(--gray-100);
-      --text-ligher: var(--gray-300);
-      --heading: var(--gray-50);
+      --background: hsl(210deg, 30%, 8%);
+      --text: hsl(0deg, 0%, 100%);
+      --text-ligher: #9eaab7;
+      --heading: hsl(210deg, 25%, 96%);
       --tint-primary: var(--tint-blue);
-      --navbar: hsl(218, 23%, 23%);
+      --navbar: hsl(210deg, 22%, 15%);
       --overlay: var(--gray-800);
       --overlay-lighter: var(--gray-700);
-      --primary: #81a1c1;
+      --primary: hsl(333deg, 100%, 45%);
 
-      --navbar-item-hover: #313d4f;
-      --navbar-item-focus: #1b2331;
-      --text-highlight: #313d4f;
+      --navbar-item-hover: hsl(210deg, 30%, 12%);
+      --navbar-item-focus: hsl(210deg, 30%, 12%);
+      --text-highlight: hsl(210deg, 30%, 12%);
     }
 
     :root {

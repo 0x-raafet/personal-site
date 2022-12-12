@@ -34,7 +34,7 @@ export default function SingleArticlePage(props) {
       <MetadataHead {...meta} />
       <Container id="content">
         <ReactionsWidget />
-        <Header title={title} formattedDate={formattedDate} readTime={readTime} />
+        <Header title={title} description={meta.description} formattedDate={formattedDate} readTime={readTime} />
         <RichText {...content} />
         <AuthorInfo />
         <Comments />

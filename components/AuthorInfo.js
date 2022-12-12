@@ -1,5 +1,5 @@
 import { styled } from '@linaria/react'
-import NextImage from "next/image";
+import NextImage from 'next/image'
 import { withTheme } from 'theme'
 import Link from './Link'
 
@@ -12,14 +12,15 @@ export default function AuthorInfo(props) {
           width={96}
           height={96}
           style={{
-            maxWidth: "100%",
-            height: "auto"
-          }} />
+            maxWidth: '100%',
+            height: 'auto',
+          }}
+        />
       </AvatarContainer>
       <Content>
         <AuthorTitle>Bart Stefański</AuthorTitle>
         <p>
-          A self-taught full-stack software engineer based in Poland, working in React.js & Nest.js Stack. Passionate about Clean Code,
+          A self-taught full-stack software engineer based in Poland, working in Next.js & Nest.js Stack. Passionate about Clean Code,
           Object-Oriented Architecture and fast web.{' '}
         </p>
         <Links>
@@ -29,7 +30,7 @@ export default function AuthorInfo(props) {
         </Links>
       </Content>
     </Container>
-  );
+  )
 }
 
 const Container = withTheme(styled.div`
