@@ -3,21 +3,26 @@ import floor from 'lodash/floor'
 import { EnvVars } from 'env'
 
 export default async function LatestGames(req, res) {
+  let result = null
   try {
     const apiRoot = 'http://api.steampowered.com'
     const steamProfileId = '76561198329610483'
-    const result = await _fetch(
+    result = await _fetch(
       apiRoot + `/IPlayerService/GetRecentlyPlayedGames/v1/?key=${EnvVars.STEAM_KEY}&steamid=${steamProfileId}&format=json`,
     )
       .then((res) => res.json())
       .then((data) => data.response.games.map(transformResponse))
-
-    res.setHeader('Cache-Control', `s-maxage=3600, stale-while-revalidate`)
-    return res.send(result)
   } catch (e) {
     console.error(e)
-    return res.send([])
+    result = []
   }
+
+  return new Response(JSON.stringify(result), {
+    status: 200,
+    headers: {
+      'Cache-Control': `s-maxage=3600, stale-while-revalidate`,
+    },
+  })
 }
 
 function transformResponse(payload) {
@@ -41,4 +46,8 @@ function makeSteamAssetUrl(appId, assetId) {
 
 function convertSecondsToHours(seconds) {
   return floor(seconds / 60, 2)
+}
+
+export const config = {
+  runtime: 'experimental-edge',
 }

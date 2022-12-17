@@ -15,9 +15,16 @@ export default async function GithubReactions(req, res) {
       },
     },
   } = await getContributions(EnvVars.GITHUB_TOKEN, 'bmstefanski', from, to)
-  res.setHeader('Cache-Control', `s-maxage=3600, stale-while-revalidate`)
 
-  return res.send({ monthlyContributions: totalContributions, pinnedItems: transformPinnedItems(pinnedItems).slice(0, 3) })
+  return new Response(
+    JSON.stringify({ monthlyContributions: totalContributions, pinnedItems: transformPinnedItems(pinnedItems).slice(0, 3) }),
+    {
+      status: 200,
+      headers: {
+        'Cache-Control': `s-maxage=3600, stale-while-revalidate`,
+      },
+    },
+  )
 }
 
 function transformPinnedItems(pinnedItems) {
@@ -81,4 +88,8 @@ async function getContributions(token, username, from, to) {
   const response = await fetch('https://api.github.com/graphql', { method: 'POST', body: JSON.stringify(body), headers: headers })
   const data = await response.json()
   return data
+}
+
+export const config = {
+  runtime: 'experimental-edge',
 }
