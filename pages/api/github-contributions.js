@@ -89,7 +89,3 @@ async function getContributions(token, username, from, to) {
   const data = await response.json()
   return data
 }
-
-export const config = {
-  runtime: 'experimental-edge',
-}

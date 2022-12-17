@@ -2,6 +2,7 @@ import { styled } from '@linaria/react'
 import groupBy from 'lodash/groupBy'
 import Head from 'next/head'
 import Link from 'components/Link'
+import MidDot from 'components/MidDot'
 import Page from 'components/Page'
 import { withTheme } from 'theme'
 import { formatDate } from 'utils/formatDate'
@@ -29,8 +30,7 @@ export default function Blog({ yearGroupedPosts }) {
                       <Link href={'/' + singlePost.slug}>{singlePost.title}</Link>
                       <Details>
                         <time dateTime={singlePost.date}>{formattedDate}</time>
-                        {/* <MidDot />{' '} */}
-                        {/* {singlePost.views || 'N/A'} views */}
+                        <MidDot /> {singlePost.views || 'N/A'} views
                       </Details>
                       <p>{singlePost.description}</p>
                     </ListItem>

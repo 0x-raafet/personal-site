@@ -47,7 +47,3 @@ function makeSteamAssetUrl(appId, assetId) {
 function convertSecondsToHours(seconds) {
   return floor(seconds / 60, 2)
 }
-
-export const config = {
-  runtime: 'experimental-edge',
-}
