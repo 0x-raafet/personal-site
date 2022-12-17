@@ -2,6 +2,7 @@ import { styled } from '@linaria/react'
 import dynamic from 'next/dynamic'
 import Head from 'next/head'
 import React from 'react'
+import withHydrationOnDemand from 'react-hydration-on-demand'
 import AuthorInfo from 'components/AuthorInfo'
 import RichText from 'components/RichText'
 import { useLazyLoadCss } from 'hooks/useLazyLoadCss'
@@ -33,15 +34,21 @@ export default function SingleArticlePage(props) {
       <StructuredDataHead slug={slug} {...meta} />
       <MetadataHead {...meta} />
       <Container id="content">
-        <ReactionsWidget />
+        <ReactionsWrapper>
+          <CustomReactionsWidget />
+        </ReactionsWrapper>
         <Header title={title} description={meta.description} formattedDate={formattedDate} readTime={readTime} />
-        <RichText {...content} />
+        <CustomRichText {...content} />
         <AuthorInfo />
         <Comments />
       </Container>
     </>
   )
 }
+
+const CustomReactionsWidget = withHydrationOnDemand({ on: ['idle'] })(ReactionsWidget)
+
+const CustomRichText = withHydrationOnDemand({ on: ['idle', 'viewport'] })(RichText)
 
 export async function getStaticPaths() {
   const posts = getAllPostsSlugs()
@@ -66,4 +73,32 @@ const Container = withTheme(styled.main`
   padding: 0 12px;
   margin: 0 auto;
   margin-bottom: 38px;
+`)
+
+const ReactionsWrapper = withTheme(styled.div`
+  position: sticky;
+  z-index: 999;
+  width: 96px;
+  height: 110px;
+  cursor: pointer;
+  user-select: none;
+
+  margin-top: -110px;
+  margin-left: -192px;
+  margin-right: auto;
+  top: 600px;
+  transition: transform 0.3s;
+  will-change: transform;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+
+  &:active {
+    transform: scale(1.15);
+  }
+
+  @media (max-width: 80em) {
+    display: none;
+  }
 `)

@@ -7,24 +7,23 @@ import { googlePrivateKey } from 'secrets/google-private-key'
 import { getAllPosts } from 'utils/postsFetcher'
 
 export default async function PostsEndpoint(req, res) {
-  return res.status(200).send({ posts: [] })
-  // res.setHeader('Cache-Control', `s-maxage=600, stale-while-revalidate`)
+  res.setHeader('Cache-Control', `s-maxage=600, stale-while-revalidate`)
 
-  // try {
-  //   const allPosts = await getAllPosts()
-  //   const pagesViews = await getAnalyticsAllPagesViews()
-  //   const pagesViewsForem = await getArticlesViewsFromForem(allPosts)
-  //   const allPostsSlugs = allPosts.map((post) => post.slug)
+  try {
+    const allPosts = await getAllPosts()
+    const pagesViews = await getAnalyticsAllPagesViews()
+    const pagesViewsForem = await getArticlesViewsFromForem(allPosts)
+    const allPostsSlugs = allPosts.map((post) => post.slug)
 
-  //   return res.send({
-  //     posts: pagesViews
-  //       .filter((view) => allPostsSlugs.includes(view.slug))
-  //       .map((prev) => ({ ...prev, views: `${Number(prev.views) + Number(pagesViewsForem[prev.slug])}` })),
-  //   })
-  // } catch (e) {
-  //   console.error(e)
-  //   res.send({ posts: [] })
-  // }
+    return res.send({
+      posts: pagesViews
+        .filter((view) => allPostsSlugs.includes(view.slug))
+        .map((prev) => ({ ...prev, views: `${Number(prev.views) + Number(pagesViewsForem[prev.slug])}` })),
+    })
+  } catch (e) {
+    console.error(e)
+    res.send({ posts: [] })
+  }
 }
 
 async function getAnalyticsAllPagesViews() {
@@ -101,7 +100,7 @@ function createJwtToken() {
 }
 
 function replaceEscapeSequenceWithLineBreak(v) {
-  return v.replace(/\\n/gm, '\n');
+  return v.replace(/\\n/gm, '\n')
 }
 
 function getPrivateKeyFileContents() {
