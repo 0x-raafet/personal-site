@@ -38,7 +38,9 @@ export default function SingleArticlePage(props) {
           <CustomReactionsWidget />
         </ReactionsWrapper>
         <Header title={title} description={meta.description} formattedDate={formattedDate} readTime={readTime} />
-        <CustomRichText {...content} />
+        <RichTextWraper>
+          <CustomRichText {...content} />
+        </RichTextWraper>
         <AuthorInfo />
         <Comments />
       </Container>
@@ -74,6 +76,10 @@ const Container = withTheme(styled.main`
   margin: 0 auto;
   margin-bottom: 38px;
 `)
+
+const RichTextWraper = styled.div`
+  width: 100%;
+`
 
 const ReactionsWrapper = withTheme(styled.div`
   position: sticky;
