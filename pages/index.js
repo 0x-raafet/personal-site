@@ -30,8 +30,8 @@ export default function Home({ yearGroupedPosts, monthlyContributions, pinnedIte
           Passionate about Clean Code, Object-Oriented Architecture, and fast web.
         </Description>
       </Page>
-      {/* <HyratedOpenSourceSection pinnedItems={pinnedItems} /> */}
-      {/* <HydratedBlogPostsSection yearGroupedPosts={yearGroupedPosts} /> */}
+      <HyratedOpenSourceSection pinnedItems={pinnedItems} />
+      <HydratedBlogPostsSection yearGroupedPosts={yearGroupedPosts} />
     </>
   )
 }
@@ -113,10 +113,10 @@ export async function getStaticProps() {
     new Date(post.date).getFullYear(),
   )
 
-  // const githubData = await fetch(makeApiUrl('/api/github-contributions')).then((r) => r.json())
+  const githubData = await fetch(makeApiUrl('/api/github-contributions')).then((r) => r.json())
 
   return {
-    props: { yearGroupedPosts: Object.entries(yearGroupedPosts).reverse() },
+    props: { yearGroupedPosts: Object.entries(yearGroupedPosts).reverse(), ...githubData },
     revalidate: 60,
   }
 
