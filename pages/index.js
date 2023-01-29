@@ -4,6 +4,7 @@ import groupBy from 'lodash/groupBy'
 import withHydrationOnDemand from 'react-hydration-on-demand'
 import AutofitGrid from 'components/AutofitGrid'
 import Link from 'components/Link'
+import MidDot from 'components/MidDot'
 import OpenSourceCard from 'components/OpenSourceCard'
 import Page from 'components/Page'
 import { withTheme } from 'theme'
@@ -26,11 +27,7 @@ export default function Home({ yearGroupedPosts, monthlyContributions, pinnedIte
       <Page title="Hello world">
         <Description>
           <strong>I am Bart</strong>, a self-taught full-stack software engineer based in Poland, working in Next.js & Nest.js stack.
-          Passionate about Clean Code, Object-Oriented Architecture, and fast web. This month I made{' '}
-          <strong>
-            <Link href="https://github.com/bmstefanski">{monthlyContributions} contributions</Link>
-          </strong>
-          .
+          Passionate about Clean Code, Object-Oriented Architecture, and fast web.
         </Description>
       </Page>
       <HyratedOpenSourceSection pinnedItems={pinnedItems} />
@@ -69,8 +66,7 @@ const BlogPostsSection = ({ yearGroupedPosts }) => {
                     <Link href={'/' + singlePost.slug}>{singlePost.title}</Link>
                     <Details>
                       <time dateTime={singlePost.date}>{formattedDate}</time>
-                      {/* <MidDot />{' '} */}
-                      {/* {singlePost.views || 'N/A'} views */}
+                      <MidDot /> {singlePost.views < 100 ? '< 100' : singlePost.views} views
                     </Details>
                     <p>{singlePost.description}</p>
                   </ListItem>
@@ -110,7 +106,7 @@ export async function getStaticProps() {
     ...singlePost.meta,
     slug: singlePost.slug,
     readTime: getReadTime(singlePost.content),
-    views: viewsData.find((item) => item.slug === singlePost.slug)?.views || 'N/A',
+    views: viewsData.find((item) => item.slug === singlePost.slug)?.views || '< 100',
   }))
 
   const yearGroupedPosts = groupBy(sortDescByDate(transformedPosts.reverse()).slice(0, LATEST_POSTS_COUNT), (post) =>

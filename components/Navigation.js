@@ -14,7 +14,7 @@ export default function Navigation({ items }) {
           const isActive = router.route === singleItem.href && router.asPath !== '/404'
           return (
             <NavItem key={singleItem.href} isActive={isActive}>
-              <NextLink prefetch={false} href={singleItem.href} legacyBehavior>
+              <NextLink prefetch={true} href={singleItem.href} legacyBehavior>
                 {singleItem.title}
               </NextLink>
             </NavItem>

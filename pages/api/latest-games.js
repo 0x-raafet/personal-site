@@ -17,12 +17,8 @@ export default async function LatestGames(req, res) {
     result = []
   }
 
-  return new Response(JSON.stringify(result), {
-    status: 200,
-    headers: {
-      'Cache-Control': `s-maxage=3600, stale-while-revalidate`,
-    },
-  })
+  res.setHeader('Cache-Control', `s-maxage=3600, stale-while-revalidate`)
+  return res.send(result)
 }
 
 function transformResponse(payload) {

@@ -2,29 +2,27 @@ import { subMonths } from 'date-fns'
 import { EnvVars } from 'env'
 
 export default async function GithubReactions(req, res) {
-  new Date().setUTCMonth()
-  const from = subMonths(new Date(), 1).toISOString()
-  const to = new Date().toISOString()
-  const {
-    data: {
-      user: {
-        contributionsCollection: {
-          contributionCalendar: { totalContributions },
+  try {
+    new Date().setUTCMonth()
+    const from = subMonths(new Date(), 1).toISOString()
+    const to = new Date().toISOString()
+    const {
+      data: {
+        user: {
+          contributionsCollection: {
+            contributionCalendar: { totalContributions },
+          },
+          pinnedItems: { edges: pinnedItems },
         },
-        pinnedItems: { edges: pinnedItems },
       },
-    },
-  } = await getContributions(EnvVars.GITHUB_TOKEN, 'bmstefanski', from, to)
+    } = await getContributions(EnvVars.GITHUB_TOKEN, 'bmstefanski', from, to)
 
-  return new Response(
-    JSON.stringify({ monthlyContributions: totalContributions, pinnedItems: transformPinnedItems(pinnedItems).slice(0, 3) }),
-    {
-      status: 200,
-      headers: {
-        'Cache-Control': `s-maxage=3600, stale-while-revalidate`,
-      },
-    },
-  )
+    res.setHeader('Cache-Control', `s-maxage=3600, stale-while-revalidate`)
+    res.send({ monthlyContributions: totalContributions, pinnedItems: transformPinnedItems(pinnedItems).slice(0, 3) })
+  } catch (error) {
+    console.error(error)
+    return res.send(error)
+  }
 }
 
 function transformPinnedItems(pinnedItems) {

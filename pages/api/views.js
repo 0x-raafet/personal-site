@@ -14,7 +14,6 @@ export default async function PostsEndpoint(req, res) {
     const pagesViews = await getAnalyticsAllPagesViews()
     const pagesViewsForem = await getArticlesViewsFromForem(allPosts)
     const allPostsSlugs = allPosts.map((post) => post.slug)
-
     return res.send({
       posts: pagesViews
         .filter((view) => allPostsSlugs.includes(view.slug))
