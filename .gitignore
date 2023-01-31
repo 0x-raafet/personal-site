@@ -1,6 +1,9 @@
 # build output
 dist
 .next
+_next
+public/_next
+public/.next
 
 # dependencies
 node_modules

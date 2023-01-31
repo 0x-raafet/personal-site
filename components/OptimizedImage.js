@@ -1,5 +1,5 @@
 import { styled } from '@linaria/react'
-import NextImage from "next/image";
+import NextImage from 'next/image'
 import React from 'react'
 import { withTheme } from 'theme'
 
@@ -14,10 +14,11 @@ export default function OptimizedImage({ src, ...rest }) {
         fill
         sizes="100vw"
         style={{
-          objectFit: "cover"
-        }} />
+          objectFit: 'cover',
+        }}
+      />
     </Wrapper>
-  );
+  )
 }
 
 const Wrapper = withTheme(styled.div`

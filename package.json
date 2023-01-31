@@ -4,7 +4,7 @@
   "version": "auth",
   "private": true,
   "scripts": {
-    "build": "next build",
+    "build": "next build && next-export-optimize-images && install -d _optimized/ public/_optimized && cp -vaR _optimized/ public/_optimized",
     "dev": "next dev",
     "start": "next start",
     "lint": "next lint",
@@ -73,6 +73,7 @@
     "eslint-plugin-react": "^7.22.0",
     "eslint-plugin-react-hooks": "^4.2.0",
     "file-loader": "^6.2.0",
+    "next-export-optimize-images": "^2.0.0",
     "puppeteer-core": "^10.4.0",
     "remark-breaks": "^2.0.2",
     "url-loader": "^4.1.1"
