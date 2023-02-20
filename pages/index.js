@@ -1,8 +1,10 @@
 import { styled } from '@linaria/react'
+import format from 'date-fns/format'
 import fetch from 'isomorphic-fetch'
 import groupBy from 'lodash/groupBy'
 import withHydrationOnDemand from 'react-hydration-on-demand'
 import AutofitGrid from 'components/AutofitGrid'
+import Container from 'components/Container'
 import Link from 'components/Link'
 import MidDot from 'components/MidDot'
 import OpenSourceCard from 'components/OpenSourceCard'
@@ -24,12 +26,20 @@ export default function Home({ yearGroupedPosts, monthlyContributions, pinnedIte
       <MetadataHead />
       <StructuredDataHead />
       <Symbols />
-      <Page title="Hello world">
+      <Container>
+        <BigTitle>
+          Howdy, I am Bart <Wave>👋</Wave>
+        </BigTitle>
         <Description>
-          <strong>I am Bart</strong>, a self-taught full-stack software engineer based in Poland, working in Next.js & Nest.js stack.
-          Passionate about Clean Code, Object-Oriented Architecture, and fast web.
+          I am a highly-motivated software developer with experience in frontend and backend. I like to ship things fast and good.
+          <br />
+          Currently, my focus is on <strong>Next.js</strong>, and <strong>Web Performance</strong>, and I am a big fan of streamlining{' '}
+          <strong>Developer Experience</strong>.
+          <br />
+          <br />
+          In <strong>{format(Date.now(), 'MMMM yyyy')}</strong>, I&apos;ve made <strong>{monthlyContributions}</strong> commits on GitHub.
         </Description>
-      </Page>
+      </Container>
       <HyratedOpenSourceSection pinnedItems={pinnedItems} />
       <HydratedBlogPostsSection yearGroupedPosts={yearGroupedPosts} />
     </>
@@ -82,18 +92,6 @@ const BlogPostsSection = ({ yearGroupedPosts }) => {
 
 const HydratedBlogPostsSection = withHydrationOnDemand({ on: ['visible'] })(BlogPostsSection)
 
-const Description = withTheme(styled.div`
-  font-size: 32px;
-  line-height: 1.5;
-  letter-spacing: -0.02em;
-  color: var(--text);
-  margin-top: -24px;
-
-  @media (max-width: 30em) {
-    font-size: 28px;
-  }
-`)
-
 const LATEST_POSTS_COUNT = 5
 
 export async function getStaticProps() {
@@ -124,6 +122,52 @@ export async function getStaticProps() {
     return array.sort((a, b) => new Date(b.date) - new Date(a.date))
   }
 }
+
+const Wave = styled.div`
+  display: inline-flex;
+  transition: transform 0.2s;
+  cursor: grabbing;
+  user-select: none;
+
+  &:hover {
+    transform: scale(1.05) rotate(25deg);
+  }
+
+  &:active {
+    transform: perspective(800px) rotateY(-15deg) translateY(-50px) rotateX(10deg) scale(1);
+    transform-style: preserve-3d;
+  }
+`
+
+const BigTitle = withTheme(styled.div`
+  font-size: 72px;
+  color: var(--text);
+  font-weight: bold;
+  align-self: flex-start;
+  width: 100%;
+
+  @media (max-width: 48em) {
+    font-size: 48px;
+  }
+`)
+
+const Description = withTheme(styled.div`
+  font-size: 22px;
+  line-height: 1.5;
+  color: var(--text-ligher);
+  max-width: 70%;
+  align-self: flex-start;
+  margin-bottom: 100px;
+
+  @media (max-width: 48em) {
+    font-size: 20px;
+    max-width: 100%;
+  }
+
+  strong {
+    color: var(--text);
+  }
+`)
 
 const YearSection = withTheme(styled.div`
   display: flex;
