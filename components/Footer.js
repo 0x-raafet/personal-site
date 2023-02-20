@@ -86,7 +86,7 @@ const Section = withTheme(styled.div`
   }
 
   a {
-    font-size: 16px;
+    font-size: 18px;
   }
 
   @media (max-width: 48em) {
