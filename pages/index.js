@@ -76,7 +76,11 @@ const BlogPostsSection = ({ yearGroupedPosts }) => {
                     <Link href={'/' + singlePost.slug}>{singlePost.title}</Link>
                     <Details>
                       <time dateTime={singlePost.date}>{formattedDate}</time>
-                      <MidDot /> {singlePost.views < 100 ? '< 100' : singlePost.views} views
+                      {singlePost.views < 100 ? null : (
+                        <>
+                          <MidDot /> {singlePost.views} views
+                        </>
+                      )}
                     </Details>
                     <p>{singlePost.description}</p>
                   </ListItem>
@@ -104,7 +108,7 @@ export async function getStaticProps() {
     ...singlePost.meta,
     slug: singlePost.slug,
     readTime: getReadTime(singlePost.content),
-    views: viewsData.find((item) => item.slug === singlePost.slug)?.views || '< 100',
+    views: viewsData.find((item) => item.slug === singlePost.slug)?.views || 0,
   }))
 
   const yearGroupedPosts = groupBy(sortDescByDate(transformedPosts.reverse()).slice(0, LATEST_POSTS_COUNT), (post) =>
