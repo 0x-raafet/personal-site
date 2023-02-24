@@ -1,12 +1,17 @@
+import { formatDistance, parse } from 'date-fns'
 import Head from 'next/head'
 import React from 'react'
 import { EnvVars } from 'env'
+import { formatDate } from 'utils/formatDate'
 
 export default function OpenGraphHead(props) {
   const { slug, title, description, date, tags } = props
 
   const currentUrl = EnvVars.URL + slug
-  const ogImageUrl = EnvVars.OG_IMAGES_URL + `${slug}.png`
+  const dateDistance = formatDistance(new Date(parse(formatDate(new Date(date)), 'do MMMM yyyy', Date.now())), Date.now(), {
+    addSuffix: true,
+  })
+  const ogImageUrl = `https://bstefanski.com/api/og?title=${title}&date=${date}&dateDistance=${dateDistance}`
 
   return (
     <Head>
