@@ -26,11 +26,11 @@ export default async function handler(req) {
       (
         <div tw="pos-relative h-full w-full flex items-start justify-start p-20" style={{ background: '#0E141B' }}>
           <div tw="flex h-full items-center w-full">
-            <div tw="flex-1 flex flex-col mr-20">
-              <p tw="mb-0 " style={{ color: '#9eaab7' }}>
-                <strong tw="text-white font-normal mr-2">{date} </strong> ({dateDistance})
+            <div tw="flex-1 flex flex-col mr-20 text-lg">
+              <p tw="mb-4 " style={{ color: '#9eaab7' }}>
+                <strong tw="text-white text-lg font-normal mr-2">{date} </strong> ({dateDistance})
               </p>
-              <h1 tw="text-6xl text-white">{title}</h1>
+              <h1 tw="text-6xl leading-none text-white">{title}</h1>
             </div>
             {image ? (
               <div tw="flex relative">
@@ -60,7 +60,7 @@ export default async function handler(req) {
               </div>
             ) : null}
           </div>
-          <h2 tw="text-xl font-normal text-white mt-auto" style={{ position: 'absolute', bottom: 40, left: 70 }}>
+          <h2 tw="text-2xl font-normal text-white mt-auto" style={{ position: 'absolute', bottom: 40, left: 70 }}>
             ✌ bstefanski.com/blog
           </h2>
         </div>
