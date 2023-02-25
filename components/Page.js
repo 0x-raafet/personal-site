@@ -3,12 +3,16 @@ import React from 'react'
 import { withTheme } from 'theme'
 
 export default function Page({ title, description, children }) {
+  const hasNoTitleNorDescription = !title && !description
+
   return (
     <Wrapper>
-      <PageHeaderWrapper>
-        <Title>{title}</Title>
-        <Description>{description}</Description>
-      </PageHeaderWrapper>
+      {hasNoTitleNorDescription ? null : (
+        <PageHeaderWrapper>
+          {title ? <Title>{title}</Title> : null}
+          {description ? <Description>{description}</Description> : null}
+        </PageHeaderWrapper>
+      )}
       <Content>{children}</Content>
     </Wrapper>
   )

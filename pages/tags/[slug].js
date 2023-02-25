@@ -1,6 +1,7 @@
 import { styled } from '@linaria/react'
 import groupBy from 'lodash/groupBy'
 import Head from 'next/head'
+import { useRouter } from 'next/router'
 import Link from 'components/Link'
 import MidDot from 'components/MidDot'
 import Page from 'components/Page'
@@ -9,16 +10,18 @@ import { withTheme } from 'theme'
 import { formatDate } from 'utils/formatDate'
 import { getReadTime } from 'utils/getReadTime'
 import { makeApiUrl } from 'utils/makeApiUrl'
-import { getAllPosts, getAllTags } from 'utils/postsFetcher'
+import { getAllPostsByTag, getAllTags } from 'utils/postsFetcher'
 
 export default function Blog({ yearGroupedPosts, allTags }) {
+  const router = useRouter()
   return (
     <>
       <Head>
         <title>Blog | bstefanski.com</title>
       </Head>
       <Page>
-        <TagsSection items={allTags} />
+        <TagsSection items={allTags} selected={router.query.slug} />
+
         <List>
           {yearGroupedPosts.map(([year, posts]) => (
             <YearSection key={year}>
@@ -110,12 +113,20 @@ const Details = withTheme(styled.div`
   opacity: 0.8;
 `)
 
-export async function getStaticProps() {
-  const fetchedPosts = await getAllPosts()
+export async function getStaticPaths() {
+  const tags = await getAllTags()
+  return {
+    paths: tags.map((singleTag) => ({ params: { slug: singleTag } })),
+    fallback: false,
+  }
+}
+
+export async function getStaticProps({ params }) {
+  const fetchedPosts = await getAllPostsByTag(params.slug)
+  const allTags = await getAllTags()
   const viewsData = await fetch(makeApiUrl('/api/views'))
     .then((r) => r.json())
     .then((r) => r.posts)
-  const allTags = await getAllTags()
 
   const transformedPosts = fetchedPosts.map((singlePost) => ({
     ...singlePost.meta,
