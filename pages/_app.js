@@ -2,6 +2,7 @@
 import '../public/fonts/style.css'
 import 'intersection-observer'
 
+import { Partytown } from '@builder.io/partytown/react'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import Footer from 'components/Footer'
@@ -35,6 +36,35 @@ function MyApp({ Component, pageProps }) {
     </>
   )
 
+  const partytownScripts = (
+    <>
+      <Partytown
+        forward={['dataLayer.push', 'fbq']}
+        resolveUrl={(url) => {
+          if (['connect.facebook.net', 'www.googletagmanager.com', 'www.google-analytics.com'].includes(url.hostname)) {
+            // eslint-disable-next-line no-restricted-globals
+            const proxyUrl = new URL(`${self.location.origin}/api/cors-proxy`)
+            proxyUrl.searchParams.append('url', url.href)
+            return proxyUrl
+          }
+
+          return url
+        }}
+      />
+      <script
+        type="text/partytown"
+        defer
+        dangerouslySetInnerHTML={{
+          __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.defer=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5877HF4');`,
+        }}
+      />
+    </>
+  )
+
   return (
     <>
       <Head>
@@ -42,6 +72,7 @@ function MyApp({ Component, pageProps }) {
         <link rel="preload" href="/fonts/rubik-v20-latin-700.woff2" as="font" type="font/woff2" crossOrigin="" />
         <link rel="icon" type="image/png" href="/favicon.png" />
         <link rel="alternate" type="application/rss+xml" href={EnvVars.URL + 'rss'} title="RSS 2.0" />
+        {partytownScripts}
       </Head>
       <ThemeContextProvider>
         <ThemeProvider theme={theme}>
