@@ -92,7 +92,7 @@ const ReactionsWrapper = withTheme(styled.div`
   margin-top: -110px;
   margin-left: -192px;
   margin-right: auto;
-  top: 600px;
+  top: 500px;
   transition: transform 0.3s;
   will-change: transform;
 
