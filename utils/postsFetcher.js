@@ -16,7 +16,15 @@ export function getAllPostsSlugs() {
 
 export async function getAllTags() {
   const allPosts = await getAllPosts()
-  return [...new Set(allPosts.flatMap((singlePost) => singlePost.tags))].filter(Boolean)
+  const tagsArticlesCount = allPosts
+    .flatMap((singlePost) => singlePost.tags)
+    .filter(Boolean)
+    .reduce((prev, curr) => ({ ...prev, [curr]: (prev[curr] || 0) + 1 }), {})
+
+  return Object.entries(tagsArticlesCount)
+    .sort(([keyA, valueA], [keyB, valueB]) => valueB - valueA)
+    .flatMap((v) => v)
+    .filter((v) => typeof v === 'string')
 }
 
 function normalizeTags(tags) {
