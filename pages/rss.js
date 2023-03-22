@@ -43,7 +43,7 @@ async function makeSingleRssItem(post) {
   const dateDistance = formatDistance(new Date(parse(formatDate(new Date(date)), 'do MMMM yyyy', Date.now())), Date.now(), {
     addSuffix: true,
   })
-  const ogImageUrl = `https://bstefanski.com/api/og?title=${title}&date=${date}&dateDistance=${dateDistance}`
+  const ogImageUrl = encodeURI(`https://bstefanski.com/api/og?title=${title}&date=${date}&dateDistance=${dateDistance}`)
 
   const pubDate = new Date(date).toUTCString()
 
@@ -62,8 +62,8 @@ async function makeSingleRssItem(post) {
           <![CDATA[ ${xmlescape(tags)} ]]>
         </category>
         <content:encoded><![CDATA[ ${htmlContent} ]]></content:encoded>
-        <media:thumbnail url="${ogImageUrl}"/>
-        <media:content url="${ogImageUrl}" medium="image">
+        <media:thumbnail url="${xmlescape(ogImageUrl)}"/>
+        <media:content url="${xmlescape(ogImageUrl)}" medium="image">
           <media:title type="html"> ${xmlescape(title)} </media:title>
         </media:content>
       </item>`
