@@ -28,7 +28,7 @@ export default async function handler(req) {
           <div tw="flex h-full items-center w-full">
             <div tw="flex-1 flex flex-col mr-20 text-lg">
               <p tw="mb-4 " style={{ color: '#9eaab7' }}>
-                <strong tw="text-white text-lg font-normal mr-2">{date} </strong> ({dateDistance})
+                <strong tw="text-white text-lg font-normal mr-2">{date} </strong> {dateDistance ? `(${dateDistance})` : null}
               </p>
               <h1 tw="text-6xl leading-none text-white">{title}</h1>
             </div>

@@ -1,12 +1,18 @@
+import { formatDistance, parse } from 'date-fns'
 import Head from 'next/head'
 import { jsonLdScriptProps } from 'react-schemaorg'
 import { Article, BreadcrumbList, ImageObject, Organization } from 'schema-dts'
 import { EnvVars } from 'env'
+import { formatDate } from 'utils/formatDate'
 
 export default function StructuredDataHead(props) {
   const { slug, title, date, description, tags } = props
   const currentSiteUrl = EnvVars.URL + slug
-  const ogImageUrl = EnvVars.OG_IMAGES_URL + `${slug}.png`
+
+  const dateDistance = formatDistance(new Date(parse(formatDate(new Date(date)), 'do MMMM yyyy', Date.now())), Date.now(), {
+    addSuffix: true,
+  })
+  const ogImageUrl = `https://bstefanski.com/api/og?title=${title}&date=${date}&dateDistance=${dateDistance}`
   const faviconUrl = EnvVars.URL + 'favicon.png'
 
   return (

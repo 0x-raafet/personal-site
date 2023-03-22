@@ -1,7 +1,9 @@
+import { formatDistance, parse } from 'date-fns'
 import { renderToString } from 'react-dom/server'
 import xmlescape from 'xml-escape'
 import RichText from 'components/RichText'
 import { EnvVars } from 'env'
+import { formatDate } from 'utils/formatDate'
 import { getAllPosts } from 'utils/postsFetcher'
 import { serializeMdxContent } from 'utils/serializeMdxContent'
 import withCacheEffectivePage from 'utils/withCacheEffectivePage'
@@ -37,7 +39,12 @@ async function makeSingleRssItem(post) {
     content,
     slug,
   } = post
-  const ogImageUrl = EnvVars.OG_IMAGES_URL + `${slug}.png`
+
+  const dateDistance = formatDistance(new Date(parse(formatDate(new Date(date)), 'do MMMM yyyy', Date.now())), Date.now(), {
+    addSuffix: true,
+  })
+  const ogImageUrl = `https://bstefanski.com/api/og?title=${title}&date=${date}&dateDistance=${dateDistance}`
+
   const pubDate = new Date(date).toUTCString()
 
   const serializedContent = await serializeMdxContent(content, post.meta)

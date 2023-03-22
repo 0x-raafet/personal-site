@@ -29,9 +29,9 @@ module.exports = withExportImages(
         imageSizes: [64, 128],
       },
       webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
-        if (isServer) {
-          require('./scripts/generate-og-images')
-        }
+        // if (isServer) {
+        //   require('./scripts/generate-og-images')
+        // }
 
         config.plugins.push(
           new CopyPlugin({
