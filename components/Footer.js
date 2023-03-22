@@ -10,7 +10,6 @@ export default function Footer() {
         <FooterContainer>
           <Section>
             <SectionTitle>Pages</SectionTitle>
-            <Link href="/uses">Uses</Link>
             {/* <Link href="/colophon">Colophon</Link> */}
             <Link href="/resume" target="_blank">
               Resume
