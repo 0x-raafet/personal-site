@@ -39,19 +39,8 @@ function makeSingleSitemapItem(post, host) {
     meta: { date, title, tags },
     slug,
   } = post
-  const newsTitle = xmlescape(title) || ''
 
   return {
-    url: [
-      { loc: host + slug },
-      {
-        'news:news': [
-          { 'news:publication': [{ 'news:name': host }, { 'news:language': 'en' }] },
-          { 'news:publication_date': date },
-          { 'news:title': newsTitle },
-          { 'news:keywords': { _cdata: tags } },
-        ],
-      },
-    ],
+    url: [{ loc: host + slug }, { lastmod: date }],
   }
 }
