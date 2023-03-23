@@ -11,12 +11,9 @@ export default function Footer() {
           <Section>
             <SectionTitle>Pages</SectionTitle>
             {/* <Link href="/colophon">Colophon</Link> */}
-            <Link href="/resume" target="_blank">
-              Resume
-            </Link>
-            <Link href="/rss" target="_blank">
-              RSS
-            </Link>
+            <Link href="/resume">Resume</Link>
+            <Link href="/about">About</Link>
+            <Link href="/rss">RSS</Link>
           </Section>
           <Section>
             <SectionTitle>Socials</SectionTitle>
@@ -32,7 +29,7 @@ export default function Footer() {
             <Link target="_blank" href="https://www.linkedin.com/in/bart-stefanski/">
               LinkedIn
             </Link>
-            <Link target="_blank" href="https://www.instagram.com/bmstefanski/">
+            <Link target="_blank" href="https://www.instagram.com/bartekstefanski/">
               Instagram
             </Link>
           </Section>

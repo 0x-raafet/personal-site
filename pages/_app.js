@@ -16,6 +16,7 @@ import { theme, ThemeProvider } from 'theme'
 const navItems = [
   { title: 'Home', href: '/' },
   { title: 'Blog', href: '/blog' },
+  { title: 'About', href: '/about' },
 ]
 
 const standalonePaths = []
