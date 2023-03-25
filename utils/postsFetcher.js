@@ -1,6 +1,24 @@
 import matter from 'gray-matter'
 import * as fs from 'fs'
 import * as path from 'path'
+import { getReadTime } from './getReadTime'
+
+export async function getSimilarPosts(slug, count = 3) {
+  const { tags } = await getSinglePost(slug)
+  const allPosts = await getAllPosts()
+
+  const postsWithSimilarTags = allPosts.map((singlePost) => {
+    const similaritiesCount = singlePost.tags.filter((singleTag) => tags.includes(singleTag)).length
+    return { ...singlePost, similaritiesCount }
+  })
+  return [
+    ...postsWithSimilarTags
+      .filter((singlePost) => singlePost.slug !== slug)
+      .sort((a, b) => b.similaritiesCount - a.similaritiesCount)
+      .map(({ content, similaritiesCount, ...rest }) => ({ ...rest, readTime: getReadTime(content) })),
+    ...allPosts,
+  ].slice(0, count)
+}
 
 export async function getAllPosts() {
   return Promise.all(getAllPostsSlugs().map(getSinglePost))
