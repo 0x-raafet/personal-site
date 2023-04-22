@@ -17,7 +17,7 @@ export default async function handler(req) {
 
     const { searchParams } = new URL(req.url)
 
-    const title = searchParams.has('title') ? searchParams.get('title').slice(0, 100) : 'My default title'
+    const title = decodeURIComponent(searchParams.has('title') ? searchParams.get('title').slice(0, 100) : 'My default title')
     const image = 'https://avatars.githubusercontent.com/u/28964599?v=4'
     const date = searchParams.get('date')
     const dateDistance = searchParams.get('dateDistance')

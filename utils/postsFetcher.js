@@ -69,6 +69,5 @@ export async function getSinglePost(slug) {
 }
 
 export function getPostsDirectory() {
-  let basePath = process.cwd()
-  return path.join(basePath, 'posts')
+  return path.join(process.cwd(), 'posts')
 }

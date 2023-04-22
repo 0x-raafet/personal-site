@@ -43,8 +43,9 @@ async function makeSingleRssItem(post) {
   const dateDistance = formatDistance(new Date(parse(formatDate(new Date(date)), 'do MMMM yyyy', Date.now())), Date.now(), {
     addSuffix: true,
   })
-  const ogImageUrl = encodeURI(`https://bstefanski.com/api/og?title=${title}&date=${date}&dateDistance=${dateDistance}`)
-
+  const ogImageUrl = xmlescape(
+    `https://bstefanski.com/api/og?` + new URLSearchParams(`title=${title}&date=${date}&dateDistance=${dateDistance}`).toString(),
+  )
   const pubDate = new Date(date).toUTCString()
 
   const serializedContent = await serializeMdxContent(content, post.meta)
@@ -61,10 +62,16 @@ async function makeSingleRssItem(post) {
         <category>
           <![CDATA[ ${xmlescape(tags)} ]]>
         </category>
-        <content:encoded><![CDATA[ ${htmlContent} ]]></content:encoded>
-        <media:thumbnail url="${xmlescape(ogImageUrl)}"/>
-        <media:content url="${xmlescape(ogImageUrl)}" medium="image">
+        <content:encoded><![CDATA[ ${replacePostsURL(htmlContent)} ]]></content:encoded>
+        <media:thumbnail url="${ogImageUrl}"/>
+        <media:content url="${ogImageUrl}" medium="image">
           <media:title type="html"> ${xmlescape(title)} </media:title>
         </media:content>
       </item>`
+}
+
+function replacePostsURL(text) {
+  const regex = /(^|\s|"|')\/posts\//g
+  const newPrefix = 'https://bstefanski.com/posts/'
+  return text.replace(regex, (match, p1) => p1 + newPrefix)
 }
