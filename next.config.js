@@ -3,7 +3,6 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
 })
 const CopyPlugin = require('copy-webpack-plugin')
-const withExportImages = require('next-export-optimize-images')
 const withLinaria = require('next-linaria')
 const path = require('path')
 
