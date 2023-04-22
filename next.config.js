@@ -13,7 +13,9 @@ module.exports = withExportImages(
       reactStrictMode: true,
       poweredByHeader: false,
       externalHelpers: true,
+      output: 'standalone',
       experimental: {
+        output: 'standalone',
         nftTracing: true,
         legacyBrowsers: false,
         modularizeImports: {
