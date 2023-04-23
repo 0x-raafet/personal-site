@@ -3,6 +3,7 @@ title: 📜 Upgrading one dependency causes the whole yarn.lock to change - fix
 description: Installing or updating a dependency with yarn can cause a whole lock file to change. In reality, it doesn't bump versions of the packages you wouldn't suspect, but it does change the formatting and the order of everything.
 date: '2022-12-05'
 tags: DevOps
+foremSlug: upgrading-one-dependency-causes-the-whole-yarnlock-to-change-fix-22p7
 ---
 
 I wanted to bump a dependency in a project with a frozen yarn.lock today. I typed `yarn add libraryName@1.2.4` in the console and waited for results. It ended up updating approx. 10k lines, which was quite surprising! My first thought was to look for another solution to update a dependency because I thought maybe I had misread the commands. A couple of other alternatives, like `yarn up` or `yarn upgrade`, did not reduce the size of the diff.
