@@ -59,6 +59,7 @@ module.exports = withLinaria(
       return [
         { source: '/widget.js', destination: 'https://made-by-widget.vercel.app/main.modern.js' },
         { source: '/widget.css', destination: 'https://made-by-widget.vercel.app/main.css' },
+        { source: '/media/:path*', destination: '/api/og-media/:path*' },
       ]
     },
   }),
