@@ -32,8 +32,8 @@ export default async function handler(req) {
           <div tw="relative h-[95%] w-[97%] m-auto flex items-center justify-center p-20" style={{ background: '#0E141B' }}>
             <div tw="flex h-full items-center w-full">
               <div tw="flex-1 flex flex-col text-lg">
-                <h1 tw="leading-none text-white text-center mb-10" style={{ fontSize: !!image ? '28px' : '48px' }}>
-                  {metadata?.title}
+                <h1 tw="leading-none text-white text-center m-auto mb-10" style={{ fontSize: !!image ? '28px' : '48px' }}>
+                  {metadata?.title?.length <= 10 && metadata?.description ? metadata?.description || metadata?.title : metadata?.title}
                 </h1>
                 {image ? (
                   <img
