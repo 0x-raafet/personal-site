@@ -2,6 +2,7 @@ import { styled } from '@linaria/react'
 import formatDistance from 'date-fns/formatDistance'
 import parse from 'date-fns/parse'
 import React from 'react'
+import Balancer from 'react-wrap-balancer'
 import { withTheme } from 'theme'
 
 export default function Header({ title, description, formattedDate, readTime }) {
@@ -9,7 +10,9 @@ export default function Header({ title, description, formattedDate, readTime }) 
 
   return (
     <HeaderContainer>
-      <Title>{title}</Title>
+      <Title>
+        <Balancer>{title}</Balancer>
+      </Title>
       <Description>{description}</Description>
       <Line />
       {hasNoDateNorReadtime ? null : <DetailsContainer datetime={formattedDate}>{formattedDate}</DetailsContainer>}

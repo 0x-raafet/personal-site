@@ -3,6 +3,7 @@ import format from 'date-fns/format'
 import fetch from 'isomorphic-fetch'
 import groupBy from 'lodash/groupBy'
 import withHydrationOnDemand from 'react-hydration-on-demand'
+import Balancer from 'react-wrap-balancer'
 import AutofitGrid from 'components/AutofitGrid'
 import Container from 'components/Container'
 import Link from 'components/Link'
@@ -31,13 +32,15 @@ export default function Home({ yearGroupedPosts, monthlyContributions, pinnedIte
           Howdy, I am Bart <Wave>👋</Wave>
         </BigTitle>
         <Description>
-          I am a highly-motivated software developer with experience in frontend and backend. I like to ship things fast and good.
-          <br />
-          Currently, my focus is on <strong>Next.js</strong>, and <strong>Web Performance</strong>, and I am a big fan of streamlining{' '}
-          <strong>Developer Experience</strong>.
-          <br />
-          <br />
-          In <strong>{format(Date.now(), 'MMMM yyyy')}</strong>, I&apos;ve made <strong>{monthlyContributions}</strong> commits on GitHub.
+          <Balancer>
+            I am a highly-motivated software developer with experience in frontend and backend. I like to ship things fast and good.
+            <br />
+            Currently, my focus is on <strong>Next.js</strong>, and <strong>Web Performance</strong>, and I am a big fan of streamlining{' '}
+            <strong>Developer Experience</strong>.
+            <br />
+            <br />
+            In <strong>{format(Date.now(), 'MMMM yyyy')}</strong>, I&apos;ve made <strong>{monthlyContributions}</strong> commits on GitHub.
+          </Balancer>
         </Description>
       </Container>
       <HyratedOpenSourceSection pinnedItems={pinnedItems} />
@@ -159,7 +162,7 @@ const Description = withTheme(styled.div`
   font-size: 22px;
   line-height: 1.5;
   color: var(--text-ligher);
-  max-width: 70%;
+  max-width: 100%;
   align-self: flex-start;
   margin-bottom: 100px;
 

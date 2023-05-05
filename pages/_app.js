@@ -5,6 +5,7 @@ import 'intersection-observer'
 import { Partytown } from '@builder.io/partytown/react'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
+import { Provider as ReactWrapBalancerProvider } from 'react-wrap-balancer'
 import Footer from 'components/Footer'
 import { GlobalStyle } from 'components/GlobalStyles'
 import Navbar from 'components/Navbar'
@@ -79,7 +80,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.defer=true;j.src=
       <ThemeContextProvider>
         <ThemeProvider theme={theme}>
           <GlobalStyle />
-          {isStandalone ? standaloneMarkup : contentMarkup}
+          <ReactWrapBalancerProvider>{isStandalone ? standaloneMarkup : contentMarkup}</ReactWrapBalancerProvider>
         </ThemeProvider>
       </ThemeContextProvider>
     </>
