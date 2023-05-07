@@ -103,15 +103,15 @@ const LATEST_POSTS_COUNT = 5
 
 export async function getStaticProps() {
   const fetchedPosts = await getAllPosts()
-  const viewsData = await fetch(makeApiUrl('/api/views'))
-    .then((r) => r.json())
-    .then((r) => r.posts)
+  // const viewsData = await fetch(makeApiUrl('/api/views'))
+  //   .then((r) => r.json())
+  //   .then((r) => r.posts)
 
   const transformedPosts = fetchedPosts.map((singlePost) => ({
     ...singlePost.meta,
     slug: singlePost.slug,
     readTime: getReadTime(singlePost.content),
-    views: viewsData.find((item) => item.slug === singlePost.slug)?.views || 0,
+    views: 0,
   }))
 
   const yearGroupedPosts = groupBy(sortDescByDate(transformedPosts.reverse()).slice(0, LATEST_POSTS_COUNT), (post) =>

@@ -60,6 +60,7 @@ module.exports = withLinaria(
         { source: '/widget.js', destination: 'https://made-by-widget.vercel.app/main.modern.js' },
         { source: '/widget.css', destination: 'https://made-by-widget.vercel.app/main.css' },
         { source: '/media/:path*', destination: '/api/og-media/:path*' },
+        { source: '/adblockcansuckmyballs.js', destination: 'https://analytics.bstefanski.com/tracker.js' },
       ]
     },
   }),

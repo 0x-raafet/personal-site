@@ -112,16 +112,17 @@ const Details = withTheme(styled.div`
 
 export async function getStaticProps() {
   const fetchedPosts = await getAllPosts()
-  const viewsData = await fetch(makeApiUrl('/api/views'))
-    .then((r) => r.json())
-    .then((r) => r.posts)
+  // const viewsData = await fetch(makeApiUrl('/api/views'))
+  //   .then((r) => r.json())
+  //   .then((r) => r.posts)
   const allTags = await getAllTags()
 
   const transformedPosts = fetchedPosts.map((singlePost) => ({
     ...singlePost.meta,
     slug: singlePost.slug,
     readTime: getReadTime(singlePost.content),
-    views: viewsData.find((item) => item.slug === singlePost.slug)?.views || 0,
+    // views: viewsData.find((item) => item.slug === singlePost.slug)?.views || 0,
+    views: 0,
   }))
   const yearGroupedPosts = groupBy(sortDescByDate(transformedPosts), (post) => new Date(post.date).getFullYear())
 

@@ -124,15 +124,16 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }) {
   const fetchedPosts = await getAllPostsByTag(params.slug)
   const allTags = await getAllTags()
-  const viewsData = await fetch(makeApiUrl('/api/views'))
-    .then((r) => r.json())
-    .then((r) => r.posts)
+  // const viewsData = await fetch(makeApiUrl('/api/views'))
+  //   .then((r) => r.json())
+  //   .then((r) => r.posts)
 
   const transformedPosts = fetchedPosts.map((singlePost) => ({
     ...singlePost.meta,
     slug: singlePost.slug,
     readTime: getReadTime(singlePost.content),
-    views: viewsData.find((item) => item.slug === singlePost.slug)?.views || 0,
+    // views: viewsData.find((item) => item.slug === singlePost.slug)?.views || 0,
+    views: 0,
   }))
   const yearGroupedPosts = groupBy(sortDescByDate(transformedPosts), (post) => new Date(post.date).getFullYear())
 
