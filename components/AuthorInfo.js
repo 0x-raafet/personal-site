@@ -8,7 +8,7 @@ export default function AuthorInfo(props) {
     <Container>
       <AvatarContainer>
         <NextImage
-          src="/avatar.png"
+          src="/avatar.jpeg"
           width={96}
           height={96}
           style={{
